@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncovering Conceptual Blindspots in Generative Image Models Using Sparse Autoencoders</title>
+    <meta name="description" content="A systematic framework for identifying and characterizing conceptual blindspots in generative image models using sparse autoencoders.">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="robots" content="all">
+    <meta content="en_EN" property="og:locale">
+    <meta content="website" property="og:type">
+    <meta content="https://example.com/conceptual-blindspots" property="og:url">
+    <meta content="Uncovering Conceptual Blindspots in Generative Image Models Using Sparse Autoencoders" property="og:title">
+    <meta content="A systematic framework for identifying and characterizing conceptual blindspots in generative image models" property="og:description">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@your_twitter_id">
+    <meta name="twitter:description" content="Uncovering Conceptual Blindspots in Generative Image Models Using Sparse Autoencoders">
+    <meta name="twitter:image:src" content="assets/figures/teaser.png">
+    
+    <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/foundation.min.css">
+    <link href="assets/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
+    <script src="assets/scripts/navbar.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            "HTML-CSS": {
+              scale: 95,
+              fonts: ["Gyre-Pagella"],
+              imageFont: null,
+              undefinedFamily: "'Arial Unicode MS', cmbright"
+            },
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+              }
+          });
+    </script>
+    <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .fillable svelte-n2mxwf app {
+           padding: 0 !important; 
+        }
+    </style>
+</head>
+
+<body onload="if (document.activeElement) document.activeElement.blur();">
+
+    <script>
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+    </script>
+
+    <!-- Title Page -->
+    <div class="container blog" id="first-content" style="background-color: #E0E4E6;">
+        <div class="blog-title">
+            <div class="blog-intro">
+                <div>
+                    <h1 class="title" style="font-weight: 800;"><b style="font-weight: 800;">Compliance Rating Scheme: A Data Provenance Framework for Generative AI Datasets</b></h1>
+                    <p class="author">
+                        <a href="">Maty Bohacek</a> <sup>1</sup> and <a href="">Ignacio Vilanova Echavarri</a> <sup>2</sup>
+                    </p>
+                    <p class="author" style="padding-top: 0px;">
+                        <sup>1</sup> Stanford University   <sup>2</sup> Imperial College London <br>
+                    </p>
+                    <p class="abstract">
+                        The rapid expansion of Generative AI has outpaced ethical standards for training datasets, often resulting in opaque data collection and significant legal risks such as copyright infringement. To address this gap, we introduce the Compliance Rating Scheme (CRS), a framework designed to evaluate dataset compliance against critical transparency, accountability, and security principles. In tandem, we open-source a Python library called DatasetSentinel, which materializes these principles and enables seamless integration into existing pipelines, allowing dataset authors to verify compliance during scraping and practitioners to evaluate existing datasets before use.
+                    </p>
+
+                    <div class="info">
+                        <div>
+                            <a href="" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">Paper <i class="fa-solid fa-book-open"></i></a> &nbsp;&nbsp; 
+                            <a href="" class="button icon" style="background-color: rgba(255, 255, 255, 0.2)">Code <i class="fa-solid fa-code"></i></a>  &nbsp;&nbsp; 
+                            <!--<a href="" class="button icon" style="background-color: rgba(255, 255, 255, 0.2);">Demo <i class="fa-solid fa-globe"></i></a> &nbsp;&nbsp; -->
+                            <!--<a href="" class="button icon" style="background-color: rgba(255, 255, 255, 0.2);">Models <i class="fa-solid fa-database"></i></a> &nbsp;&nbsp; -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="blog-cover" style="width: 100% !important;">
+                <img src="assets/figures/main.png">
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="container blog main first" id="blog-main">
+        <h1>Introduction</h1>
+        <p class="text">
+            Generative AI has experienced exponential growth, powered by large-scale datasets often built through opaque data collection practices. While most focus remains on model development, the ethical and legal considerations surrounding dataset creation are frequently overlooked. The Compliance Rating Scheme (CRS) addresses this gap by providing a framework to evaluate dataset compliance with critical transparency, accountability, and security principles.
+        </p>
+
+        <p class="text">
+            Our key insights include:
+        </p>
+
+        <ul style="margin-left: 2em; margin-bottom: 2em;">
+            <li style="margin-bottom: 0.8em;"><strong>Cost-effective compliance assessment:</strong> There exist affordable, scalable methods for determining which datapoints are safe to scrape and evaluating dataset compliance using data provenance technology.</li>
+            <li style="margin-bottom: 0.8em;"><strong>Current datasets fall short:</strong> Existing publicly available datasets demonstrate poor compliance with ethical and legal standards, highlighting an urgent need for improved practices.</li>
+            <li style="margin-bottom: 0.8em;"><strong>Adoption gap:</strong> Coverage and implementation of provenance frameworks across the AI ecosystem needs substantial expansion to ensure accountability.</li>
+        </ul>
+    </div>
+
+    <!-- Use Case 1: Scraping New Datapoints -->
+    <div class="container blog main">
+        <h1>Using CRS for Responsible Data Collection</h1>
+        <p class="text">
+            The first application of CRS is during the dataset creation phase. When building a new dataset, authors can leverage the DatasetSentinel library to screen individual datapoints as they are being collected. This proactive approach ensures that only compliant data enters the dataset from the outset, preventing costly legal and ethical issues down the line.
+        </p>
+    </div>
+
+    <div class="container blog extra-large gray">
+        <img src="assets/figures/use-case-0.png" style="width: 100%;">
+        <p class="caption">
+            <strong>Using CRS During Dataset Creation:</strong> The DatasetSentinel library integrates into data scraping pipelines to evaluate individual datapoints before inclusion. By checking provenance metadata against compliance criteria, dataset authors can ensure only ethically and legally compliant data is collected, preventing downstream issues before they occur.
+        </p>
+    </div>
+
+    <!-- Use Case 2: Assessing Existing Datasets -->
+    <div class="container blog main">
+        <h1>Evaluating Existing Datasets with CRS</h1>
+        <p class="text">
+            The second application targets AI practitioners who need to assess datasets before using them for training. Rather than relying solely on license descriptions or author claims, practitioners can use DatasetSentinel to independently verify a dataset's compliance. The tool analyzes the entire dataset and produces a comprehensive CRS score, removing the element of trust and providing concrete evidence of compliance—or lack thereof.
+        </p>
+    </div>
+
+    <div class="container blog extra-large gray">
+        <img src="assets/figures/use-case-1.png" style="width: 100%;">
+        <p class="caption">
+            <strong>Using CRS to Assess Existing Datasets:</strong> AI practitioners can evaluate datasets they're considering for training by computing a CRS score. The framework analyzes the entire dataset against six compliance criteria, providing a letter grade (A-G) that indicates the dataset's adherence to ethical and legal standards, along with detailed reasoning for the assessment.
+        </p>
+    </div>
+
+    <!-- Case Studies Table -->
+    <div class="container blog main">
+        <h1>Case Studies: Evaluating Real-World Datasets</h1>
+        <p class="text">
+            We applied the CRS framework to four publicly available datasets from different distribution platforms to demonstrate its practical utility. The results reveal significant compliance gaps across widely-used datasets in the AI community.
+        </p>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dataset</th>
+                        <th>Source</th>
+                        <th>Modality</th>
+                        <th style="text-align: center;">C1</th>
+                        <th style="text-align: center;">C2</th>
+                        <th style="text-align: center;">C3</th>
+                        <th style="text-align: center;">C4</th>
+                        <th style="text-align: center;">C5</th>
+                        <th style="text-align: center;">C6</th>
+                        <th style="text-align: center;">CRS Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SOD4SB</strong></td>
+                        <td>GitHub</td>
+                        <td>Images</td>
+                        <td style="text-align: center; color: #2d8659;">✓</td>
+                        <td style="text-align: center; color: #2d8659;">✓</td>
+                        <td style="text-align: center; color: #2d8659;">✓</td>
+                        <td style="text-align: center; color: #2d8659;">✓</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center;"><strong style="background-color: #ffd966; padding: 4px 12px; border-radius: 4px;">C</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>MS COCO</strong></td>
+                        <td>Custom website</td>
+                        <td>Images</td>
+                        <td style="text-align: center; color: #2d8659;">✓</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center;"><strong style="background-color: #ff9966; padding: 4px 12px; border-radius: 4px;">F</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RANDOM People</strong></td>
+                        <td>Hugging Face</td>
+                        <td>Videos</td>
+                        <td style="text-align: center; color: #2d8659;">✓</td>
+                        <td style="text-align: center; color: #2d8659;">✓</td>
+                        <td style="text-align: center; color: #2d8659;">✓</td>
+                        <td style="text-align: center; color: #2d8659;">✓</td>
+                        <td style="text-align: center; color: #2d8659;">✓</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center;"><strong style="background-color: #b6d7a8; padding: 4px 12px; border-radius: 4px;">B</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>TikTok Dataset</strong></td>
+                        <td>Kaggle</td>
+                        <td>Videos</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center; color: #c73e3a;">✗</td>
+                        <td style="text-align: center;"><strong style="background-color: #ea9999; padding: 4px 12px; border-radius: 4px;">G</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="text" style="margin-top: 1.5em;">
+            <strong>Compliance Criteria:</strong> C1 = Transparency in sourcing; C2 = License compliance; C3 = Flagging inconclusive data; C4 = Opt-out mechanism; C5 = Change traceability; C6 = Provenance metadata updates.
+        </p>
+
+        <p class="text">
+            The results demonstrate that even popular, widely-used datasets often fail to meet basic compliance standards. Only one dataset (RANDOM People) achieved a "B" rating, while the widely-used MS COCO dataset received an "F" rating, highlighting significant ethical and legal concerns in current dataset practices.
+        </p>
+    </div>
+
+    <!-- CRS Adoption Mockups -->
+    <div class="container blog main">
+        <h1>Envisioning CRS Adoption</h1>
+        <p class="text">
+            To facilitate widespread adoption, we envision CRS scores being prominently displayed on dataset distribution platforms. Here are mockups showing how the CRS framework could be integrated into popular platforms like GitHub, Hugging Face, and academic lab websites, making compliance information immediately visible to practitioners evaluating datasets.
+        </p>
+    </div>
+
+    <div class="container blog main gray">
+        <div class="slide-menu">
+            <ul class="dots" id="slide-menu">
+                <li class="dot active"></li>
+                <li class="dot"></li>
+                <li class="dot"></li>
+            </ul>
+        </div>
+       
+        <div class="slide-content" style="display: block;">
+            <img src="reference/paper/fig/mockup-hf.jpg" style="width: 100%;">
+            <p class="caption inline" style="margin-top: 1em;">
+                <strong>Hugging Face Integration:</strong> CRS score displayed prominently on dataset cards, allowing practitioners to quickly assess compliance before downloading.
+            </p>
+        </div>
+
+        <div class="slide-content" style="display: none;">
+            <img src="reference/paper/fig/mockup-github.jpg" style="width: 100%;">
+            <p class="caption inline" style="margin-top: 1em;">
+                <strong>GitHub Integration:</strong> CRS badges in repository README files provide immediate visibility into dataset compliance status.
+            </p>
+        </div>
+
+        <div class="slide-content" style="display: none;">
+            <img src="reference/paper/fig/mockup-lab-website.jpg" style="width: 100%;">
+            <p class="caption inline" style="margin-top: 1em;">
+                <strong>Academic Website Integration:</strong> Research lab datasets display CRS scores alongside traditional metadata like citation information and download links.
+            </p>
+        </div>
+    </div>
+
+    <div class="container blog main">
+        <h1>Citation</h1>
+<pre><code class="plaintext">TBD</code></pre>
+    </div>
+
+    <!-- Footer Page -->
+    <footer>
+        <div class="container">
+            <p style="font-size: small;">
+                Last updated January 2025. This website is built on the <a href="https://shikun.io/projects/clarity" style="font-size: small;">Clarity Template</a>.
+            </p>
+        </div>    
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="clarity/clarity.js"></script>    
+    <script src="assets/scripts/main.js"></script>    
+</body>
+</html>
