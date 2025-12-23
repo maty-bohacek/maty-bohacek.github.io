@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uncovering Conceptual Blindspots in Generative Image Models Using Sparse Autoencoders</title>
-    <meta name="description" content="A systematic framework for identifying and characterizing conceptual blindspots in generative image models using sparse autoencoders.">
+    <title>Compliance Rating Scheme</title>
+    <meta name="description" content="The rapid expansion of Generative AI has outpaced ethical standards for training datasets, often resulting in opaque data collection and significant legal risks such as copyright infringement. To address this gap, we introduce the Compliance Rating Scheme (CRS), a framework designed to evaluate dataset compliance against critical transparency, accountability, and security principles. In tandem, we open-source a Python library called DatasetSentinel, which materializes these principles and enables seamless integration into existing pipelines, allowing dataset authors to verify compliance during scraping and practitioners to evaluate existing datasets before use.">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <meta name="robots" content="all">
     <meta content="en_EN" property="og:locale">
     <meta content="website" property="og:type">
-    <meta content="https://example.com/conceptual-blindspots" property="og:url">
-    <meta content="Uncovering Conceptual Blindspots in Generative Image Models Using Sparse Autoencoders" property="og:title">
-    <meta content="A systematic framework for identifying and characterizing conceptual blindspots in generative image models" property="og:description">
+    <meta content="" property="og:url"> <!-- todo fill in once URL is finalized -->
+    <meta content="Compliance Rating Scheme: A Data Provenance Framework for Generative AI Datasets" property="og:title">
+    <meta content="The rapid expansion of Generative AI has outpaced ethical standards for training datasets, often resulting in opaque data collection and significant legal risks such as copyright infringement. To address this gap, we introduce the Compliance Rating Scheme (CRS), a framework designed to evaluate dataset compliance against critical transparency, accountability, and security principles. In tandem, we open-source a Python library called DatasetSentinel, which materializes these principles and enables seamless integration into existing pipelines, allowing dataset authors to verify compliance during scraping and practitioners to evaluate existing datasets before use." property="og:description">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@your_twitter_id">
-    <meta name="twitter:description" content="Uncovering Conceptual Blindspots in Generative Image Models Using Sparse Autoencoders">
-    <meta name="twitter:image:src" content="assets/figures/teaser.png">
+    <meta name="twitter:description" content="Compliance Rating Scheme: A Data Provenance Framework for Generative AI Datasets">
+    <meta name="twitter:image:src" content="assets/figures/main.png">
     
     <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css" />
     <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/foundation.min.css">
-    <link href="assets/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet">
+    <link href="assets/fontawesome-free-7.1.0-web/css/all.min.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
     <script src="assets/scripts/navbar.js"></script>
     <script type="text/x-mathjax-config">
@@ -95,20 +95,39 @@
 
     <!-- Introduction -->
     <div class="container blog main first" id="blog-main">
-        <h1>Introduction</h1>
         <p class="text">
-            Generative AI has experienced exponential growth, powered by large-scale datasets often built through opaque data collection practices. While most focus remains on model development, the ethical and legal considerations surrounding dataset creation are frequently overlooked. The Compliance Rating Scheme (CRS) addresses this gap by providing a framework to evaluate dataset compliance with critical transparency, accountability, and security principles.
+            Generative AI has experienced exponential growth powered largely by massive datasets built through opaque data collection practices. While most focus remains on model development, the ethical and legal considerations surrounding dataset creation are frequently overlooked. Our work aims to address this by acting on the following insights:
         </p>
 
+        <!--key insights box-->
+        <fieldset class="insights-box">
+            <legend>Key Insights</legend>
+            <ul style="margin-left: 1.5em; margin-bottom: 0;">
+                <li style="margin-bottom: 0.8em;"><b>Data provenance unlocks effective compliance assessment.</b> Determining which data points are safe to scrape for a dataset and evaluating compliance of existing datasets can both be addressed using data provenance technology, which is affordable and scalable.</li>
+                <li style="margin-bottom: 0.8em;"><b>Existing datasets and scraping frameworks fall short.</b> Existing datasets demonstrate poor compliance with ethical and legal standards, highlighting an urgent need for improved practices. We provide an automated way of evaluating these datasets.</li>
+                <!--<li style="margin-bottom: 0.8em;"><b>Increased provenance adoption unlocks more accountable AI datasets.</b> Coverage and implementation of provenance frameworks across tech platforms would remove ambiguity about licensing and AI scraping preference, and support more accountability across the AI ecosystem.</li>-->
+            </ul>
+        </fieldset>
+
         <p class="text">
-            Our key insights include:
+            Given these insights, we devise two artifacts to bridge data provenance with AI dataset scraping and evaluation, emphasizing principles of critical transparency, accountability, and security. We open-source these artifacts for the research community and industry practitioners:
         </p>
 
-        <ul style="margin-left: 2em; margin-bottom: 2em;">
-            <li style="margin-bottom: 0.8em;"><strong>Cost-effective compliance assessment:</strong> There exist affordable, scalable methods for determining which datapoints are safe to scrape and evaluating dataset compliance using data provenance technology.</li>
-            <li style="margin-bottom: 0.8em;"><strong>Current datasets fall short:</strong> Existing publicly available datasets demonstrate poor compliance with ethical and legal standards, highlighting an urgent need for improved practices.</li>
-            <li style="margin-bottom: 0.8em;"><strong>Adoption gap:</strong> Coverage and implementation of provenance frameworks across the AI ecosystem needs substantial expansion to ensure accountability.</li>
-        </ul>
+        <!-- banners side by side -->
+        <div class="banner-container">
+            <div class="banner-box">
+                <div class="banner-icon">●</div>
+                <h2 class="banner-title">Compliance Rating Scheme</h2>
+                <p class="banner-text">Framework to valuate datasets against six key criteria for transparency, accountability, and security compliance.</p>
+            </div>
+
+            <div class="banner-box">
+                <div class="banner-icon">●</div>
+                <h2 class="banner-title">DatasetSentinel</h2>
+                <p class="banner-text">Open-source Python library for seamless integration of CRS into existing data pipelines and workflows.</p>
+            </div>
+        </div>
+
     </div>
 
     <!-- Use Case 1: Scraping New Datapoints -->
@@ -119,10 +138,10 @@
         </p>
     </div>
 
-    <div class="container blog extra-large gray">
+    <div class="container blog large gray">
         <img src="assets/figures/use-case-0.png" style="width: 100%;">
         <p class="caption">
-            <strong>Using CRS During Dataset Creation:</strong> The DatasetSentinel library integrates into data scraping pipelines to evaluate individual datapoints before inclusion. By checking provenance metadata against compliance criteria, dataset authors can ensure only ethically and legally compliant data is collected, preventing downstream issues before they occur.
+            <b>Using CRS During Dataset Creation.</b> The DatasetSentinel library integrates into data scraping pipelines to evaluate individual datapoints before inclusion. By checking provenance metadata against compliance criteria, dataset authors can ensure only ethically and legally compliant data is collected, preventing downstream issues before they occur.
         </p>
     </div>
 
@@ -134,10 +153,10 @@
         </p>
     </div>
 
-    <div class="container blog extra-large gray">
+    <div class="container blog large gray">
         <img src="assets/figures/use-case-1.png" style="width: 100%;">
         <p class="caption">
-            <strong>Using CRS to Assess Existing Datasets:</strong> AI practitioners can evaluate datasets they're considering for training by computing a CRS score. The framework analyzes the entire dataset against six compliance criteria, providing a letter grade (A-G) that indicates the dataset's adherence to ethical and legal standards, along with detailed reasoning for the assessment.
+            <b>Using CRS to Assess Existing Datasets.</b> AI practitioners can evaluate datasets they're considering for training by computing a CRS score. The framework analyzes the entire dataset against six compliance criteria, providing a letter grade (A-G) that indicates the dataset's adherence to ethical and legal standards, along with detailed reasoning for the assessment.
         </p>
     </div>
 
@@ -217,10 +236,6 @@
             </table>
         </div>
 
-        <p class="text" style="margin-top: 1.5em;">
-            <strong>Compliance Criteria:</strong> C1 = Transparency in sourcing; C2 = License compliance; C3 = Flagging inconclusive data; C4 = Opt-out mechanism; C5 = Change traceability; C6 = Provenance metadata updates.
-        </p>
-
         <p class="text">
             The results demonstrate that even popular, widely-used datasets often fail to meet basic compliance standards. Only one dataset (RANDOM People) achieved a "B" rating, while the widely-used MS COCO dataset received an "F" rating, highlighting significant ethical and legal concerns in current dataset practices.
         </p>
@@ -244,37 +259,46 @@
         </div>
        
         <div class="slide-content" style="display: block;">
-            <img src="reference/paper/fig/mockup-hf.jpg" style="width: 100%;">
-            <p class="caption inline" style="margin-top: 1em;">
-                <strong>Hugging Face Integration:</strong> CRS score displayed prominently on dataset cards, allowing practitioners to quickly assess compliance before downloading.
+            <img src="assets/figures/mockup-hf.jpg" style="width: 100%;">
+            <p class="caption" style="margin-top: 1em;">
+                <b>Hugging Face Integration.</b> CRS score displayed prominently on dataset cards, allowing practitioners to quickly assess compliance before downloading.
             </p>
         </div>
 
         <div class="slide-content" style="display: none;">
-            <img src="reference/paper/fig/mockup-github.jpg" style="width: 100%;">
-            <p class="caption inline" style="margin-top: 1em;">
-                <strong>GitHub Integration:</strong> CRS badges in repository README files provide immediate visibility into dataset compliance status.
+            <img src="assets/figures/mockup-github.jpg" style="width: 100%;">
+            <p class="caption" style="margin-top: 1em;">
+                <b>GitHub Integration.</b> CRS badges in repository README files provide immediate visibility into dataset compliance status.
             </p>
         </div>
 
         <div class="slide-content" style="display: none;">
-            <img src="reference/paper/fig/mockup-lab-website.jpg" style="width: 100%;">
-            <p class="caption inline" style="margin-top: 1em;">
-                <strong>Academic Website Integration:</strong> Research lab datasets display CRS scores alongside traditional metadata like citation information and download links.
+            <img src="assets/figures/mockup-lab-website.jpg" style="width: 100%;">
+            <p class="caption" style="margin-top: 1em;">
+                <b>Academic Website Integration.</b> Research lab datasets display CRS scores alongside traditional metadata like citation information and download links.
             </p>
         </div>
     </div>
 
     <div class="container blog main">
-        <h1>Citation</h1>
-<pre><code class="plaintext">TBD</code></pre>
+        <h2>Citation</h2>
+    <pre><code class="plaintext">@inproceedings{bohacek2025compliance,
+    title     = {Compliance Rating Scheme: A Data Provenance Framework for Generative AI Datasets},
+    author    = {Bohacek, Matyas and Vilanova Echavarri, Ignacio},
+    booktitle = {Proceedings of the 33rd ACM International Conference on Multimedia},
+    pages     = {12150--12159},
+    year      = {2025}
+}</code></pre>
+
+    <br>
+    
     </div>
 
     <!-- Footer Page -->
     <footer>
         <div class="container">
             <p style="font-size: small;">
-                Last updated January 2025. This website is built on the <a href="https://shikun.io/projects/clarity" style="font-size: small;">Clarity Template</a>.
+                Last updated December 2025. This website is built on the modified <a href="https://shikun.io/projects/clarity" style="font-size: small;">Clarity Template</a>.
             </p>
         </div>    
     </footer>

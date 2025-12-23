@@ -1057,7 +1057,7 @@ button, .button {
     justify-content: center;
     font-size: 0.7em;
     font-weight: 700;
-    font-family: $default-serif, serif;
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     // height: 1.5em;
     // line-height: 1.5em;
     letter-spacing: 0.075em;
@@ -1430,5 +1430,67 @@ select {
             display: block;
             padding-bottom: 40px;
         }
+    }
+}
+
+/* ======================== Key Insights Box ===================== */
+.insights-box {
+    border: 2px solid $gray-30;
+    border-radius: 8px;
+    padding: 1.5em 2em 1.2em 2em;
+    margin: 2em 0;
+    
+    legend {
+        padding: 0 0.5em;
+        font-weight: 600;
+        color: $gray-80;
+        font-family: $default-serif, serif;
+    }
+}
+
+/* ======================== Side-by-Side Banners ===================== */
+.banner-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+    margin: 2em 0;
+}
+
+.banner-box {
+    border: 2px solid $gray-30;
+    border-radius: 8px;
+    padding: 2em 1.5em 1.5em 1.5em;
+    text-align: center;
+    
+    .banner-icon {
+        font-size: 2.5em;
+        margin-bottom: 0.3em;
+        color: $black;
+    }
+    
+    .banner-title {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-bottom: 1em;
+        padding: 0;
+        color: $black;
+    }
+    
+    .banner-text {
+        text-align: left;
+        font-size: 0.95em;
+        line-height: 1.5;
+        margin-bottom: 0.8em;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media screen and (max-width: $medium-device) {
+    .banner-container {
+        grid-template-columns: 1fr;
+        gap: 1.5em;
     }
 }

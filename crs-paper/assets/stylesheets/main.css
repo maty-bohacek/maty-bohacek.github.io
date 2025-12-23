@@ -892,7 +892,7 @@ button, .button {
   justify-content: center;
   font-size: 0.7em;
   font-weight: 700;
-  font-family: "Charter", serif;
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   letter-spacing: 0.075em;
   text-decoration: none;
   text-transform: uppercase;
@@ -1240,6 +1240,63 @@ select:after {
 .slideshow .slider .slider-item video {
   display: block;
   padding-bottom: 40px;
+}
+
+/* ======================== Key Insights Box ===================== */
+.insights-box {
+  border: 2px solid #c6c6c6;
+  border-radius: 8px;
+  padding: 1.5em 2em 1.2em 2em;
+  margin: 2em 0;
+}
+.insights-box legend {
+  padding: 0 0.5em;
+  font-weight: 600;
+  color: #666667;
+  font-family: "Charter", serif;
+}
+
+/* ======================== Side-by-Side Banners ===================== */
+.banner-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+  margin: 2em 0;
+}
+
+.banner-box {
+  border: 2px solid #c6c6c6;
+  border-radius: 8px;
+  padding: 2em 1.5em 1.5em 1.5em;
+  text-align: center;
+}
+.banner-box .banner-icon {
+  font-size: 2.5em;
+  margin-bottom: 0.3em;
+  color: #353535;
+}
+.banner-box .banner-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 1em;
+  padding: 0;
+  color: #353535;
+}
+.banner-box .banner-text {
+  text-align: left;
+  font-size: 0.95em;
+  line-height: 1.5;
+  margin-bottom: 0.8em;
+}
+.banner-box .banner-text:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .banner-container {
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
