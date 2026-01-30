@@ -1,0 +1,34 @@
+[
+  {
+    "id": "neurips-talk",
+    "date": "2026-12-10",
+    "title": "Invited Talk at NeurIPS Workshop on AI Safety",
+    "type": "talk",
+    "location": "Vancouver, Canada",
+    "link": "https://neurips.cc"
+  },
+  {
+    "id": "stanford-seminar",
+    "date": "2026-02-15",
+    "title": "Stanford AI Lab Seminar: Data Provenance in ML",
+    "type": "talk",
+    "location": "Stanford, CA",
+    "link": null
+  },
+  {
+    "id": "icml-2026",
+    "date": "2026-07-20",
+    "title": "ICML 2026",
+    "type": "conference",
+    "location": "Vienna, Austria",
+    "link": "https://icml.cc"
+  },
+  {
+    "id": "workshop-responsible-ai",
+    "date": "2026-03-25",
+    "title": "Workshop on Responsible AI Development",
+    "type": "workshop",
+    "location": "San Francisco, CA",
+    "link": null
+  }
+]

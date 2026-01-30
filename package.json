@@ -1,0 +1,45 @@
+{
+  "name": "maty-bohacek.github.io",
+  "version": "1.0.0",
+  "description": "Personal website for Maty Bohacek - Researcher at Stanford University",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:22621/git/maty-bohacek/maty-bohacek.github.io"
+  },
+  "keywords": [
+    "researcher",
+    "stanford",
+    "portfolio",
+    "academic"
+  ],
+  "author": "Maty Bohacek",
+  "license": "MIT",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^25.1.0",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^19.2.10",
+    "autoprefixer": "^10.4.23",
+    "csv-parse": "^6.1.0",
+    "gray-matter": "^4.0.3",
+    "next": "^16.1.6",
+    "next-mdx-remote": "^5.0.0",
+    "papaparse": "^5.5.3",
+    "postcss": "^8.5.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "rehype-highlight": "^7.0.2",
+    "rehype-raw": "^7.0.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
+  }
+}
