@@ -35,7 +35,7 @@ export interface BlogPost {
   excerpt: string;
   content: string;
   date: string;
-  category: 'Research' | 'Impact' | 'Miscellaneous';
+  category: 'Research' | 'AI & Democracy' | 'Books' | 'Movies' | 'Miscellaneous';
   tags: string[];
   coverImage?: string;
   readingTime?: string;

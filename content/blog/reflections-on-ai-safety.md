@@ -2,7 +2,7 @@
 title: "Reflections on AI Safety Research After a Year at Stanford"
 excerpt: "After a year of working on AI safety at Stanford, I share my thoughts on the current state of the field, the most promising research directions, and what keeps me motivated."
 date: "2025-11-15"
-category: "Impact"
+category: "AI & Democracy"
 tags: ["AI safety", "research", "Stanford", "reflections"]
 coverImage: "/images/blog/stanford-campus.jpg"
 ---

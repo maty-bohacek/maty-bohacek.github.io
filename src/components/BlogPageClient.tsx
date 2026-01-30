@@ -14,7 +14,7 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const categories = ['Research', 'Impact', 'Miscellaneous'];
+  const categories = ['Research', 'AI & Democracy', 'Books', 'Movies', 'Miscellaneous'];
 
   const filteredPosts = useMemo(() => {
     return posts.filter((post) => {
@@ -58,7 +58,7 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
           <h1 className="text-display-lg text-neutral-900 mb-4">Blog</h1>
           <p className="text-xl text-neutral-600 max-w-3xl">
-            Thoughts, tutorials, and deep-dives on research, AI, and technology impact.
+            My thoughts on research, AI&apos;s impact on our democracy, and anything else that interests me.
           </p>
         </div>
       </section>
