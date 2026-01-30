@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { getSiteConfig, getAffiliations, getUpcomingEvents } from '@/lib/data';
 import { getFeaturedPublications } from '@/lib/publications';
@@ -8,6 +7,7 @@ import PublicationCard from '@/components/PublicationCard';
 import LogEntry from '@/components/LogEntry';
 import UpcomingItem from '@/components/UpcomingItem';
 import SectionHeader from '@/components/SectionHeader';
+import HeadshotImage from '@/components/HeadshotImage';
 
 export default function HomePage() {
   const config = getSiteConfig();
@@ -75,16 +75,11 @@ export default function HomePage() {
                 {/* Decorative elements - Swiss style */}
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary-500 -z-10" />
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary-200 -z-10" />
-                <div className="w-64 h-64 lg:w-80 lg:h-80 overflow-hidden bg-neutral-200">
-                  <Image
-                    src={config.headshot}
-                    alt={config.name}
-                    width={320}
-                    height={320}
-                    className="w-full h-full object-cover"
-                    priority
-                  />
-                </div>
+                <HeadshotImage
+                  src={config.headshot}
+                  hoverSrc="/images/headshot-hover.jpeg"
+                  alt={config.name}
+                />
               </div>
             </div>
           </div>
