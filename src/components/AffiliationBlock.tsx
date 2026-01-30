@@ -46,13 +46,12 @@ export default function AffiliationBlock({
       <div className="flex items-start gap-4">
         {/* Icon */}
         {icon && (
-          <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-lg shadow-sm">
+          <div className="flex-shrink-0 w-12 h-12 relative bg-white rounded-lg shadow-sm overflow-hidden">
             <Image
               src={icon}
               alt={title}
-              width={32}
-              height={32}
-              className="object-contain"
+              fill
+              className="object-cover"
             />
           </div>
         )}
