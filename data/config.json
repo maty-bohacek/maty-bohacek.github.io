@@ -1,8 +1,8 @@
 {
   "name": "Maty Bohacek",
-  "title": "Researcher at Stanford University",
-  "description": "Working on AI, machine learning, and their societal impact.",
-  "bio": "I am a researcher at Stanford University focusing on artificial intelligence, machine learning, and their intersection with society. My work spans from technical contributions in AI systems to understanding and mitigating the societal implications of these technologies. Previously, I spent time at DeepMind working on cutting-edge AI research.",
+  "title": "",
+  "description": "Researcher at Stanford University interested in AI's impact on media, discourse, and communication integrity.",
+  "bio": "I am a student researcher at Stanford University advised by Prof. Maneesh Agrawala. I work at the intersection of AI, computer vision, and media forensics. In a world that is becoming increasingly AI-mediated, my goal is to build AI systems and that are inherently trustworthy and interpretable, resulting in productive, democratic discourse.",
   "email": "maty@stanford.edu",
   "headshot": "/images/headshot.jpg",
   "social": {

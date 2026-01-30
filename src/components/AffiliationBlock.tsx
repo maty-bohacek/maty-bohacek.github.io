@@ -1,40 +1,46 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 
 interface AffiliationBlockProps {
   title: string;
   subtitle: string;
   href: string;
   icon?: string;
-  color?: 'primary' | 'red' | 'orange' | 'blue' | 'pink' | 'teal';
+  color?: string; // Hex color code
 }
-
-const colorClasses = {
-  primary: 'bg-primary-500',
-  red: 'bg-swiss-red',
-  orange: 'bg-swiss-orange',
-  blue: 'bg-swiss-blue',
-  pink: 'bg-swiss-pink',
-  teal: 'bg-swiss-teal',
-};
 
 export default function AffiliationBlock({
   title,
   subtitle,
   href,
   icon,
-  color = 'primary',
+  color = '#22c55e',
 }: AffiliationBlockProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Determine if link is external
+  const isExternal = href.startsWith('http') || href.startsWith('//');
+
   return (
     <Link
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
       className="group block bg-neutral-50 hover:bg-neutral-100 transition-all duration-200 p-6 relative overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Accent bar */}
+      {/* Accent bar - uses custom color */}
       <div
-        className={`absolute top-0 left-0 w-full h-1 ${colorClasses[color]} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300`}
+        className="absolute top-0 left-0 w-full h-1 transition-transform duration-300"
+        style={{
+          backgroundColor: color,
+          transform: isHovered ? 'scaleX(1)' : 'scaleX(0)',
+          transformOrigin: 'left',
+        }}
       />
 
       <div className="flex items-start gap-4">
@@ -52,7 +58,10 @@ export default function AffiliationBlock({
         )}
 
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors truncate">
+          <h3
+            className="font-semibold transition-colors truncate"
+            style={{ color: isHovered ? color : '#171717' }}
+          >
             {title}
           </h3>
           <p className="text-sm text-neutral-500 mt-1 line-clamp-2">
@@ -60,9 +69,13 @@ export default function AffiliationBlock({
           </p>
         </div>
 
-        {/* Arrow */}
+        {/* Arrow - uses custom color on hover */}
         <svg
-          className="w-5 h-5 text-neutral-400 group-hover:text-primary-500 transform group-hover:translate-x-1 transition-all flex-shrink-0"
+          className="w-5 h-5 transform transition-all flex-shrink-0"
+          style={{
+            color: isHovered ? color : '#a3a3a3',
+            transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
+          }}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

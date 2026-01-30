@@ -56,7 +56,7 @@ export interface Affiliation {
   subtitle: string;
   href: string;
   icon?: string;
-  color?: 'primary' | 'red' | 'orange' | 'blue' | 'pink' | 'teal';
+  color?: string; // Hex color code
   order: number;
 }
 
