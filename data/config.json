@@ -1,0 +1,14 @@
+{
+  "name": "Maty Bohacek",
+  "title": "Researcher at Stanford University",
+  "description": "Working on AI, machine learning, and their societal impact.",
+  "bio": "I am a researcher at Stanford University focusing on artificial intelligence, machine learning, and their intersection with society. My work spans from technical contributions in AI systems to understanding and mitigating the societal implications of these technologies. Previously, I spent time at DeepMind working on cutting-edge AI research.",
+  "email": "maty@stanford.edu",
+  "headshot": "/images/headshot.jpg",
+  "social": {
+    "twitter": "https://twitter.com/matybohacek",
+    "github": "https://github.com/maty-bohacek",
+    "linkedin": "https://linkedin.com/in/matybohacek",
+    "scholar": "https://scholar.google.com/citations?user=XXXXX"
+  }
+}

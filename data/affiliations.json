@@ -1,0 +1,56 @@
+[
+  {
+    "id": "stanford",
+    "title": "Stanford University",
+    "subtitle": "Graduate Researcher",
+    "href": "https://stanford.edu",
+    "icon": "/icons/stanford.svg",
+    "color": "primary",
+    "order": 1
+  },
+  {
+    "id": "deepmind",
+    "title": "Google DeepMind",
+    "subtitle": "Previous Research Intern",
+    "href": "https://deepmind.google",
+    "icon": "/icons/deepmind.svg",
+    "color": "blue",
+    "order": 2
+  },
+  {
+    "id": "hai",
+    "title": "Stanford HAI",
+    "subtitle": "Human-Centered AI Institute",
+    "href": "https://hai.stanford.edu",
+    "icon": "/icons/hai.svg",
+    "color": "red",
+    "order": 3
+  },
+  {
+    "id": "crs",
+    "title": "CRS Framework",
+    "subtitle": "Data Provenance for AI",
+    "href": "/crs-paper",
+    "icon": "/icons/crs.svg",
+    "color": "teal",
+    "order": 4
+  },
+  {
+    "id": "neurips",
+    "title": "NeurIPS 2025",
+    "subtitle": "Accepted Paper",
+    "href": "#",
+    "icon": "/icons/neurips.svg",
+    "color": "orange",
+    "order": 5
+  },
+  {
+    "id": "icml",
+    "title": "ICML 2024",
+    "subtitle": "Oral Presentation",
+    "href": "#",
+    "icon": "/icons/icml.svg",
+    "color": "pink",
+    "order": 6
+  }
+]
