@@ -1,25 +1,17 @@
 import Link from 'next/link';
 import Image from 'next/image';
-
-export interface BlogPost {
-  slug: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  category: 'Research' | 'Impact' | 'Miscellaneous';
-  tags: string[];
-  coverImage?: string;
-  readingTime?: string;
-}
+import { BlogPost } from '@/types';
 
 interface BlogCardProps {
   post: BlogPost;
   featured?: boolean;
 }
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   Research: 'bg-primary-100 text-primary-700',
-  Impact: 'bg-swiss-blue/10 text-swiss-blue',
+  'AI & Democracy': 'bg-swiss-blue/10 text-swiss-blue',
+  Books: 'bg-swiss-teal/10 text-swiss-teal',
+  Movies: 'bg-swiss-pink/10 text-swiss-pink',
   Miscellaneous: 'bg-swiss-orange/10 text-swiss-orange',
 };
 
@@ -48,7 +40,7 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
             </div>
           )}
           <div className="flex items-center gap-3 mb-3">
-            <span className={`text-xs font-semibold px-2 py-1 ${categoryColors[category]}`}>
+            <span className={`text-xs font-semibold px-2 py-1 ${categoryColors[category] || categoryColors.Miscellaneous}`}>
               {category}
             </span>
             <time dateTime={date} className="text-sm text-neutral-500">
@@ -85,7 +77,7 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
         )}
         <div className="p-5">
           <div className="flex items-center gap-2 mb-3">
-            <span className={`text-xs font-semibold px-2 py-0.5 ${categoryColors[category]}`}>
+            <span className={`text-xs font-semibold px-2 py-0.5 ${categoryColors[category] || categoryColors.Miscellaneous}`}>
               {category}
             </span>
             {readingTime && (

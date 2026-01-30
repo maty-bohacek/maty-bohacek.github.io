@@ -23,8 +23,7 @@ export default function ResearchPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
           <h1 className="text-display-lg text-neutral-900 mb-4">Research</h1>
           <p className="text-xl text-neutral-600 max-w-3xl">
-            A complete list of my publications, including papers on AI, machine learning,
-            and their applications in various domains.
+            A complete list of my research publications, primarily in AI, computer vision, and media integrity.
           </p>
           {totalPublications > 0 && (
             <div className="mt-6 flex items-center gap-4">

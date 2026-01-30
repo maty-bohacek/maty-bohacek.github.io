@@ -41,9 +41,11 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   };
 }
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   Research: 'bg-primary-100 text-primary-700',
-  Impact: 'bg-swiss-blue/10 text-swiss-blue',
+  'AI & Democracy': 'bg-swiss-blue/10 text-swiss-blue',
+  Books: 'bg-swiss-teal/10 text-swiss-teal',
+  Movies: 'bg-swiss-pink/10 text-swiss-pink',
   Miscellaneous: 'bg-swiss-orange/10 text-swiss-orange',
 };
 

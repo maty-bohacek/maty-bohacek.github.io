@@ -22,7 +22,7 @@ export default function LogPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
           <h1 className="text-display-lg text-neutral-900 mb-4">Log</h1>
           <p className="text-xl text-neutral-600 max-w-3xl">
-            Updates, news, talks, and activities. A chronological record of what is happening.
+            A chronological record of what I&apos;m up to. A public journal, of sorts.
           </p>
           {totalEntries > 0 && (
             <p className="mt-4 text-sm text-neutral-500">

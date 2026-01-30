@@ -48,8 +48,8 @@ export default function Footer() {
           <div>
             <h3 className="text-2xl font-bold mb-4">Maty Bohacek</h3>
             <p className="text-neutral-400 text-sm leading-relaxed">
-              Researcher at Stanford University working on AI, machine learning,
-              and their societal impact.
+              Researcher at Stanford University interested in AI&apos;s impact on media,
+              discourse, and communication integrity.
             </p>
           </div>
 
@@ -112,7 +112,7 @@ export default function Footer() {
             {new Date().getFullYear()} Maty Bohacek. All rights reserved.
           </p>
           <p className="text-neutral-600 text-xs">
-            Built with Next.js. Swiss design inspired.
+            Powered by loads of iced coffee. Built in San Francisco, CA.
           </p>
         </div>
       </div>

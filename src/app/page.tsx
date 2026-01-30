@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { getSiteConfig, getAffiliations, getUpcomingEvents } from '@/lib/data';
 import { getFeaturedPublications } from '@/lib/publications';
@@ -8,6 +7,7 @@ import PublicationCard from '@/components/PublicationCard';
 import LogEntry from '@/components/LogEntry';
 import UpcomingItem from '@/components/UpcomingItem';
 import SectionHeader from '@/components/SectionHeader';
+import HeadshotImage from '@/components/HeadshotImage';
 
 export default function HomePage() {
   const config = getSiteConfig();
@@ -27,9 +27,11 @@ export default function HomePage() {
               <h1 className="text-display-lg lg:text-display-xl text-neutral-900 mb-6">
                 {config.name}
               </h1>
-              <p className="text-xl lg:text-2xl text-primary-600 font-medium mb-6">
-                {config.title}
-              </p>
+              {config.title && (
+                <p className="text-xl lg:text-2xl text-primary-600 font-medium mb-6">
+                  {config.title}
+                </p>
+              )}
               <p className="text-lg text-neutral-600 leading-relaxed max-w-2xl">
                 {config.bio}
               </p>
@@ -73,16 +75,11 @@ export default function HomePage() {
                 {/* Decorative elements - Swiss style */}
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary-500 -z-10" />
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary-200 -z-10" />
-                <div className="w-64 h-64 lg:w-80 lg:h-80 overflow-hidden bg-neutral-200">
-                  <Image
-                    src={config.headshot}
-                    alt={config.name}
-                    width={320}
-                    height={320}
-                    className="w-full h-full object-cover"
-                    priority
-                  />
-                </div>
+                <HeadshotImage
+                  src={config.headshot}
+                  hoverSrc="/images/headshot-hover.jpeg"
+                  alt={config.name}
+                />
               </div>
             </div>
           </div>
@@ -93,7 +90,7 @@ export default function HomePage() {
       {affiliations.length > 0 && (
         <section className="bg-white border-t border-neutral-200">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {affiliations.map((affiliation) => (
                 <AffiliationBlock
                   key={affiliation.id}
@@ -182,11 +179,11 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
           <div className="max-w-3xl">
             <h2 className="text-display-md text-white mb-6">
-              Interested in collaborating?
+              Have questions or ideas for future research?
             </h2>
             <p className="text-lg text-neutral-300 mb-8">
               I am always open to discussing new research ideas, potential collaborations,
-              or just chatting about AI and its impact on society.
+              or just chatting about AI and its impact on media and society.
             </p>
             <a
               href={`mailto:${config.email}`}

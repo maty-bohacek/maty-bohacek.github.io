@@ -1,5 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* Fonts from CDN */
+/* Neue Haas Grotesk Display from CDNFonts */
+@import url('https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro');
+/* Fira Sans from Google Fonts (free alternative to FF Meta, same designer Erik Spiekermann) */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+/* JetBrains Mono for code */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @import "tailwindcss";
 
 /* Swiss Design Color Palette */
@@ -40,9 +46,9 @@
   --color-neutral-900: #171717;
   --color-neutral-950: #0a0a0a;
 
-  /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Typography - Neue Haas Grotesk for display/titles, Fira Sans for body */
+  --font-sans: 'Fira Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Neue Haas Grotesk Display Pro', 'Fira Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   /* Spacing */
@@ -62,8 +68,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Swiss Typography Classes */
+/* Swiss Typography Classes - Using Neue Haas Grotesk for display */
 .text-display-xl {
+  font-family: var(--font-display);
   font-size: 5rem;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -71,6 +78,7 @@ body {
 }
 
 .text-display-lg {
+  font-family: var(--font-display);
   font-size: 3.5rem;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -78,6 +86,7 @@ body {
 }
 
 .text-display-md {
+  font-family: var(--font-display);
   font-size: 2.5rem;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -85,6 +94,7 @@ body {
 }
 
 .text-display-sm {
+  font-family: var(--font-display);
   font-size: 1.875rem;
   line-height: 1.3;
   letter-spacing: -0.01em;
