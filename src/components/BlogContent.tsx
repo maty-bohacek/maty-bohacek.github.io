@@ -1,14 +1,9 @@
 import { remark } from 'remark';
 import html from 'remark-html';
+import SidenotePositioner from './SidenotePositioner';
 
 interface BlogContentProps {
   content: string;
-}
-
-interface ParsedContent {
-  html: string;
-  footnotes: { id: string; text: string }[];
-  citations: { id: string; text: string }[];
 }
 
 function parseFootnotesAndCitations(markdown: string): {
@@ -64,32 +59,12 @@ export default async function BlogContent({ content }: BlogContentProps) {
   const htmlContent = await markdownToHtml(cleanedMarkdown);
 
   return (
-    <div className="blog-article-container">
-      {/* Left margin: Footnotes */}
-      <aside className="blog-sidenotes blog-footnotes">
-        {footnotes.map((fn) => (
-          <div key={fn.id} className="sidenote" data-for={fn.id}>
-            <span className="sidenote-number">{fn.id}</span>
-            <span className="sidenote-text">{fn.text}</span>
-          </div>
-        ))}
-      </aside>
-
+    <SidenotePositioner footnotes={footnotes} citations={citations}>
       {/* Main content */}
       <div
         className="blog-content"
         dangerouslySetInnerHTML={{ __html: htmlContent }}
       />
-
-      {/* Right margin: Citations */}
-      <aside className="blog-sidenotes blog-citations">
-        {citations.map((cit) => (
-          <div key={cit.id} className="sidenote citation" data-for={cit.id}>
-            <span className="sidenote-key">[{cit.id}]</span>
-            <span className="sidenote-text">{cit.text}</span>
-          </div>
-        ))}
-      </aside>
-    </div>
+    </SidenotePositioner>
   );
 }
