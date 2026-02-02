@@ -513,3 +513,171 @@ code {
     font-size: 0.8125rem;
   }
 }
+
+/* Blog Article Container with Side Notes */
+.blog-article-container {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 65ch) 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.blog-article-container .blog-content {
+  grid-column: 2;
+}
+
+/* Side notes columns */
+.blog-sidenotes {
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+.blog-footnotes {
+  grid-column: 1;
+  text-align: right;
+  padding-right: 1.5rem;
+}
+
+.blog-citations {
+  grid-column: 3;
+  text-align: left;
+  padding-left: 1.5rem;
+}
+
+/* Individual side note */
+.sidenote {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-neutral-500);
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+}
+
+.sidenote-number {
+  font-weight: 600;
+  color: var(--color-primary-600);
+  margin-right: 0.375rem;
+}
+
+.sidenote-key {
+  font-weight: 600;
+  color: var(--color-swiss-blue);
+  margin-right: 0.375rem;
+  font-size: 0.6875rem;
+}
+
+.sidenote-text {
+  color: var(--color-neutral-600);
+}
+
+/* Footnote and citation references in text */
+.footnote-ref {
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--color-primary-600);
+  cursor: pointer;
+  padding: 0 0.125rem;
+  transition: color 0.2s;
+}
+
+.footnote-ref:hover {
+  color: var(--color-primary-700);
+}
+
+.citation-ref {
+  font-size: 0.875em;
+  color: var(--color-swiss-blue);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.citation-ref:hover {
+  color: var(--color-swiss-blue);
+  text-decoration: underline;
+}
+
+/* Responsive: Stack on smaller screens */
+@media (max-width: 1280px) {
+  .blog-article-container {
+    grid-template-columns: 200px minmax(0, 65ch) 200px;
+    gap: 1rem;
+  }
+
+  .sidenote {
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .blog-article-container {
+    display: block;
+  }
+
+  .blog-sidenotes {
+    display: none;
+  }
+
+  /* Show footnotes/citations inline on mobile */
+  .blog-content .footnote-ref::after {
+    content: attr(data-footnote);
+  }
+
+  /* Add mobile footnotes section at bottom */
+  .blog-article-container::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+/* Mobile: Show collected notes at bottom */
+@media (max-width: 1024px) {
+  .blog-sidenotes {
+    display: block;
+    text-align: left;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    background: var(--color-neutral-50);
+    border-left: 3px solid var(--color-primary-500);
+  }
+
+  .blog-footnotes {
+    padding-right: 0;
+  }
+
+  .blog-citations {
+    padding-left: 0;
+    border-left-color: var(--color-swiss-blue);
+  }
+
+  .blog-sidenotes:empty {
+    display: none;
+  }
+
+  .sidenote {
+    font-size: 0.8125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-footnotes::before {
+    content: 'Footnotes';
+    display: block;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-neutral-500);
+    margin-bottom: 0.75rem;
+  }
+
+  .blog-citations::before {
+    content: 'References';
+    display: block;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-neutral-500);
+    margin-bottom: 0.75rem;
+  }
+}

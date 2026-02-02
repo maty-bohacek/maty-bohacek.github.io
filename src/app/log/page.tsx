@@ -34,7 +34,7 @@ export default function LogPage() {
 
       {/* Log Entries by Year */}
       <section className="bg-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 py-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
           {years.length > 0 ? (
             years.map((year) => (
               <div key={year} className="mb-16 last:mb-0">
