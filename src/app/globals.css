@@ -520,6 +520,7 @@ code {
   grid-template-columns: 1fr minmax(0, 65ch) 1fr;
   gap: 2rem;
   align-items: start;
+  position: relative;
 }
 
 .blog-article-container .blog-content {
@@ -549,8 +550,8 @@ code {
   font-size: 0.75rem;
   line-height: 1.5;
   color: var(--color-neutral-500);
-  margin-bottom: 1rem;
   padding: 0.5rem 0;
+  /* margin-bottom removed - sidenotes are positioned absolutely via JS */
 }
 
 .sidenote-number {
@@ -657,6 +658,11 @@ code {
   .sidenote {
     font-size: 0.8125rem;
     margin-bottom: 0.75rem;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
   }
 
   .blog-footnotes::before {
