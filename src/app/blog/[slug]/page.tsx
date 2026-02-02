@@ -137,11 +137,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       )}
 
-      {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 lg:px-8 py-16">
-        <div className="prose prose-lg max-w-none">
-          <BlogContent content={post.content} />
-        </div>
+      {/* Content with side notes */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <BlogContent content={post.content} />
       </div>
 
       {/* Footer Navigation */}
