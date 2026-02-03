@@ -2,21 +2,9 @@
 
 import { useEffect, useRef } from 'react';
 
-interface AttentionHead {
-  x: number;
-  y: number;
-  targetX: number;
-  targetY: number;
-  radius: number;
-  intensity: number;
-  speed: number;
-}
-
 export default function AsciiBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
-  const headsRef = useRef<AttentionHead[]>([]);
-  const timeRef = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,6 +15,12 @@ export default function AsciiBackground() {
 
     let width = 0;
     let height = 0;
+    let time = 0;
+
+    // Noise field parameters
+    const gridSize = 6;
+    let cols = 0;
+    let rows = 0;
 
     const resizeCanvas = () => {
       const parent = canvas.parentElement;
@@ -39,151 +33,106 @@ export default function AsciiBackground() {
         canvas.style.width = `${width}px`;
         canvas.style.height = `${height}px`;
         ctx.scale(dpr, dpr);
+
+        cols = Math.ceil(width / gridSize);
+        rows = Math.ceil(height / gridSize);
       }
     };
 
-    const initHeads = () => {
-      const headCount = 6;
-      headsRef.current = [];
-
-      for (let i = 0; i < headCount; i++) {
-        headsRef.current.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          targetX: Math.random() * width,
-          targetY: Math.random() * height,
-          radius: 80 + Math.random() * 120,
-          intensity: 0.3 + Math.random() * 0.4,
-          speed: 0.005 + Math.random() * 0.01,
-        });
-      }
+    // Simple noise function
+    const noise = (x: number, y: number, t: number): number => {
+      const x1 = Math.sin(x * 0.02 + t) * Math.cos(y * 0.03 + t * 0.7);
+      const y1 = Math.cos(x * 0.03 - t * 0.5) * Math.sin(y * 0.02 + t * 0.8);
+      const z1 = Math.sin((x + y) * 0.01 + t * 0.6);
+      return (x1 + y1 + z1) / 3;
     };
 
-    const pickNewTarget = (head: AttentionHead) => {
-      head.targetX = Math.random() * width;
-      head.targetY = Math.random() * height;
+    // Target pattern - gentle waves/curves that emerge
+    const pattern = (x: number, y: number, t: number): number => {
+      // Multiple overlapping wave patterns
+      const wave1 = Math.sin(x * 0.008 + t * 0.3) * Math.cos(y * 0.006);
+      const wave2 = Math.cos(x * 0.005 - y * 0.007 + t * 0.2);
+      const wave3 = Math.sin((x + y) * 0.004 + t * 0.25);
+
+      // Circular ripples
+      const cx = width / 2;
+      const cy = height / 2;
+      const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+      const ripple = Math.sin(dist * 0.02 - t * 0.5) * 0.5;
+
+      return (wave1 + wave2 + wave3 + ripple) / 4;
     };
 
     const animate = () => {
-      timeRef.current += 0.016;
+      time += 0.016;
 
-      // Clear with slight fade for trails
-      ctx.fillStyle = 'rgba(247, 250, 249, 0.15)';
-      ctx.fillRect(0, 0, width, height);
+      // Cycle: 0 = noisy, 1 = clear pattern
+      // Use smooth sine wave for transition
+      const cycleLength = 8; // seconds per full cycle
+      const cyclePos = (time % cycleLength) / cycleLength;
 
-      const heads = headsRef.current;
+      // Smooth transition: noise -> pattern -> noise
+      // Spend more time in transition, brief moment of clarity
+      const clarity = Math.pow(Math.sin(cyclePos * Math.PI), 2);
 
-      // Update head positions (smooth easing toward targets)
-      heads.forEach((head) => {
-        const dx = head.targetX - head.x;
-        const dy = head.targetY - head.y;
+      ctx.clearRect(0, 0, width, height);
 
-        head.x += dx * head.speed;
-        head.y += dy * head.speed;
+      // Draw the noise/pattern field
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          const x = i * gridSize;
+          const y = j * gridSize;
 
-        // Pick new target when close
-        if (Math.abs(dx) < 10 && Math.abs(dy) < 10) {
-          pickNewTarget(head);
-        }
-      });
+          // Get noise and pattern values
+          const noiseVal = noise(x, y, time * 2);
+          const patternVal = pattern(x, y, time);
 
-      // Draw attention regions
-      heads.forEach((head, i) => {
-        // Create radial gradient for each attention head
-        const gradient = ctx.createRadialGradient(
-          head.x, head.y, 0,
-          head.x, head.y, head.radius
-        );
+          // Blend between noise and pattern based on clarity
+          const blended = noiseVal * (1 - clarity) + patternVal * clarity;
 
-        // Pulsing intensity
-        const pulse = Math.sin(timeRef.current * 2 + i * 1.5) * 0.1 + 0.9;
-        const alpha = head.intensity * pulse * 0.25;
+          // Map to opacity
+          const opacity = (blended + 1) / 2; // normalize to 0-1
+          const finalOpacity = opacity * 0.15; // keep it subtle
 
-        gradient.addColorStop(0, `rgba(5, 90, 70, ${alpha})`);
-        gradient.addColorStop(0.4, `rgba(5, 90, 70, ${alpha * 0.5})`);
-        gradient.addColorStop(1, 'rgba(5, 90, 70, 0)');
-
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(head.x, head.y, head.radius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      // Draw flowing connection lines between nearby heads
-      ctx.strokeStyle = 'rgba(5, 90, 70, 0.08)';
-      ctx.lineWidth = 1;
-
-      for (let i = 0; i < heads.length; i++) {
-        for (let j = i + 1; j < heads.length; j++) {
-          const dx = heads[i].x - heads[j].x;
-          const dy = heads[i].y - heads[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 300) {
-            const opacity = (1 - dist / 300) * 0.15;
-            ctx.strokeStyle = `rgba(5, 90, 70, ${opacity})`;
-
-            // Draw curved line
-            ctx.beginPath();
-            ctx.moveTo(heads[i].x, heads[i].y);
-
-            // Control point for curve
-            const midX = (heads[i].x + heads[j].x) / 2;
-            const midY = (heads[i].y + heads[j].y) / 2;
-            const offset = Math.sin(timeRef.current + i + j) * 30;
-
-            ctx.quadraticCurveTo(midX + offset, midY + offset, heads[j].x, heads[j].y);
-            ctx.stroke();
-          }
+          ctx.fillStyle = `rgba(5, 90, 70, ${finalOpacity})`;
+          ctx.fillRect(x, y, gridSize - 1, gridSize - 1);
         }
       }
 
-      // Draw small "token" dots that flow between attention regions
-      const tokenCount = 12;
-      for (let i = 0; i < tokenCount; i++) {
-        const t = (timeRef.current * 0.3 + i / tokenCount) % 1;
-        const headIndex = i % heads.length;
-        const nextHeadIndex = (i + 1) % heads.length;
+      // Add some larger "emerging" shapes during clarity
+      if (clarity > 0.3) {
+        const shapeOpacity = (clarity - 0.3) * 0.15;
+        ctx.strokeStyle = `rgba(5, 90, 70, ${shapeOpacity})`;
+        ctx.lineWidth = 1;
 
-        const head = heads[headIndex];
-        const nextHead = heads[nextHeadIndex];
+        // Draw flowing curves that "emerge"
+        for (let i = 0; i < 5; i++) {
+          ctx.beginPath();
+          const startY = height * (0.2 + i * 0.15);
 
-        // Interpolate position
-        const x = head.x + (nextHead.x - head.x) * t;
-        const y = head.y + (nextHead.y - head.y) * t;
-
-        // Fade based on position in journey
-        const fade = Math.sin(t * Math.PI);
-
-        ctx.fillStyle = `rgba(5, 90, 70, ${fade * 0.4})`;
-        ctx.beginPath();
-        ctx.arc(x, y, 2, 0, Math.PI * 2);
-        ctx.fill();
+          for (let x = 0; x < width; x += 5) {
+            const y = startY + Math.sin(x * 0.01 + time * 0.5 + i) * 40
+                            + Math.cos(x * 0.02 - time * 0.3) * 20;
+            if (x === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+          }
+          ctx.stroke();
+        }
       }
 
       animationRef.current = requestAnimationFrame(animate);
     };
 
     resizeCanvas();
-    initHeads();
-
-    // Initial clear
-    ctx.fillStyle = 'rgba(247, 250, 249, 1)';
-    ctx.fillRect(0, 0, width, height);
-
     animate();
 
-    const handleResize = () => {
-      resizeCanvas();
-      initHeads();
-      ctx.fillStyle = 'rgba(247, 250, 249, 1)';
-      ctx.fillRect(0, 0, width, height);
-    };
-
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', resizeCanvas);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', resizeCanvas);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
