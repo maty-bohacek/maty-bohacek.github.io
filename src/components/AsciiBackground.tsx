@@ -2,18 +2,21 @@
 
 import { useEffect, useRef } from 'react';
 
-interface Node {
+interface AttentionHead {
   x: number;
   y: number;
-  vx: number;
-  vy: number;
+  targetX: number;
+  targetY: number;
   radius: number;
+  intensity: number;
+  speed: number;
 }
 
 export default function AsciiBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
-  const nodesRef = useRef<Node[]>([]);
+  const headsRef = useRef<AttentionHead[]>([]);
+  const timeRef = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -39,68 +42,122 @@ export default function AsciiBackground() {
       }
     };
 
-    const initNodes = () => {
-      const nodeCount = Math.floor((width * height) / 20000);
-      nodesRef.current = [];
+    const initHeads = () => {
+      const headCount = 6;
+      headsRef.current = [];
 
-      for (let i = 0; i < nodeCount; i++) {
-        nodesRef.current.push({
+      for (let i = 0; i < headCount; i++) {
+        headsRef.current.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          radius: Math.random() * 2 + 1.5,
+          targetX: Math.random() * width,
+          targetY: Math.random() * height,
+          radius: 80 + Math.random() * 120,
+          intensity: 0.3 + Math.random() * 0.4,
+          speed: 0.005 + Math.random() * 0.01,
         });
       }
     };
 
-    const connectionDistance = 120;
+    const pickNewTarget = (head: AttentionHead) => {
+      head.targetX = Math.random() * width;
+      head.targetY = Math.random() * height;
+    };
 
     const animate = () => {
-      ctx.clearRect(0, 0, width, height);
+      timeRef.current += 0.016;
 
-      const nodes = nodesRef.current;
+      // Clear with slight fade for trails
+      ctx.fillStyle = 'rgba(247, 250, 249, 0.15)';
+      ctx.fillRect(0, 0, width, height);
 
-      // Update positions
-      for (let i = 0; i < nodes.length; i++) {
-        const node = nodes[i];
-        node.x += node.vx;
-        node.y += node.vy;
+      const heads = headsRef.current;
 
-        // Bounce off edges with padding
-        if (node.x < 0 || node.x > width) node.vx *= -1;
-        if (node.y < 0 || node.y > height) node.vy *= -1;
+      // Update head positions (smooth easing toward targets)
+      heads.forEach((head) => {
+        const dx = head.targetX - head.x;
+        const dy = head.targetY - head.y;
 
-        node.x = Math.max(0, Math.min(width, node.x));
-        node.y = Math.max(0, Math.min(height, node.y));
-      }
+        head.x += dx * head.speed;
+        head.y += dy * head.speed;
 
-      // Draw connections
+        // Pick new target when close
+        if (Math.abs(dx) < 10 && Math.abs(dy) < 10) {
+          pickNewTarget(head);
+        }
+      });
+
+      // Draw attention regions
+      heads.forEach((head, i) => {
+        // Create radial gradient for each attention head
+        const gradient = ctx.createRadialGradient(
+          head.x, head.y, 0,
+          head.x, head.y, head.radius
+        );
+
+        // Pulsing intensity
+        const pulse = Math.sin(timeRef.current * 2 + i * 1.5) * 0.1 + 0.9;
+        const alpha = head.intensity * pulse * 0.25;
+
+        gradient.addColorStop(0, `rgba(5, 90, 70, ${alpha})`);
+        gradient.addColorStop(0.4, `rgba(5, 90, 70, ${alpha * 0.5})`);
+        gradient.addColorStop(1, 'rgba(5, 90, 70, 0)');
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(head.x, head.y, head.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Draw flowing connection lines between nearby heads
+      ctx.strokeStyle = 'rgba(5, 90, 70, 0.08)';
       ctx.lineWidth = 1;
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const distSq = dx * dx + dy * dy;
 
-          if (distSq < connectionDistance * connectionDistance) {
-            const dist = Math.sqrt(distSq);
-            const opacity = (1 - dist / connectionDistance) * 0.3;
+      for (let i = 0; i < heads.length; i++) {
+        for (let j = i + 1; j < heads.length; j++) {
+          const dx = heads[i].x - heads[j].x;
+          const dy = heads[i].y - heads[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 300) {
+            const opacity = (1 - dist / 300) * 0.15;
             ctx.strokeStyle = `rgba(5, 90, 70, ${opacity})`;
+
+            // Draw curved line
             ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.moveTo(heads[i].x, heads[i].y);
+
+            // Control point for curve
+            const midX = (heads[i].x + heads[j].x) / 2;
+            const midY = (heads[i].y + heads[j].y) / 2;
+            const offset = Math.sin(timeRef.current + i + j) * 30;
+
+            ctx.quadraticCurveTo(midX + offset, midY + offset, heads[j].x, heads[j].y);
             ctx.stroke();
           }
         }
       }
 
-      // Draw nodes
-      ctx.fillStyle = 'rgba(5, 90, 70, 0.5)';
-      for (let i = 0; i < nodes.length; i++) {
-        const node = nodes[i];
+      // Draw small "token" dots that flow between attention regions
+      const tokenCount = 12;
+      for (let i = 0; i < tokenCount; i++) {
+        const t = (timeRef.current * 0.3 + i / tokenCount) % 1;
+        const headIndex = i % heads.length;
+        const nextHeadIndex = (i + 1) % heads.length;
+
+        const head = heads[headIndex];
+        const nextHead = heads[nextHeadIndex];
+
+        // Interpolate position
+        const x = head.x + (nextHead.x - head.x) * t;
+        const y = head.y + (nextHead.y - head.y) * t;
+
+        // Fade based on position in journey
+        const fade = Math.sin(t * Math.PI);
+
+        ctx.fillStyle = `rgba(5, 90, 70, ${fade * 0.4})`;
         ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.arc(x, y, 2, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -108,12 +165,19 @@ export default function AsciiBackground() {
     };
 
     resizeCanvas();
-    initNodes();
+    initHeads();
+
+    // Initial clear
+    ctx.fillStyle = 'rgba(247, 250, 249, 1)';
+    ctx.fillRect(0, 0, width, height);
+
     animate();
 
     const handleResize = () => {
       resizeCanvas();
-      initNodes();
+      initHeads();
+      ctx.fillStyle = 'rgba(247, 250, 249, 1)';
+      ctx.fillRect(0, 0, width, height);
     };
 
     window.addEventListener('resize', handleResize);
