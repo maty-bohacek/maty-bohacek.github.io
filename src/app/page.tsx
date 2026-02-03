@@ -8,6 +8,7 @@ import LogEntry from '@/components/LogEntry';
 import UpcomingItem from '@/components/UpcomingItem';
 import SectionHeader from '@/components/SectionHeader';
 import HeadshotImage from '@/components/HeadshotImage';
+import AsciiBackground from '@/components/AsciiBackground';
 
 export default function HomePage() {
   const config = getSiteConfig();
@@ -19,8 +20,9 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 via-white to-neutral-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+      <section className="bg-gradient-to-br from-primary-50 via-white to-neutral-50 relative overflow-hidden">
+        <AsciiBackground />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Content */}
             <div className="lg:col-span-7 order-2 lg:order-1">
@@ -86,25 +88,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Affiliations Grid */}
-      {affiliations.length > 0 && (
-        <section className="bg-white border-t border-neutral-200">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {affiliations.map((affiliation) => (
-                <AffiliationBlock
-                  key={affiliation.id}
-                  title={affiliation.title}
-                  subtitle={affiliation.subtitle}
-                  href={affiliation.href}
-                  icon={affiliation.icon}
-                  color={affiliation.color}
-                />
-              ))}
-            </div>
+      {/* Selected Publications */}
+      <section className="bg-white border-t border-neutral-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+          <SectionHeader
+            title="Selected Publications"
+            subtitle="Highlights from my research work"
+            viewAllLink="/research"
+            viewAllText="View all publications"
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredPublications.length > 0 ? (
+              featuredPublications.map((pub) => (
+                <PublicationCard key={pub.id} publication={pub} />
+              ))
+            ) : (
+              <p className="col-span-full text-neutral-500 text-center py-12">
+                No featured publications yet.
+              </p>
+            )}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* News & Upcoming */}
       <section className="bg-neutral-50">
@@ -151,28 +156,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Selected Publications */}
-      <section className="bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
-          <SectionHeader
-            title="Selected Publications"
-            subtitle="Highlights from my research work"
-            viewAllLink="/research"
-            viewAllText="View all publications"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredPublications.length > 0 ? (
-              featuredPublications.map((pub) => (
-                <PublicationCard key={pub.id} publication={pub} />
-              ))
-            ) : (
-              <p className="col-span-full text-neutral-500 text-center py-12">
-                No featured publications yet.
-              </p>
-            )}
+      {/* Affiliations Grid */}
+      {affiliations.length > 0 && (
+        <section className="bg-white border-t border-neutral-200">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {affiliations.map((affiliation) => (
+                <AffiliationBlock
+                  key={affiliation.id}
+                  title={affiliation.title}
+                  subtitle={affiliation.subtitle}
+                  href={affiliation.href}
+                  icon={affiliation.icon}
+                  color={affiliation.color}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="bg-neutral-950 text-white">
