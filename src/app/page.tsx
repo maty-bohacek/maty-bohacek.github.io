@@ -8,6 +8,7 @@ import LogEntry from '@/components/LogEntry';
 import UpcomingItem from '@/components/UpcomingItem';
 import SectionHeader from '@/components/SectionHeader';
 import HeadshotImage from '@/components/HeadshotImage';
+import AsciiBackground from '@/components/AsciiBackground';
 
 export default function HomePage() {
   const config = getSiteConfig();
@@ -19,8 +20,9 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 via-white to-neutral-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+      <section className="bg-gradient-to-br from-primary-50 via-white to-neutral-50 relative overflow-hidden">
+        <AsciiBackground />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Content */}
             <div className="lg:col-span-7 order-2 lg:order-1">
