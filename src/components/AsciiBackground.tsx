@@ -80,28 +80,6 @@ export default function AsciiBackground() {
         }
       }
 
-      // Draw emerging shapes (same as original, at fixed time)
-      if (clarity > 0.3) {
-        const shapeOpacity = (clarity - 0.3) * 0.15;
-        ctx.strokeStyle = `rgba(5, 90, 70, ${shapeOpacity})`;
-        ctx.lineWidth = 1;
-
-        for (let i = 0; i < 5; i++) {
-          ctx.beginPath();
-          const startY = height * (0.2 + i * 0.15);
-
-          for (let x = 0; x < width; x += 5) {
-            const y = startY + Math.sin(x * 0.01 + t * 0.5 + i) * 40
-                            + Math.cos(x * 0.02 - t * 0.3) * 20;
-            if (x === 0) {
-              ctx.moveTo(x, y);
-            } else {
-              ctx.lineTo(x, y);
-            }
-          }
-          ctx.stroke();
-        }
-      }
     };
 
     renderStatic();
