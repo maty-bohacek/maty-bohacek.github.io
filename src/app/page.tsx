@@ -11,6 +11,8 @@ import LogEntry from '@/components/LogEntry';
 import UpcomingItem from '@/components/UpcomingItem';
 import SectionHeader from '@/components/SectionHeader';
 import HeadshotImage from '@/components/HeadshotImage';
+import AsciiBackground from '@/components/AsciiBackground';
+
 async function markdownToHtml(markdown: string): Promise<string> {
   const result = await remark().use(html, { sanitize: false }).process(markdown);
   return result.toString();
@@ -37,6 +39,7 @@ export default async function HomePage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 via-white to-neutral-50 relative overflow-hidden">
+        <AsciiBackground />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Content */}
