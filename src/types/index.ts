@@ -16,6 +16,7 @@ export interface Publication {
   };
   featured?: boolean;
   tags?: string[];
+  keywords?: string[];
 }
 
 export interface LogEntry {

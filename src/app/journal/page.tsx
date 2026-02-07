@@ -3,11 +3,11 @@ import LogEntry from '@/components/LogEntry';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Log',
+  title: 'Journal',
   description: 'Updates, news, and activities from Maty Bohacek',
 };
 
-export default function LogPage() {
+export default function JournalPage() {
   const entriesByYear = getLogEntriesByYear();
   const years = Object.keys(entriesByYear)
     .map(Number)
@@ -20,9 +20,9 @@ export default function LogPage() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-primary-50 via-white to-neutral-50 border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
-          <h1 className="text-display-lg text-neutral-900 mb-4">Log</h1>
+          <h1 className="text-display-lg text-neutral-900 mb-4">Journal</h1>
           <p className="text-xl text-neutral-600 max-w-3xl">
-            A chronological record of what I&apos;m up to. A public journal, of sorts.
+            A chronological record of what I&apos;m up to.
           </p>
           {totalEntries > 0 && (
             <p className="mt-4 text-sm text-neutral-500">
@@ -32,7 +32,7 @@ export default function LogPage() {
         </div>
       </section>
 
-      {/* Log Entries by Year */}
+      {/* Journal Entries by Year */}
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
           {years.length > 0 ? (
@@ -58,9 +58,9 @@ export default function LogPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-neutral-900 mb-2">No log entries yet</h3>
+              <h3 className="text-xl font-semibold text-neutral-900 mb-2">No journal entries yet</h3>
               <p className="text-neutral-500 max-w-md mx-auto">
-                Log entries will appear here once they are added to the content/log folder.
+                Journal entries will appear here once they are added to the content/log folder.
               </p>
             </div>
           )}
