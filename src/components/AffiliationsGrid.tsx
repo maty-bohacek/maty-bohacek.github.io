@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import AffiliationModal from './AffiliationModal';
 
 interface AffiliationItem {
   id: string;
@@ -18,118 +17,120 @@ interface AffiliationsGridProps {
 }
 
 export default function AffiliationsGrid({ affiliations }: AffiliationsGridProps) {
-  const [openId, setOpenId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const handleClose = useCallback(() => setOpenId(null), []);
-
-  const openAffiliation = affiliations.find((a) => a.id === openId);
+  const toggle = (id: string) => {
+    setExpandedId((prev) => (prev === id ? null : id));
+  };
 
   return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {affiliations.map((affiliation) => (
-          <AffiliationBlockButton
-            key={affiliation.id}
-            title={affiliation.title}
-            subtitle={affiliation.subtitle}
-            icon={affiliation.icon}
-            color={affiliation.color}
-            onClick={() => setOpenId(affiliation.id)}
-          />
-        ))}
-      </div>
-
-      {openAffiliation && (
-        <AffiliationModal
-          isOpen={!!openId}
-          onClose={handleClose}
-          title={openAffiliation.title}
-          subtitle={openAffiliation.subtitle}
-          icon={openAffiliation.icon}
-          color={openAffiliation.color}
-          contentHtml={openAffiliation.contentHtml}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {affiliations.map((affiliation) => (
+        <AffiliationCard
+          key={affiliation.id}
+          affiliation={affiliation}
+          isExpanded={expandedId === affiliation.id}
+          onToggle={() => toggle(affiliation.id)}
         />
-      )}
-    </>
+      ))}
+    </div>
   );
 }
 
-function AffiliationBlockButton({
-  title,
-  subtitle,
-  icon,
-  color = '#22c55e',
-  onClick,
+function AffiliationCard({
+  affiliation,
+  isExpanded,
+  onToggle,
 }: {
-  title: string;
-  subtitle: string;
-  icon?: string;
-  color?: string;
-  onClick: () => void;
+  affiliation: AffiliationItem;
+  isExpanded: boolean;
+  onToggle: () => void;
 }) {
+  const { title, subtitle, icon, color = '#22c55e', contentHtml } = affiliation;
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <button
-      type="button"
-      className="group block w-full text-left bg-neutral-50 hover:bg-neutral-100 transition-all duration-200 p-6 relative overflow-hidden cursor-pointer"
-      onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <div
+      className="bg-neutral-50 hover:bg-neutral-100 transition-all duration-200 relative overflow-hidden"
     >
       {/* Accent bar */}
       <div
         className="absolute top-0 left-0 w-full h-1 transition-transform duration-300"
         style={{
           backgroundColor: color,
-          transform: isHovered ? 'scaleX(1)' : 'scaleX(0)',
+          transform: isHovered || isExpanded ? 'scaleX(1)' : 'scaleX(0)',
           transformOrigin: 'left',
         }}
       />
 
-      <div className="flex items-start gap-4">
-        {icon && (
-          <div className="flex-shrink-0 w-12 h-12 relative bg-white rounded-lg shadow-sm overflow-hidden">
-            <Image
-              src={icon}
-              alt={title}
-              fill
-              className="object-cover"
-            />
+      {/* Clickable header */}
+      <button
+        type="button"
+        className="w-full text-left p-6 cursor-pointer"
+        onClick={onToggle}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className="flex items-start gap-4">
+          {icon && (
+            <div className="flex-shrink-0 w-12 h-12 relative bg-white rounded-lg shadow-sm overflow-hidden">
+              <Image
+                src={icon}
+                alt={title}
+                fill
+                className="object-cover"
+              />
+            </div>
+          )}
+
+          <div className="flex-1 min-w-0">
+            <h3
+              className="font-semibold transition-colors truncate"
+              style={{ color: isHovered || isExpanded ? color : '#171717' }}
+            >
+              {title}
+            </h3>
+            <p className="text-sm text-neutral-500 mt-1 line-clamp-2">
+              {subtitle}
+            </p>
           </div>
-        )}
 
-        <div className="flex-1 min-w-0">
-          <h3
-            className="font-semibold transition-colors truncate"
-            style={{ color: isHovered ? color : '#171717' }}
+          {/* Chevron that rotates when expanded */}
+          <svg
+            className="w-5 h-5 flex-shrink-0 transition-transform duration-200"
+            style={{
+              color: isHovered || isExpanded ? color : '#a3a3a3',
+              transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
+            }}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            {title}
-          </h3>
-          <p className="text-sm text-neutral-500 mt-1 line-clamp-2">
-            {subtitle}
-          </p>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
         </div>
+      </button>
 
-        {/* Arrow */}
-        <svg
-          className="w-5 h-5 transform transition-all flex-shrink-0"
-          style={{
-            color: isHovered ? color : '#a3a3a3',
-            transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
-          }}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
+      {/* Expandable content */}
+      <div
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{
+          maxHeight: isExpanded ? '500px' : '0px',
+          opacity: isExpanded ? 1 : 0,
+        }}
+      >
+        <div className="px-6 pb-6 border-t border-neutral-200">
+          <div
+            className="pt-4 prose prose-sm prose-neutral max-w-none [&_a]:text-primary-600 [&_a]:underline [&_a:hover]:text-primary-700 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-2"
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
-        </svg>
+        </div>
       </div>
-    </button>
+    </div>
   );
 }
