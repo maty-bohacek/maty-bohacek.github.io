@@ -70,8 +70,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/log" className="text-neutral-300 hover:text-primary-400 transition-colors">
-                  Log
+                <Link href="/journal" className="text-neutral-300 hover:text-primary-400 transition-colors">
+                  Journal
                 </Link>
               </li>
               <li>
@@ -102,7 +102,7 @@ export default function Footer() {
               ))}
             </div>
             <p className="text-neutral-400 text-sm">
-              maty [at] stanford.edu
+              maty [at] stanford [dot] edu
             </p>
           </div>
         </div>

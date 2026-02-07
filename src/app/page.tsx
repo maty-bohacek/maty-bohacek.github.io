@@ -1,8 +1,11 @@
 import Link from 'next/link';
-import { getSiteConfig, getAffiliations, getUpcomingEvents } from '@/lib/data';
+import { getSiteConfig, getUpcomingEvents } from '@/lib/data';
 import { getFeaturedPublications } from '@/lib/publications';
 import { getRecentLogEntries } from '@/lib/log';
-import AffiliationBlock from '@/components/AffiliationBlock';
+import { getAffiliationContents } from '@/lib/affiliations';
+import { remark } from 'remark';
+import html from 'remark-html';
+import AffiliationsGrid from '@/components/AffiliationsGrid';
 import PublicationCard from '@/components/PublicationCard';
 import LogEntry from '@/components/LogEntry';
 import UpcomingItem from '@/components/UpcomingItem';
@@ -10,9 +13,24 @@ import SectionHeader from '@/components/SectionHeader';
 import HeadshotImage from '@/components/HeadshotImage';
 import AsciiBackground from '@/components/AsciiBackground';
 
-export default function HomePage() {
+async function markdownToHtml(markdown: string): Promise<string> {
+  const result = await remark().use(html, { sanitize: false }).process(markdown);
+  return result.toString();
+}
+
+export default async function HomePage() {
   const config = getSiteConfig();
-  const affiliations = getAffiliations();
+  const affiliationContents = getAffiliationContents();
+  const affiliationsWithHtml = await Promise.all(
+    affiliationContents.map(async (a) => ({
+      id: a.id,
+      title: a.title,
+      subtitle: a.subtitle,
+      icon: a.icon,
+      color: a.color,
+      contentHtml: await markdownToHtml(a.content),
+    }))
+  );
   const featuredPublications = getFeaturedPublications();
   const recentNews = getRecentLogEntries(4);
   const upcomingEvents = getUpcomingEvents();
@@ -119,7 +137,7 @@ export default function HomePage() {
             <div>
               <SectionHeader
                 title="Recent News"
-                viewAllLink="/log"
+                viewAllLink="/journal"
                 viewAllText="View all"
               />
               <div className="bg-white border border-neutral-200 divide-y divide-neutral-200">
@@ -157,21 +175,10 @@ export default function HomePage() {
       </section>
 
       {/* Affiliations Grid */}
-      {affiliations.length > 0 && (
+      {affiliationsWithHtml.length > 0 && (
         <section className="bg-white border-t border-neutral-200">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {affiliations.map((affiliation) => (
-                <AffiliationBlock
-                  key={affiliation.id}
-                  title={affiliation.title}
-                  subtitle={affiliation.subtitle}
-                  href={affiliation.href}
-                  icon={affiliation.icon}
-                  color={affiliation.color}
-                />
-              ))}
-            </div>
+            <AffiliationsGrid affiliations={affiliationsWithHtml} />
           </div>
         </section>
       )}

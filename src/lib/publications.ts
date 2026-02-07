@@ -31,6 +31,7 @@ export function getPublications(): Publication[] {
       },
       featured: row.featured === 'true' || row.featured === '1',
       tags: row.tags ? row.tags.split(';').map((t) => t.trim()) : [],
+      keywords: row.keywords ? row.keywords.split(';').map((k) => k.trim()) : [],
     }));
   } catch (error) {
     console.error('Error loading publications:', error);
@@ -58,4 +59,13 @@ export function getPublicationsByYear(): Record<number, Publication[]> {
 
 export function getPublicationById(id: string): Publication | undefined {
   return getPublications().find((pub) => pub.id === id);
+}
+
+export function getAllKeywords(): string[] {
+  const publications = getPublications();
+  const keywords = new Set<string>();
+  publications.forEach((pub) => {
+    pub.keywords?.forEach((kw) => keywords.add(kw));
+  });
+  return Array.from(keywords).sort();
 }

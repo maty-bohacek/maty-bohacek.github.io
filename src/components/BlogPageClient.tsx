@@ -108,15 +108,15 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
             {/* Tags Filter */}
             {allTags.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="text-sm font-medium text-neutral-500 mr-2 py-1.5">Tags:</span>
+                <span className="text-sm font-medium text-neutral-500 mr-2 py-2">Tags:</span>
                 {allTags.map((tag) => (
                   <button
                     key={tag}
                     onClick={() => toggleTag(tag)}
-                    className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+                    className={`px-4 py-2 text-sm font-medium transition-colors ${
                       selectedTags.includes(tag)
-                        ? 'bg-primary-100 text-primary-700 border border-primary-300'
-                        : 'bg-neutral-50 text-neutral-600 border border-neutral-200 hover:border-neutral-300'
+                        ? 'bg-primary-500 text-white'
+                        : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
                     }`}
                   >
                     {tag}
