@@ -24,14 +24,15 @@ export default function AffiliationsGrid({ affiliations }: AffiliationsGridProps
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
       {affiliations.map((affiliation) => (
-        <AffiliationCard
-          key={affiliation.id}
-          affiliation={affiliation}
-          isExpanded={expandedId === affiliation.id}
-          onToggle={() => toggle(affiliation.id)}
-        />
+        <div key={affiliation.id} className="break-inside-avoid mb-4">
+          <AffiliationCard
+            affiliation={affiliation}
+            isExpanded={expandedId === affiliation.id}
+            onToggle={() => toggle(affiliation.id)}
+          />
+        </div>
       ))}
     </div>
   );
@@ -50,9 +51,7 @@ function AffiliationCard({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      className="bg-neutral-50 hover:bg-neutral-100 transition-all duration-200 relative overflow-hidden"
-    >
+    <div className="bg-neutral-50 hover:bg-neutral-100 transition-colors duration-200 relative overflow-hidden">
       {/* Accent bar */}
       <div
         className="absolute top-0 left-0 w-full h-1 transition-transform duration-300"
@@ -117,20 +116,14 @@ function AffiliationCard({
       </button>
 
       {/* Expandable content */}
-      <div
-        className="overflow-hidden transition-all duration-300 ease-in-out"
-        style={{
-          maxHeight: isExpanded ? '500px' : '0px',
-          opacity: isExpanded ? 1 : 0,
-        }}
-      >
+      {isExpanded && (
         <div className="px-6 pb-6 border-t border-neutral-200">
           <div
             className="pt-4 prose prose-sm prose-neutral max-w-none [&_a]:text-primary-600 [&_a]:underline [&_a:hover]:text-primary-700 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-2"
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
         </div>
-      </div>
+      )}
     </div>
   );
 }
