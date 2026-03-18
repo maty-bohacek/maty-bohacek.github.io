@@ -79,7 +79,7 @@ export default function LogEntry({ entry }: LogEntryProps) {
               href={link}
               target={link.startsWith('http') ? '_blank' : undefined}
               rel={link.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="inline-flex items-center gap-1 text-xs font-medium text-primary-600 hover:text-primary-700"
+              className="inline-flex items-center gap-1 text-xs font-medium font-ui text-primary-600 hover:text-primary-700"
             >
               {linkText || 'Learn more'}
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@ export default function LogEntry({ entry }: LogEntryProps) {
               {tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs px-2 py-0.5 bg-neutral-100 text-neutral-600"
+                  className="text-xs font-ui px-2 py-0.5 bg-neutral-100 text-neutral-600"
                 >
                   {tag}
                 </span>

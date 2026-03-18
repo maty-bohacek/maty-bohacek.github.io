@@ -46,7 +46,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold mb-3">Maty Bohacek</h3>
+            <h3 className="text-xl font-extrabold mb-3">Maty Bohacek</h3>
             <p className="text-neutral-400 text-sm leading-relaxed font-light">
               Researcher at Stanford University interested in AI&apos;s impact on media,
               discourse, and communication integrity.
@@ -55,7 +55,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-400 mb-4">
+            <h4 className="text-sm font-semibold font-ui uppercase tracking-wider text-neutral-400 mb-4">
               Navigation
             </h4>
             <ul className="space-y-3">
@@ -84,7 +84,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-neutral-400 mb-4">
+            <h4 className="text-sm font-semibold font-ui uppercase tracking-wider text-neutral-400 mb-4">
               Connect
             </h4>
             <div className="flex gap-4 mb-4">

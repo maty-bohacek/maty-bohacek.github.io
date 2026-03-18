@@ -94,7 +94,7 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(selectedCategory === category ? null : category)}
-                  className={`px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 text-sm font-medium font-ui transition-colors ${
                     selectedCategory === category
                       ? 'bg-primary-500 text-white'
                       : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
@@ -113,7 +113,7 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
                   <button
                     key={tag}
                     onClick={() => toggleTag(tag)}
-                    className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 text-sm font-medium font-ui transition-colors ${
                       selectedTags.includes(tag)
                         ? 'bg-primary-500 text-white'
                         : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'

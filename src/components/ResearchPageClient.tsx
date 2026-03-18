@@ -120,7 +120,7 @@ export default function ResearchPageClient({ publicationsByYear, allKeywords }: 
                   <button
                     key={keyword}
                     onClick={() => toggleKeyword(keyword)}
-                    className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 text-sm font-medium font-ui transition-colors ${
                       selectedKeywords.includes(keyword)
                         ? 'bg-primary-500 text-white'
                         : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'

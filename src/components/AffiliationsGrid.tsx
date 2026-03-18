@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
 interface AffiliationItem {
@@ -24,15 +24,14 @@ export default function AffiliationsGrid({ affiliations }: AffiliationsGridProps
   };
 
   return (
-    <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {affiliations.map((affiliation) => (
-        <div key={affiliation.id} className="break-inside-avoid mb-4">
-          <AffiliationCard
-            affiliation={affiliation}
-            isExpanded={expandedId === affiliation.id}
-            onToggle={() => toggle(affiliation.id)}
-          />
-        </div>
+        <AffiliationCard
+          key={affiliation.id}
+          affiliation={affiliation}
+          isExpanded={expandedId === affiliation.id}
+          onToggle={() => toggle(affiliation.id)}
+        />
       ))}
     </div>
   );
@@ -49,6 +48,14 @@ function AffiliationCard({
 }) {
   const { title, subtitle, icon, color = '#22c55e', contentHtml } = affiliation;
   const [isHovered, setIsHovered] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState(0);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [isExpanded, contentHtml]);
 
   return (
     <div className="bg-neutral-50 hover:bg-neutral-100 transition-colors duration-200 relative overflow-hidden">
@@ -85,7 +92,7 @@ function AffiliationCard({
           <div className="flex-1 min-w-0">
             <h3
               className="font-semibold transition-colors truncate"
-              style={{ color: isHovered || isExpanded ? color : '#171717' }}
+              style={{ color: isHovered || isExpanded ? color : '#1a1a1a' }}
             >
               {title}
             </h3>
@@ -96,7 +103,7 @@ function AffiliationCard({
 
           {/* Chevron that rotates when expanded */}
           <svg
-            className="w-5 h-5 flex-shrink-0 transition-transform duration-200"
+            className="w-5 h-5 flex-shrink-0 transition-transform duration-300"
             style={{
               color: isHovered || isExpanded ? color : '#a3a3a3',
               transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
@@ -115,15 +122,21 @@ function AffiliationCard({
         </div>
       </button>
 
-      {/* Expandable content */}
-      {isExpanded && (
-        <div className="px-6 pb-6 border-t border-neutral-200">
+      {/* Expandable content with smooth animation */}
+      <div
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{
+          maxHeight: isExpanded ? `${contentHeight}px` : '0px',
+          opacity: isExpanded ? 1 : 0,
+        }}
+      >
+        <div ref={contentRef} className="px-6 pb-6 border-t border-neutral-200">
           <div
             className="pt-4 prose prose-sm prose-neutral max-w-none [&_a]:text-primary-600 [&_a]:underline [&_a:hover]:text-primary-700 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-2"
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -188,11 +188,12 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
           <div className="max-w-3xl">
             <h2 className="text-display-md text-white mb-6">
-              Have questions or ideas for future research?
+              Interested in collaborating or learning more?
             </h2>
             <p className="text-base text-neutral-300 mb-8 leading-relaxed">
-              I am always open to discussing new research ideas, potential collaborations,
-              or just chatting about AI and its impact on media and society.
+              Whether you are a researcher exploring collaboration ideas, a journalist writing about AI,
+              a policymaker seeking expert insight, or an educator looking to apply AI in new ways &mdash;
+              I would love to hear from you.
             </p>
             <a
               href={`mailto:${config.email}`}
