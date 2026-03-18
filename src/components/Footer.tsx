@@ -58,28 +58,15 @@ export default function Footer() {
             <h4 className="text-sm font-semibold font-ui uppercase tracking-wider text-neutral-400 mb-4">
               Navigation
             </h4>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/" className="text-neutral-300 hover:text-primary-400 transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/research" className="text-neutral-300 hover:text-primary-400 transition-colors">
-                  Research
-                </Link>
-              </li>
-              <li>
-                <Link href="/journal" className="text-neutral-300 hover:text-primary-400 transition-colors">
-                  Journal
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-neutral-300 hover:text-primary-400 transition-colors">
-                  Blog
-                </Link>
-              </li>
-            </ul>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <Link href="/" className="text-neutral-300 hover:text-primary-400 transition-colors">Home</Link>
+              <span className="text-neutral-600">&middot;</span>
+              <Link href="/research" className="text-neutral-300 hover:text-primary-400 transition-colors">Research</Link>
+              <span className="text-neutral-600">&middot;</span>
+              <Link href="/journal" className="text-neutral-300 hover:text-primary-400 transition-colors">Journal</Link>
+              <span className="text-neutral-600">&middot;</span>
+              <Link href="/blog" className="text-neutral-300 hover:text-primary-400 transition-colors">Blog</Link>
+            </div>
           </div>
 
           {/* Contact */}
