@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Swiss design inspired palette with green as primary
+        // Green primary - kept from original
         primary: {
           50: '#f0fdf4',
           100: '#dcfce7',
@@ -23,7 +23,7 @@ const config: Config = {
           900: '#14532d',
           950: '#052e16',
         },
-        // Bold accent colors for Swiss style
+        // Accent colors
         accent: {
           red: '#ef4444',
           orange: '#f97316',
@@ -32,7 +32,7 @@ const config: Config = {
           pink: '#ec4899',
           purple: '#8b5cf6',
         },
-        // Neutral tones
+        // Softer neutral tones
         neutral: {
           50: '#fafafa',
           100: '#f5f5f5',
@@ -42,21 +42,21 @@ const config: Config = {
           500: '#737373',
           600: '#525252',
           700: '#404040',
-          800: '#262626',
-          900: '#171717',
+          800: '#353535',
+          900: '#1a1a1a',
           950: '#0a0a0a',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Charter', 'Georgia', 'Times New Roman', 'serif'],
+        display: ['Charter', 'Georgia', 'Times New Roman', 'serif'],
+        mono: ['Fira Code', 'Consolas', 'monospace'],
       },
       fontSize: {
-        'display-xl': ['5rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'display-lg': ['3.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'display-md': ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '600' }],
-        'display-sm': ['1.875rem', { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'display-xl': ['3.5rem', { lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'display-lg': ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'display-md': ['2rem', { lineHeight: '1.25', letterSpacing: '0', fontWeight: '700' }],
+        'display-sm': ['1.5rem', { lineHeight: '1.3', letterSpacing: '0', fontWeight: '700' }],
       },
       spacing: {
         '18': '4.5rem',

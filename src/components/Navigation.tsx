@@ -22,7 +22,7 @@ export default function Navigation() {
           {/* Logo / Name */}
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight hover:text-primary-600 transition-colors"
+            className="text-xl font-bold tracking-normal hover:text-primary-600 transition-colors"
           >
             Maty Bohacek
           </Link>

@@ -18,10 +18,10 @@ export default function JournalPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-primary-50 via-white to-neutral-50 border-b border-neutral-200">
+      <section className="bg-neutral-50 border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
           <h1 className="text-display-lg text-neutral-900 mb-4">Journal</h1>
-          <p className="text-xl text-neutral-600 max-w-3xl">
+          <p className="text-base lg:text-lg text-neutral-600 max-w-3xl leading-relaxed">
             A chronological record of what I&apos;m up to.
           </p>
           {totalEntries > 0 && (
