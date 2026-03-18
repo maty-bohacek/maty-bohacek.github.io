@@ -38,26 +38,26 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 via-white to-neutral-50 relative overflow-hidden">
+      <section className="bg-neutral-50 relative overflow-hidden border-b border-neutral-200">
         <AsciiBackground />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Content */}
             <div className="lg:col-span-7 order-2 lg:order-1">
-              <h1 className="text-display-lg lg:text-display-xl text-neutral-900 mb-6">
+              <h1 className="text-display-lg lg:text-display-xl text-neutral-900 mb-4">
                 {config.name}
               </h1>
               {config.title && (
-                <p className="text-xl lg:text-2xl text-primary-600 font-medium mb-6">
+                <p className="text-lg lg:text-xl text-primary-700 font-normal mb-4 italic">
                   {config.title}
                 </p>
               )}
-              <p className="text-lg text-neutral-600 leading-relaxed max-w-2xl">
+              <p className="text-base lg:text-lg text-neutral-600 leading-relaxed max-w-2xl">
                 {config.bio}
               </p>
 
               {/* Social Links */}
-              <div className="flex gap-4 mt-8">
+              <div className="flex gap-3 mt-8">
                 {config.social.scholar && (
                   <SocialLink href={config.social.scholar} label="Google Scholar">
                     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -92,9 +92,9 @@ export default async function HomePage() {
             {/* Headshot */}
             <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end">
               <div className="relative">
-                {/* Decorative elements - Swiss style */}
-                <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary-500 -z-10" />
-                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary-200 -z-10" />
+                {/* Decorative elements - subtle academic style */}
+                <div className="absolute -top-3 -left-3 w-20 h-20 bg-primary-200 -z-10 opacity-60" />
+                <div className="absolute -bottom-3 -right-3 w-24 h-24 bg-primary-100 -z-10 opacity-60" />
                 <HeadshotImage
                   src={config.headshot}
                   hoverSrc="/images/headshot-hover.jpeg"
@@ -184,19 +184,19 @@ export default async function HomePage() {
       )}
 
       {/* CTA Section */}
-      <section className="bg-neutral-950 text-white">
+      <section className="bg-neutral-900 text-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
           <div className="max-w-3xl">
             <h2 className="text-display-md text-white mb-6">
               Have questions or ideas for future research?
             </h2>
-            <p className="text-lg text-neutral-300 mb-8">
+            <p className="text-base text-neutral-300 mb-8 leading-relaxed">
               I am always open to discussing new research ideas, potential collaborations,
               or just chatting about AI and its impact on media and society.
             </p>
             <a
               href={`mailto:${config.email}`}
-              className="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold px-6 py-3 transition-colors"
+              className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-normal px-6 py-3 transition-colors"
             >
               Get in touch
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,7 +216,7 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center justify-center w-10 h-10 bg-neutral-100 hover:bg-primary-100 text-neutral-600 hover:text-primary-600 transition-colors"
+      className="flex items-center justify-center w-9 h-9 bg-neutral-100 hover:bg-primary-50 text-neutral-500 hover:text-primary-600 transition-colors"
       aria-label={label}
     >
       {children}

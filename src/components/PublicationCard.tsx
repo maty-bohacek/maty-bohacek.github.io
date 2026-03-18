@@ -31,7 +31,7 @@ export default function PublicationCard({ publication, compact = false }: Public
   const { title, authors, venue, year, thumbnail, links, abstract } = publication;
 
   return (
-    <article className={`group bg-white border border-neutral-200 hover:border-primary-300 transition-all duration-200 ${compact ? '' : 'hover:shadow-lg'}`}>
+    <article className={`group bg-white border border-neutral-200 hover:border-primary-300 transition-all duration-200 ${compact ? '' : 'hover:shadow-md'}`}>
       <div className={`flex ${compact ? 'flex-row gap-4 p-4' : 'flex-col'}`}>
         {/* Thumbnail */}
         {thumbnail && (
@@ -57,7 +57,7 @@ export default function PublicationCard({ publication, compact = false }: Public
           </div>
 
           {/* Title */}
-          <h3 className={`font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors ${compact ? 'text-sm line-clamp-2' : 'text-lg mb-2'}`}>
+          <h3 className={`font-bold text-neutral-900 group-hover:text-primary-600 transition-colors ${compact ? 'text-sm line-clamp-2' : 'text-base mb-2'}`}>
             {links.paper ? (
               <Link href={links.paper} target="_blank" rel="noopener noreferrer">
                 {title}

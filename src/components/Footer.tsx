@@ -41,13 +41,13 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral-950 text-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+    <footer className="bg-neutral-900 text-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">Maty Bohacek</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed">
+            <h3 className="text-xl font-bold mb-3">Maty Bohacek</h3>
+            <p className="text-neutral-400 text-sm leading-relaxed font-light">
               Researcher at Stanford University interested in AI&apos;s impact on media,
               discourse, and communication integrity.
             </p>

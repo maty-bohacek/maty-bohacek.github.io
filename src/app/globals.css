@@ -1,14 +1,35 @@
-/* Fonts from CDN */
-/* Neue Haas Grotesk Display from CDNFonts */
-@import url('https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro');
-/* Inter from Google Fonts for body text */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-/* JetBrains Mono for code */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* Charter font - local files */
+@font-face {
+  font-family: "Charter";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/Charter/charter_regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Charter";
+  font-style: italic;
+  font-weight: normal;
+  src: url("/fonts/Charter/charter_italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Charter";
+  font-style: normal;
+  font-weight: bold;
+  src: url("/fonts/Charter/charter_bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Charter";
+  font-style: italic;
+  font-weight: bold;
+  src: url("/fonts/Charter/charter_bold_italic.woff2") format("woff2");
+}
+
+/* Fira Code for monospace */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
-/* Swiss Design Color Palette */
+/* Academic Design Color Palette */
 @theme {
   /* Primary - Green */
   --color-primary-50: #f0fdf4;
@@ -23,7 +44,7 @@
   --color-primary-900: #14532d;
   --color-primary-950: #052e16;
 
-  /* Bold Swiss Accent Colors */
+  /* Accent Colors */
   --color-swiss-red: #e53935;
   --color-swiss-orange: #fb8c00;
   --color-swiss-yellow: #fdd835;
@@ -33,7 +54,7 @@
   --color-swiss-coral: #ff7043;
   --color-swiss-mint: #26a69a;
 
-  /* Neutral */
+  /* Neutral - softer, academic palette */
   --color-neutral-50: #fafafa;
   --color-neutral-100: #f5f5f5;
   --color-neutral-200: #e5e5e5;
@@ -42,14 +63,14 @@
   --color-neutral-500: #737373;
   --color-neutral-600: #525252;
   --color-neutral-700: #404040;
-  --color-neutral-800: #262626;
-  --color-neutral-900: #171717;
+  --color-neutral-800: #353535;
+  --color-neutral-900: #1a1a1a;
   --color-neutral-950: #0a0a0a;
 
-  /* Typography - Neue Haas Grotesk for display/titles, Inter for body */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Neue Haas Grotesk Display Pro', 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* Typography - Charter serif for everything, Fira Code for monospace */
+  --font-sans: 'Charter', 'Georgia', 'Times New Roman', serif;
+  --font-display: 'Charter', 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'Fira Code', 'Consolas', monospace;
 
   /* Spacing */
   --spacing-18: 4.5rem;
@@ -64,60 +85,63 @@ html {
 
 body {
   font-family: var(--font-sans);
+  font-weight: 300;
+  color: #353535;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Swiss Typography Classes - Using Neue Haas Grotesk for display */
+/* Academic Typography Classes */
 .text-display-xl {
   font-family: var(--font-display);
-  font-size: 5rem;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-size: 3.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
   font-weight: 700;
 }
 
 .text-display-lg {
   font-family: var(--font-display);
-  font-size: 3.5rem;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
   font-weight: 700;
 }
 
 .text-display-md {
   font-family: var(--font-display);
-  font-size: 2.5rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+  font-weight: 700;
 }
 
 .text-display-sm {
   font-family: var(--font-display);
-  font-size: 1.875rem;
+  font-size: 1.5rem;
   line-height: 1.3;
-  letter-spacing: -0.01em;
-  font-weight: 600;
+  letter-spacing: 0;
+  font-weight: 700;
 }
 
 /* Responsive display typography */
 @media (max-width: 768px) {
   .text-display-xl {
-    font-size: 3rem;
+    font-size: 2.25rem;
   }
   .text-display-lg {
-    font-size: 2.5rem;
-  }
-  .text-display-md {
     font-size: 1.875rem;
   }
-  .text-display-sm {
+  .text-display-md {
     font-size: 1.5rem;
+  }
+  .text-display-sm {
+    font-size: 1.25rem;
   }
 }
 
-/* Swiss Grid System */
+/* Grid System */
 .swiss-grid {
   display: grid;
   gap: 1.5rem;
@@ -197,7 +221,7 @@ code {
 /* Prose for blog content */
 .prose {
   max-width: 65ch;
-  line-height: 1.75;
+  line-height: 1.8;
 }
 
 .prose h1,
@@ -205,21 +229,21 @@ code {
 .prose h3,
 .prose h4 {
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   margin-top: 2em;
   margin-bottom: 0.5em;
 }
 
 .prose h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .prose h2 {
-  font-size: 1.875rem;
+  font-size: 1.5rem;
 }
 
 .prose h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .prose p {
@@ -297,7 +321,7 @@ code {
 .blog-content {
   font-size: 1.125rem;
   line-height: 1.8;
-  color: var(--color-neutral-700);
+  color: #353535;
 }
 
 .blog-content h1,
@@ -308,14 +332,14 @@ code {
 .blog-content h6 {
   color: var(--color-neutral-900);
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   margin-top: 2em;
   margin-bottom: 0.75em;
 }
 
-.blog-content h1 { font-size: 2.25rem; }
-.blog-content h2 { font-size: 1.75rem; border-bottom: 2px solid var(--color-primary-500); padding-bottom: 0.5rem; }
-.blog-content h3 { font-size: 1.375rem; }
+.blog-content h1 { font-size: 2rem; }
+.blog-content h2 { font-size: 1.5rem; border-bottom: 2px solid var(--color-primary-500); padding-bottom: 0.5rem; }
+.blog-content h3 { font-size: 1.25rem; }
 .blog-content h4 { font-size: 1.125rem; }
 
 .blog-content p {
@@ -410,7 +434,7 @@ code {
 
 .blog-content hr {
   border: none;
-  border-top: 2px solid var(--color-neutral-200);
+  border-top: 1px solid var(--color-neutral-200);
   margin: 3rem 0;
 }
 
@@ -504,9 +528,9 @@ code {
     font-size: 1rem;
   }
 
-  .blog-content h1 { font-size: 1.75rem; }
-  .blog-content h2 { font-size: 1.5rem; }
-  .blog-content h3 { font-size: 1.25rem; }
+  .blog-content h1 { font-size: 1.5rem; }
+  .blog-content h2 { font-size: 1.25rem; }
+  .blog-content h3 { font-size: 1.125rem; }
 
   .blog-content pre {
     padding: 1rem;
@@ -551,7 +575,6 @@ code {
   line-height: 1.5;
   color: var(--color-neutral-500);
   padding: 0.5rem 0;
-  /* margin-bottom removed - sidenotes are positioned absolutely via JS */
 }
 
 .sidenote-number {
