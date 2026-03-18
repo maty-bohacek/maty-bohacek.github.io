@@ -192,7 +192,7 @@ export default async function HomePage() {
             </h2>
             <p className="text-base text-neutral-300 mb-8 leading-relaxed">
               Whether you are a researcher exploring collaboration ideas, a journalist writing about AI,
-              a policymaker seeking expert insight, or an educator looking to apply AI in new ways &mdash;
+              a policymaker seeking insight, or an educator looking to apply AI in new ways &mdash;
               I would love to hear from you.
             </p>
             <a
