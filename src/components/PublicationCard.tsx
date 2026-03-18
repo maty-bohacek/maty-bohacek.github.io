@@ -50,10 +50,10 @@ export default function PublicationCard({ publication, compact = false }: Public
         <div className={compact ? 'flex-1 min-w-0' : 'p-6'}>
           {/* Year badge */}
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs font-semibold bg-primary-100 text-primary-700 px-2 py-0.5">
+            <span className="text-xs font-semibold font-ui bg-primary-100 text-primary-700 px-2 py-0.5">
               {year}
             </span>
-            <span className="text-xs text-neutral-500 truncate">{venue}</span>
+            <span className="text-xs font-ui text-neutral-500 truncate">{venue}</span>
           </div>
 
           {/* Title */}
@@ -148,7 +148,7 @@ function LinkButton({ href, icon, children }: { href: string; icon: string; chil
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 hover:text-primary-600 bg-neutral-100 hover:bg-primary-50 px-2.5 py-1.5 transition-colors"
+      className="inline-flex items-center gap-1.5 text-xs font-medium font-ui text-neutral-600 hover:text-primary-600 bg-neutral-100 hover:bg-primary-50 px-2.5 py-1.5 transition-colors"
     >
       {icons[icon]}
       {children}

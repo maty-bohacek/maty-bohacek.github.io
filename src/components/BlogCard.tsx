@@ -40,7 +40,7 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
             </div>
           )}
           <div className="flex items-center gap-3 mb-3">
-            <span className={`text-xs font-semibold px-2 py-1 ${categoryColors[category] || categoryColors.Miscellaneous}`}>
+            <span className={`text-xs font-semibold font-ui px-2 py-1 ${categoryColors[category] || categoryColors.Miscellaneous}`}>
               {category}
             </span>
             <time dateTime={date} className="text-sm text-neutral-500">
@@ -77,7 +77,7 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
         )}
         <div className="p-5">
           <div className="flex items-center gap-2 mb-3">
-            <span className={`text-xs font-semibold px-2 py-0.5 ${categoryColors[category] || categoryColors.Miscellaneous}`}>
+            <span className={`text-xs font-semibold font-ui px-2 py-0.5 ${categoryColors[category] || categoryColors.Miscellaneous}`}>
               {category}
             </span>
             {readingTime && (

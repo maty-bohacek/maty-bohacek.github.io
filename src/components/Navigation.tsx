@@ -22,7 +22,7 @@ export default function Navigation() {
           {/* Logo / Name */}
           <Link
             href="/"
-            className="text-xl font-bold tracking-normal hover:text-primary-600 transition-colors"
+            className="text-xl font-extrabold tracking-normal hover:text-primary-600 transition-colors"
           >
             Maty Bohacek
           </Link>
@@ -37,7 +37,7 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative py-2 text-sm font-medium transition-colors ${
+                  className={`relative py-2 text-sm font-medium font-ui transition-colors ${
                     isActive
                       ? 'text-primary-600'
                       : 'text-neutral-600 hover:text-neutral-900'
@@ -95,7 +95,7 @@ export default function Navigation() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block py-3 text-base font-medium ${
+                  className={`block py-3 text-base font-medium font-ui ${
                     isActive
                       ? 'text-primary-600'
                       : 'text-neutral-600'

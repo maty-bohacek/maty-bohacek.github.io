@@ -51,12 +51,13 @@ const config: Config = {
         sans: ['Charter', 'Georgia', 'Times New Roman', 'serif'],
         display: ['Charter', 'Georgia', 'Times New Roman', 'serif'],
         mono: ['Fira Code', 'Consolas', 'monospace'],
+        ui: ['Inter', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
       },
       fontSize: {
-        'display-xl': ['3.5rem', { lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '700' }],
-        'display-lg': ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '700' }],
-        'display-md': ['2rem', { lineHeight: '1.25', letterSpacing: '0', fontWeight: '700' }],
-        'display-sm': ['1.5rem', { lineHeight: '1.3', letterSpacing: '0', fontWeight: '700' }],
+        'display-xl': ['3.5rem', { lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '800' }],
+        'display-lg': ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '800' }],
+        'display-md': ['2rem', { lineHeight: '1.25', letterSpacing: '0', fontWeight: '800' }],
+        'display-sm': ['1.5rem', { lineHeight: '1.3', letterSpacing: '0', fontWeight: '800' }],
       },
       spacing: {
         '18': '4.5rem',
