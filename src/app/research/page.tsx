@@ -12,7 +12,7 @@ export default function ResearchPage() {
   const allKeywords = getAllKeywords();
 
   return (
-    <div className="min-h-screen">
+    <div>
       <ResearchPageClient publicationsByYear={publicationsByYear} allKeywords={allKeywords} />
     </div>
   );

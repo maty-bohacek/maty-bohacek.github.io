@@ -17,18 +17,18 @@ export default function Navigation() {
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-neutral-200">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="site-container">
+        <div className="flex items-center justify-between h-14">
           {/* Logo / Name */}
           <Link
             href="/"
-            className="text-xl font-extrabold tracking-normal hover:text-primary-600 transition-colors"
+            className="text-base font-bold hover:text-primary-600 transition-colors"
           >
             Maty Bohacek
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navItems.map((item) => {
               const isActive = pathname === item.href ||
                 (item.href !== '/' && pathname.startsWith(item.href));
@@ -37,16 +37,13 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative py-2 text-sm font-medium font-ui transition-colors ${
+                  className={`text-sm font-ui transition-colors ${
                     isActive
-                      ? 'text-primary-600'
-                      : 'text-neutral-600 hover:text-neutral-900'
+                      ? 'text-neutral-900'
+                      : 'text-neutral-500 hover:text-neutral-900'
                   }`}
                 >
                   {item.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary-500" />
-                  )}
                 </Link>
               );
             })}
@@ -59,7 +56,7 @@ export default function Navigation() {
             aria-label="Toggle menu"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -85,7 +82,7 @@ export default function Navigation() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-neutral-200 py-4">
+          <div className="md:hidden border-t border-neutral-200 py-3">
             {navItems.map((item) => {
               const isActive = pathname === item.href ||
                 (item.href !== '/' && pathname.startsWith(item.href));
@@ -95,10 +92,10 @@ export default function Navigation() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block py-3 text-base font-medium font-ui ${
+                  className={`block py-2 text-sm font-ui ${
                     isActive
-                      ? 'text-primary-600'
-                      : 'text-neutral-600'
+                      ? 'text-neutral-900'
+                      : 'text-neutral-500'
                   }`}
                 >
                   {item.label}
