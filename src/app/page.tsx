@@ -104,13 +104,13 @@ export default async function HomePage() {
             All publications →
           </Link>
         </div>
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {featuredPublications.length > 0 ? (
             featuredPublications.map((pub) => (
               <PublicationCard key={pub.id} publication={pub} />
             ))
           ) : (
-            <p className="text-neutral-500 text-sm">No featured publications yet.</p>
+            <p className="col-span-full text-neutral-500 text-sm">No featured publications yet.</p>
           )}
         </div>
       </section>
