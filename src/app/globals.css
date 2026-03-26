@@ -80,6 +80,16 @@
   --spacing-128: 32rem;
 }
 
+/* Narrow site container — nat.org-style desktop layout */
+.site-container {
+  width: 100%;
+  max-width: 42rem; /* 672px on desktop */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 /* Base styles */
 html {
   scroll-behavior: smooth;
