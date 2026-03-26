@@ -141,7 +141,7 @@ export default function ResearchPageClient({ publicationsByYear, allKeywords }: 
               <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide">{year}</h2>
               <div className="flex-1 h-px bg-neutral-200" />
             </div>
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {filteredByYear[year].map((pub) => (
                 <PublicationCard key={pub.id} publication={pub} />
               ))}
