@@ -128,7 +128,7 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
 
       {/* Posts */}
       {filteredPosts.length > 0 ? (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {filteredPosts.map((post) => (
             <BlogCard key={post.slug} post={post} />
           ))}
