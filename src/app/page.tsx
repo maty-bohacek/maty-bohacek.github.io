@@ -84,7 +84,7 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="flex-shrink-0 [&>div]:!w-40 [&>div]:!h-40 md:[&>div]:!w-48 md:[&>div]:!h-48">
+          <div className="flex-shrink-0 order-first md:order-last [&>div]:!w-40 [&>div]:!h-40 md:[&>div]:!w-48 md:[&>div]:!h-48">
             <HeadshotImage
               src={config.headshot}
               hoverSrc="/images/headshot-hover.jpeg"
