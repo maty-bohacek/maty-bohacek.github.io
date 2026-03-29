@@ -28,7 +28,7 @@ export default function LogEntry({ entry, showDescription = true }: LogEntryProp
   });
 
   return (
-    <article className="group py-6 border-b border-neutral-200 last:border-0">
+    <article className="group py-6 first:pt-0 border-b border-neutral-200 last:border-0">
       {/* Date */}
       <time
         dateTime={date}
