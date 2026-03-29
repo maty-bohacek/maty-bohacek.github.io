@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Maty Bohacek | Researcher at Stanford University',
+    default: 'Maty Bohacek',
     template: '%s | Maty Bohacek',
   },
   description: 'Personal website of Maty Bohacek, researcher at Stanford University working on AI, machine learning, and their societal impact.',
@@ -17,12 +17,12 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://matybohacek.com',
     siteName: 'Maty Bohacek',
-    title: 'Maty Bohacek | Researcher at Stanford University',
+    title: 'Maty Bohacek',
     description: 'Personal website of Maty Bohacek, researcher at Stanford University.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Maty Bohacek | Researcher at Stanford University',
+    title: 'Maty Bohacek',
     description: 'Personal website of Maty Bohacek, researcher at Stanford University.',
   },
   robots: {

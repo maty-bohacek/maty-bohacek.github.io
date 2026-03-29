@@ -161,7 +161,7 @@ export default async function HomePage() {
       {affiliationsWithHtml.length > 0 && (
         <section className="mb-16">
           <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide mb-6">
-            Affiliations
+            Snippets of My Work
           </h2>
           <AffiliationsGrid affiliations={affiliationsWithHtml} />
         </section>

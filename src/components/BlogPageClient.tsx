@@ -48,6 +48,21 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
 
   const hasActiveFilters = searchQuery || selectedCategory || selectedTags.length > 0;
 
+  const postsByYear = useMemo(() => {
+    const grouped: Record<number, BlogPost[]> = {};
+    for (const post of filteredPosts) {
+      const year = new Date(post.date).getFullYear();
+      if (!grouped[year]) grouped[year] = [];
+      grouped[year].push(post);
+    }
+    return grouped;
+  }, [filteredPosts]);
+
+  const years = useMemo(() =>
+    Object.keys(postsByYear).map(Number).sort((a, b) => b - a),
+    [postsByYear]
+  );
+
   return (
     <div className="site-container py-12 md:py-16">
       {/* Header */}
@@ -127,12 +142,20 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
       </p>
 
       {/* Posts */}
-      {filteredPosts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {filteredPosts.map((post) => (
-            <BlogCard key={post.slug} post={post} />
-          ))}
-        </div>
+      {years.length > 0 ? (
+        years.map((year) => (
+          <div key={year} className="mb-12 last:mb-0">
+            <div className="flex items-center gap-3 mb-4">
+              <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide">{year}</h2>
+              <div className="flex-1 h-px bg-neutral-200" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {postsByYear[year].map((post) => (
+                <BlogCard key={post.slug} post={post} />
+              ))}
+            </div>
+          </div>
+        ))
       ) : (
         <div className="py-16 text-center">
           <p className="text-neutral-500 text-sm">

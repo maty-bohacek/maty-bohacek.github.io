@@ -1,11 +1,10 @@
 ---
 title: "Shell Game"
-subtitle: "Co-created the pod"
+subtitle: "Co-created the podcast"
 icon: "/icons/shellgame.png"
 color: "#180d28"
 order: 5
 ---
 
-- Co-created [Shell Game](https://www.shellgamepod.com/), a podcast exploring AI-generated media
-- Discussing the implications of synthetic media on trust and communication
-- Featuring conversations with researchers, journalists, and policymakers
+- Worked with Evan Ratliff, Samantha Henig, and Sophie Bridges to create a podcast about AI agents and work.
+- Ranked among best of 2025 by the New York Magazine, The Economist, The Information, and a finalist in the iHeart Podcast Awards and The Ambies.
