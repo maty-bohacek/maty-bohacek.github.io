@@ -12,7 +12,7 @@ export default function Footer() {
             <Link href="/blog" className="hover:text-neutral-900 transition-colors">Blog</Link>
           </div>
           <p className="text-neutral-400 text-xs">
-            &copy; {new Date().getFullYear()} Maty Bohacek
+            Building with <a href="https://anyue.wang" className="hover:text-neutral-600 transition-colors underline">Alex Wang</a> out of San Francisco, CA. Powered by iced coffee.
           </p>
         </div>
       </div>
