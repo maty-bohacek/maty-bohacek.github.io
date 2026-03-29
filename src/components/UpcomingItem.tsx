@@ -32,17 +32,17 @@ export default function UpcomingItem({ event }: UpcomingItemProps) {
   });
 
   const content = (
-    <div className="flex items-start gap-4 py-3 group">
+    <div className="py-3 group">
       {/* Date */}
       <time
         dateTime={date}
-        className="flex-shrink-0 text-sm text-neutral-500 w-24"
+        className="text-sm text-neutral-500"
       >
         {formattedDate}
       </time>
 
       {/* Content */}
-      <div className="flex-1 min-w-0">
+      <div className="mt-1">
         <div className="flex items-center gap-2 mb-1">
           <span className={`text-xs font-semibold font-ui px-2 py-0.5 ${style.bg} ${style.text}`}>
             {style.label}
@@ -61,18 +61,6 @@ export default function UpcomingItem({ event }: UpcomingItemProps) {
           </p>
         )}
       </div>
-
-      {/* Arrow if link */}
-      {link && (
-        <svg
-          className="w-4 h-4 text-neutral-400 group-hover:text-primary-500 transform group-hover:translate-x-1 transition-all flex-shrink-0 mt-1"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      )}
     </div>
   );
 
