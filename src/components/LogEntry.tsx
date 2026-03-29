@@ -17,7 +17,7 @@ interface LogEntryProps {
 }
 
 export default function LogEntry({ entry }: LogEntryProps) {
-  const { date, title, description, link, linkText, image, tags } = entry;
+  const { date, title, description, link, linkText, image } = entry;
 
   // Parse date for display
   const dateObj = new Date(date);
@@ -65,9 +65,9 @@ export default function LogEntry({ entry }: LogEntryProps) {
         </div>
       )}
 
-      {/* Link and Tags */}
-      <div className="flex flex-wrap items-center gap-3 mt-2">
-        {link && (
+      {/* Link */}
+      {link && (
+        <div className="mt-2">
           <Link
             href={link}
             target={link.startsWith('http') ? '_blank' : undefined}
@@ -79,21 +79,8 @@ export default function LogEntry({ entry }: LogEntryProps) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </Link>
-        )}
-
-        {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs font-ui px-2 py-0.5 bg-neutral-100 text-neutral-600"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </article>
   );
 }
