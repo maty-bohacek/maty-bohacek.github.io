@@ -6,6 +6,5 @@ color: "#77150c"
 order: 2
 ---
 
-- Student Fellow at the [Hoover Institution](https://hoover.org) at Stanford University
-- Contributing to policy research on artificial intelligence and its societal implications
-- Engaging with fellows and scholars on technology governance and democratic institutions
+- Working with Sergey Sanovich
+- We are studying the impact of AI content on the information commons.

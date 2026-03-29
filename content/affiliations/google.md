@@ -1,11 +1,10 @@
 ---
 title: "Google"
-subtitle: "Previously Student Researcher"
+subtitle: "(Previously) Student Researcher"
 icon: "/icons/google.png"
 color: "#5383ec"
 order: 4
 ---
 
-- Student Researcher at [Google](https://google.com)
-- Worked on projects at the intersection of AI and media understanding
-- Applied research on machine learning systems at scale
+- Worked with the Labs team.
+- We built a membership inference method for image models and a method for detecting AI-generated motion in video.
