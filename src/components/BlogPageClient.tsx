@@ -54,7 +54,7 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
       <div className="mb-10">
         <h1 className="text-2xl font-bold text-neutral-900 mb-2">Blog</h1>
         <p className="text-base text-neutral-600 leading-relaxed">
-          My thoughts on research, AI&apos;s impact on our democracy, and anything else that interests me.
+          My thoughts on research, AI&apos;s impact on our democracy, and anything else that interests me. Updated irregularly.
         </p>
       </div>
 
