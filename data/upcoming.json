@@ -30,5 +30,29 @@
     "type": "workshop",
     "location": "San Francisco, CA",
     "link": null
+  },
+  {
+    "id": "nyu-tisch-panel",
+    "date": "2026-04-08",
+    "title": "NYU Tisch",
+    "type": "panel",
+    "location": "New York, NY",
+    "link": null
+  },
+  {
+    "id": "iclr-2026",
+    "date": "2026-04-23",
+    "title": "ICLR 2026",
+    "type": "conference",
+    "location": "Virtual",
+    "link": null
+  },
+  {
+    "id": "cvpr-2026",
+    "date": "2026-06-03",
+    "title": "CVPR 2026",
+    "type": "conference",
+    "location": "Denver, CO",
+    "link": null
   }
 ]
