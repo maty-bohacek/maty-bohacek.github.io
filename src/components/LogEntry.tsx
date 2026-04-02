@@ -16,9 +16,10 @@ export interface LogEntryData {
 interface LogEntryProps {
   entry: LogEntryData;
   showDescription?: boolean;
+  showImages?: boolean;
 }
 
-export default function LogEntry({ entry, showDescription = true }: LogEntryProps) {
+export default function LogEntry({ entry, showDescription = true, showImages = true }: LogEntryProps) {
   const { date, title, description, link, linkText, image, images } = entry;
 
   // Parse date for display
@@ -60,7 +61,7 @@ export default function LogEntry({ entry, showDescription = true }: LogEntryProp
       )}
 
       {/* Images */}
-      {(images && images.length > 0) || image ? (
+      {showImages && ((images && images.length > 0) || image) ? (
         <div className="mt-4 mb-4 grid grid-cols-2 gap-3">
           {(images || (image ? [image] : [])).map((src, index) => (
             <div key={index} className="overflow-hidden rounded-lg h-48">
