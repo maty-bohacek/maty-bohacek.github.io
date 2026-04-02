@@ -71,12 +71,12 @@ export default function UpcomingItem({ event }: UpcomingItemProps) {
         href={link}
         target={link.startsWith('http') ? '_blank' : undefined}
         rel={link.startsWith('http') ? 'noopener noreferrer' : undefined}
-        className="block py-3 first:pt-0 border-b border-neutral-100 last:border-0"
+        className="block py-3 first:pt-0 border-b border-neutral-200 last:border-0"
       >
         {content}
       </Link>
     );
   }
 
-  return <div className="py-3 first:pt-0 border-b border-neutral-100 last:border-0">{content}</div>;
+  return <div className="py-3 first:pt-0 border-b border-neutral-200 last:border-0">{content}</div>;
 }
