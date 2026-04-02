@@ -39,7 +39,7 @@ export default function LogEntry({ entry, showDescription = true }: LogEntryProp
       </time>
 
       {/* Title */}
-      <h3 className="text-neutral-900 mt-1">
+      <h3 className="font-bold text-neutral-900 mt-1">
         {link ? (
           <Link
             href={link}
@@ -60,29 +60,19 @@ export default function LogEntry({ entry, showDescription = true }: LogEntryProp
       )}
 
       {/* Images */}
-      {images && images.length > 0 ? (
-        <div className={`mt-4 mb-4 grid gap-3 ${images.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
-          {images.map((src, index) => (
-            <div key={index} className="overflow-hidden rounded-lg">
+      {(images && images.length > 0) || image ? (
+        <div className="mt-4 mb-4 grid grid-cols-2 gap-3">
+          {(images || (image ? [image] : [])).map((src, index) => (
+            <div key={index} className="overflow-hidden rounded-lg h-48">
               <Image
                 src={src}
-                alt={`${title} — ${index + 1}`}
-                width={600}
-                height={300}
-                className="w-full h-auto object-cover"
+                alt={images && images.length > 1 ? `${title} — ${index + 1}` : title}
+                width={400}
+                height={192}
+                className="w-full h-full object-cover"
               />
             </div>
           ))}
-        </div>
-      ) : image ? (
-        <div className="mt-4 mb-4 overflow-hidden rounded-lg">
-          <Image
-            src={image}
-            alt={title}
-            width={600}
-            height={300}
-            className="w-full h-auto object-cover"
-          />
         </div>
       ) : null}
 
