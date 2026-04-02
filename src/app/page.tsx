@@ -128,7 +128,7 @@ export default async function HomePage() {
                 All News →
               </Link>
             </div>
-            <div className="divide-y divide-neutral-100">
+            <div className="divide-y divide-neutral-200">
               {recentNews.length > 0 ? (
                 recentNews.map((entry) => (
                   <LogEntry key={entry.id} entry={entry} showDescription={false} showImages={false} />
