@@ -13,6 +13,11 @@ interface BlogPostPageProps {
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
+  if (posts.length === 0) {
+    // Next.js output: export requires at least one param for dynamic routes.
+    // Return a placeholder that will render as a 404 page.
+    return [{ slug: '_not-found' }];
+  }
   return posts.map((post) => ({
     slug: post.slug,
   }));
