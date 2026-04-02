@@ -9,6 +9,7 @@ export interface LogEntryData {
   link?: string;
   linkText?: string;
   image?: string;
+  images?: string[];
   tags?: string[];
 }
 
@@ -18,7 +19,7 @@ interface LogEntryProps {
 }
 
 export default function LogEntry({ entry, showDescription = true }: LogEntryProps) {
-  const { date, title, description, link, linkText, image } = entry;
+  const { date, title, description, link, linkText, image, images } = entry;
 
   // Parse date for display
   const dateObj = new Date(date);
@@ -58,8 +59,22 @@ export default function LogEntry({ entry, showDescription = true }: LogEntryProp
         <p className="text-sm text-neutral-600 mt-1">{description}</p>
       )}
 
-      {/* Image */}
-      {image && (
+      {/* Images */}
+      {images && images.length > 0 ? (
+        <div className={`mt-4 mb-4 grid gap-3 ${images.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
+          {images.map((src, index) => (
+            <div key={index} className="overflow-hidden rounded-lg">
+              <Image
+                src={src}
+                alt={`${title} — ${index + 1}`}
+                width={600}
+                height={300}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      ) : image ? (
         <div className="mt-4 mb-4 overflow-hidden rounded-lg">
           <Image
             src={image}
@@ -69,7 +84,7 @@ export default function LogEntry({ entry, showDescription = true }: LogEntryProp
             className="w-full h-auto object-cover"
           />
         </div>
-      )}
+      ) : null}
 
       {/* Link */}
       {link && (
