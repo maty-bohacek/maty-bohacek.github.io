@@ -27,6 +27,7 @@ export function getLogEntries(): LogEntry[] {
           link: data.link || undefined,
           linkText: data.linkText || undefined,
           image: data.image || undefined,
+          images: data.images || undefined,
           tags: data.tags || [],
         } as LogEntry;
       })

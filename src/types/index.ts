@@ -27,6 +27,7 @@ export interface LogEntry {
   link?: string;
   linkText?: string;
   image?: string;
+  images?: string[];
   tags?: string[];
 }
 
