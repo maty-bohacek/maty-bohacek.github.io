@@ -125,13 +125,13 @@ export default async function HomePage() {
                 Recent News
               </h2>
               <Link href="/journal" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
-                All →
+                All News →
               </Link>
             </div>
             <div className="divide-y divide-neutral-100">
               {recentNews.length > 0 ? (
                 recentNews.map((entry) => (
-                  <LogEntry key={entry.id} entry={entry} showDescription={false} />
+                  <LogEntry key={entry.id} entry={entry} showDescription={false} showImages={false} />
                 ))
               ) : (
                 <p className="text-neutral-500 text-sm">No recent news yet.</p>
