@@ -25,6 +25,10 @@ export const metadata: Metadata = {
     title: 'Maty Bohacek',
     description: 'Personal website of Maty Bohacek, researcher at Stanford University.',
   },
+  icons: {
+    icon: '/favicon.png',
+    apple: '/apple-icon.png',
+  },
   robots: {
     index: true,
     follow: true,
