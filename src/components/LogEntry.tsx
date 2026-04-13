@@ -17,9 +17,10 @@ interface LogEntryProps {
   entry: LogEntryData;
   showDescription?: boolean;
   showImages?: boolean;
+  compact?: boolean;
 }
 
-export default function LogEntry({ entry, showDescription = true, showImages = true }: LogEntryProps) {
+export default function LogEntry({ entry, showDescription = true, showImages = true, compact = false }: LogEntryProps) {
   const { date, title, description, link, linkText, image, images } = entry;
 
   // Parse date for display
@@ -30,7 +31,7 @@ export default function LogEntry({ entry, showDescription = true, showImages = t
   });
 
   return (
-    <article className="group py-6 first:pt-0 border-b border-neutral-200 last:border-0">
+    <article className={`group ${compact ? 'py-3' : 'py-6'} first:pt-0 border-b border-neutral-200 last:border-0`}>
       {/* Date */}
       <time
         dateTime={date}
@@ -40,7 +41,7 @@ export default function LogEntry({ entry, showDescription = true, showImages = t
       </time>
 
       {/* Title */}
-      <h3 className="font-bold text-neutral-900 mt-1">
+      <h3 className={`${compact ? 'font-medium' : 'font-bold'} text-neutral-900 mt-1`}>
         {link ? (
           <Link
             href={link}
@@ -78,7 +79,7 @@ export default function LogEntry({ entry, showDescription = true, showImages = t
       ) : null}
 
       {/* Link */}
-      {link && (
+      {!compact && link && (
         <div className="mt-2">
           <Link
             href={link}
