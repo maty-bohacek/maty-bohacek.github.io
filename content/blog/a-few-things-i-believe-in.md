@@ -1,9 +1,9 @@
 ---
 title: "A Few Things I Believe In"
 excerpt: "For folks who don't know me, a quick lay-down of a few core beliefs that shape how I choose and approach problems in AI."
-date: "2026-05-05"
+date: "2026-05-05T12:00:00"
 category: "Miscellaneous"
-tags: ["AI", "beliefs", "principles"]
+tags: []
 coverImage: "/images/blog/san-francisco.jpg"
 coverCaption: "From when I moved to San Francisco."
 ---
@@ -12,7 +12,7 @@ For folks who don't know me, I figured it would be good to lay down a couple of 
 
 ## AI systems can and should be understood.
 
-Many have been led to believe that these are black boxes by design; that this is an inherent property. While they may be black boxes right now, that doesn't mean they always will be. In fact, we are making real progress on it. Plus, having a working technology before a working theory of it isn't new — see the steam engine.
+Many have been led to believe that these are black boxes by design; that this is an inherent property. While they may be black boxes right now, that doesn't mean they always will be. In fact, we are making real progress towards understanding various components and behaviors within these systems. Plus, having a working technology before a working theory of it isn't new: the steam engine is a canonical example of this.
 
 ## AI should respect and compensate IP.
 
@@ -20,7 +20,7 @@ While copyright law and its enforcement, similar to our democratic systems, need
 
 ## AI-powered attacks, whether cyber, cognitive, or else, can and will be mitigated.
 
-Once first introduced, spam and phishing, just like AI slop today, felt like they would upend online communication and shopping forever. And then, we developed spam detectors, additional security protocols, and more. We've done this before.
+When first introduced, spam and phishing, just like AI slop today, felt like they would upend online communication and shopping forever. And then, we developed spam detectors, additional security protocols, and more, and suddenly they become an annoying, yet contained part of our internet experience. Again, we've solved a problem just like this before.
 
 ## AI should be regulated and governed using our democratic systems, just like any other technology.
 
