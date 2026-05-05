@@ -20,7 +20,7 @@ While copyright law and its enforcement, similar to our democratic systems, need
 
 ## AI-powered attacks, whether cyber, cognitive, or else, can and will be mitigated.
 
-Once first introduced, spam and phishing, just like AI slop today, felt like they would upend online communication and shopping forever. And then, we developed spam detectors, additional security protocols, and more. We've done this before.
+When first introduced, spam and phishing, just like AI slop today, felt like they would upend online communication and shopping forever. And then, we developed spam detectors, additional security protocols, and more, and suddenly they become an annoying, yet contained part of our internet experience. Again, we've solved a problem just like this before.
 
 ## AI should be regulated and governed using our democratic systems, just like any other technology.
 
