@@ -108,16 +108,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Cover Image */}
       {post.coverImage && (
         <div className="site-container mb-8">
-          <div className="aspect-[2/1] bg-neutral-200 overflow-hidden">
-            <Image
-              src={post.coverImage}
-              alt={post.title}
-              width={1200}
-              height={600}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </div>
+          <figure>
+            <div className="aspect-[2/1] bg-neutral-200 overflow-hidden">
+              <Image
+                src={post.coverImage}
+                alt={post.coverCaption || post.title}
+                width={1200}
+                height={600}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+            {post.coverCaption && (
+              <figcaption className="text-center text-sm text-neutral-500 mt-3">
+                {post.coverCaption}
+              </figcaption>
+            )}
+          </figure>
         </div>
       )}
 

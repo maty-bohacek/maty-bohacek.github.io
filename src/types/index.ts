@@ -40,6 +40,7 @@ export interface BlogPost {
   category: 'Research' | 'AI & Democracy' | 'Books' | 'Movies' | 'Miscellaneous';
   tags: string[];
   coverImage?: string;
+  coverCaption?: string;
   readingTime?: string;
 }
 

@@ -36,6 +36,7 @@ export function getBlogPosts(): BlogPost[] {
           category: data.category || 'Miscellaneous',
           tags: data.tags || [],
           coverImage: data.coverImage || undefined,
+          coverCaption: data.coverCaption || undefined,
           readingTime: calculateReadingTime(content),
         } as BlogPost;
       })
@@ -74,6 +75,7 @@ export function getBlogPostBySlug(slug: string): BlogPost | null {
       category: data.category || 'Miscellaneous',
       tags: data.tags || [],
       coverImage: data.coverImage || undefined,
+      coverCaption: data.coverCaption || undefined,
       readingTime: calculateReadingTime(content),
     };
   } catch (error) {
