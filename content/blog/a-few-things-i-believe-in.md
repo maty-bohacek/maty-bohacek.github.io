@@ -12,7 +12,7 @@ For folks who don't know me, I figured it would be good to lay down a couple of 
 
 ## AI systems can and should be understood.
 
-Many have been led to believe that these are black boxes by design; that this is an inherent property. While they may be black boxes right now, that doesn't mean they always will be. In fact, we are making real progress on it. Plus, having a working technology before a working theory of it isn't new — see the steam engine.
+Many have been led to believe that these are black boxes by design; that this is an inherent property. While they may be black boxes right now, that doesn't mean they always will be. In fact, we are making real progress towards understanding various components and behaviors within these systems. Plus, having a working technology before a working theory of it isn't new: the steam engine is a canonical example of this.
 
 ## AI should respect and compensate IP.
 
