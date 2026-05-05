@@ -1,9 +1,9 @@
 ---
 title: "A Few Things I Believe In"
 excerpt: "For folks who don't know me, a quick lay-down of a few core beliefs that shape how I choose and approach problems in AI."
-date: "2026-05-05"
+date: "2026-05-05T12:00:00"
 category: "Miscellaneous"
-tags: ["AI", "beliefs", "principles"]
+tags: []
 coverImage: "/images/blog/san-francisco.jpg"
 coverCaption: "From when I moved to San Francisco."
 ---
