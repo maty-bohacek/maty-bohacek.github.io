@@ -73,7 +73,9 @@ export default function MapView({ submissions }: { submissions: SerializedSubmis
       const inner =
         s.mediaType === 'VIDEO'
           ? `<div class="slop-marker slop-marker-video">${PLAY_SVG}</div>`
-          : `<div class="slop-marker"><img src="${escapeHtml(s.thumbUrl ?? s.mediaUrl)}" alt="" /></div>`;
+          : `<div class="slop-marker" style="background-image:url('${escapeHtml(
+              s.thumbUrl ?? s.mediaUrl,
+            )}')"></div>`;
 
       const icon = L.divIcon({
         html: inner,

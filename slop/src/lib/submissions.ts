@@ -20,6 +20,7 @@ export type SerializedSubmission = {
   sourceType: 'LINK' | 'ORIGINAL';
   sourceUrl: string | null;
   authorName: string;
+  capturedAt: string | null;
   createdAt: string;
   status: SubmissionStatus;
   reviewNote?: string | null;
@@ -47,6 +48,7 @@ export function serializeSubmission(
     sourceType: s.sourceType,
     sourceUrl: s.sourceUrl,
     authorName: s.author?.displayName ?? 'Unknown',
+    capturedAt: s.capturedAt ? s.capturedAt.toISOString() : null,
     createdAt: s.createdAt.toISOString(),
     status: s.status,
     ...(opts.includeReviewNote ? { reviewNote: s.reviewNote } : {}),
@@ -83,11 +85,22 @@ export function buildApprovedWhere(filters: MapFilters): Prisma.SubmissionWhereI
   if (filters.sourceType) where.sourceType = filters.sourceType;
   if (filters.mediaType) where.mediaType = filters.mediaType;
   if (filters.from || filters.to) {
-    where.createdAt = {
+    const range = {
       ...(filters.from ? { gte: filters.from } : {}),
       ...(filters.to ? { lte: filters.to } : {}),
     };
+    // An item's date is its capture date; fall back to upload date when unset.
+    and.push({
+      OR: [{ capturedAt: range }, { capturedAt: null, createdAt: range }],
+    });
   }
   if (and.length) where.AND = and;
   return where;
 }
+
+// Order the public map/gallery by the item's effective date: capture date
+// first (newest captured on top), nulls last, then upload date as a tiebreak.
+export const MAP_ORDER_BY: Prisma.SubmissionOrderByWithRelationInput[] = [
+  { capturedAt: { sort: 'desc', nulls: 'last' } },
+  { createdAt: 'desc' },
+];

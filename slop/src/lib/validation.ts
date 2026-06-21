@@ -4,7 +4,37 @@ import {
   MAX_LOCATION_LENGTH,
   MAX_MODEL_LENGTH,
   MAX_REASONING_LENGTH,
+  MIN_CAPTURE_YEAR,
 } from './constants';
+
+// A capture date supplied by the client as a calendar day (`YYYY-MM-DD`).
+// Validated for realness, sane range, and not being in the future.
+export const captureDateSchema = z
+  .string()
+  .trim()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, 'Use a valid date (YYYY-MM-DD).')
+  .refine((s) => {
+    // Reject impossible dates like 2026-02-31 via a round-trip.
+    const t = Date.parse(`${s}T12:00:00Z`);
+    return !Number.isNaN(t) && new Date(t).toISOString().slice(0, 10) === s;
+  }, 'Enter a real calendar date.')
+  .refine((s) => Number(s.slice(0, 4)) >= MIN_CAPTURE_YEAR, 'That date is too far in the past.')
+  .refine(
+    // Allow a day of slack so a "today" in any timezone is accepted.
+    (s) => Date.parse(`${s}T12:00:00Z`) <= Date.now() + 24 * 60 * 60 * 1000,
+    'The date can’t be in the future.',
+  );
+
+/** Convert a validated `YYYY-MM-DD` to a stable Date at noon UTC. */
+export function captureDateToDate(s: string): Date {
+  return new Date(`${s}T12:00:00.000Z`);
+}
+
+// Fields an author may edit on an existing submission. Currently just the
+// capture date ("date taken"), editable retroactively from their submissions.
+export const submissionEditSchema = z.object({
+  capturedAt: captureDateSchema,
+});
 
 export const registerSchema = z.object({
   email: z.string().trim().email('Enter a valid email address.').max(200),
@@ -57,6 +87,9 @@ export const submissionMetaSchema = z
       .max(MAX_MODEL_LENGTH, 'Model name is too long.')
       .optional()
       .or(z.literal('')),
+    // When the photo/video was taken. Sent by the form (from EXIF or the user);
+    // tolerated as empty so submissions never hard-fail on a missing date.
+    capturedAt: captureDateSchema.optional().or(z.literal('')),
   })
   .refine((d) => d.sourceType !== 'LINK' || (d.sourceUrl && d.sourceUrl.length > 0), {
     message: 'A source link is required when the source is a link.',

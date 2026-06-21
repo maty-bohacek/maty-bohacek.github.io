@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import type { SerializedSubmission } from '@/lib/submissions';
+import { formatItemDate, itemDateIso } from '@/lib/dates';
 import StatusBadge from './StatusBadge';
+import DateEditor from './DateEditor';
 
 function PinIcon() {
   return (
@@ -14,9 +16,11 @@ function PinIcon() {
 export default function SubmissionCard({
   submission,
   showStatus = false,
+  editable = false,
 }: {
   submission: SerializedSubmission;
   showStatus?: boolean;
+  editable?: boolean;
 }) {
   const s = submission;
   const href = `/submission/${s.id}`;
@@ -84,11 +88,18 @@ export default function SubmissionCard({
           </p>
         )}
 
-        <div className="mt-auto flex items-center justify-between pt-1 font-ui text-xs text-neutral-400">
+        <div className="mt-auto flex items-center justify-between gap-2 pt-1 font-ui text-xs text-neutral-400">
           <span className="truncate">by {s.authorName}</span>
-          <span className="shrink-0">
-            {new Date(s.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
-          </span>
+          {editable ? (
+            <DateEditor
+              id={s.id}
+              capturedAt={s.capturedAt}
+              createdAt={s.createdAt}
+              className="shrink-0"
+            />
+          ) : (
+            <span className="shrink-0">{formatItemDate(itemDateIso(s.capturedAt, s.createdAt))}</span>
+          )}
         </div>
       </div>
     </article>

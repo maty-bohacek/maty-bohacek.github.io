@@ -5,7 +5,9 @@ import { prisma } from '@/lib/db';
 import { getCurrentUser } from '@/lib/session';
 import { canReview } from '@/lib/roles';
 import { mediaUrl } from '@/lib/submissions';
+import { formatItemDate, itemDateIso } from '@/lib/dates';
 import StatusBadge from '@/components/StatusBadge';
+import DateEditor from '@/components/DateEditor';
 
 export const dynamic = 'force-dynamic';
 
@@ -41,11 +43,12 @@ export default async function SubmissionPage({
   const s = await load(id);
   if (!s) notFound();
 
+  const viewer = await getCurrentUser();
+  const canEdit = !!viewer && (viewer.id === s.authorId || canReview(viewer.role));
+
   // Non-approved items are visible only to their author and to reviewers+.
-  if (s.status !== 'APPROVED') {
-    const viewer = await getCurrentUser();
-    const allowed = viewer && (viewer.id === s.authorId || canReview(viewer.role));
-    if (!allowed) notFound();
+  if (s.status !== 'APPROVED' && !canEdit) {
+    notFound();
   }
 
   const d = 0.01;
@@ -73,9 +76,24 @@ export default async function SubmissionPage({
         {s.status !== 'APPROVED' && <StatusBadge status={s.status} />}
       </div>
 
-      <p className="mt-1 font-ui text-sm text-neutral-500">
-        Posted by {s.author?.displayName ?? 'Unknown'} ·{' '}
-        {s.createdAt.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+      <p className="mt-1 flex flex-wrap items-center gap-x-1 font-ui text-sm text-neutral-500">
+        <span>Taken</span>
+        {canEdit ? (
+          <DateEditor
+            id={s.id}
+            capturedAt={s.capturedAt ? s.capturedAt.toISOString() : null}
+            createdAt={s.createdAt.toISOString()}
+            long
+          />
+        ) : (
+          <span>
+            {formatItemDate(
+              itemDateIso(s.capturedAt ? s.capturedAt.toISOString() : null, s.createdAt.toISOString()),
+              { long: true },
+            )}
+          </span>
+        )}
+        <span>· posted by {s.author?.displayName ?? 'Unknown'}</span>
       </p>
 
       <dl className="mt-6 space-y-5">

@@ -272,9 +272,14 @@ body {
 .leaflet-bar a,
 .leaflet-control-zoom a { color: var(--color-neutral-700); }
 
-/* Thumbnail markers */
+/* Thumbnail markers. The preview is a centered, cropped background so any
+   aspect ratio (portrait/landscape) fills the square edge to edge. */
 .slop-marker {
-  background: #fff;
+  box-sizing: border-box;
+  background-color: #fff;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   border: 2px solid #fff;
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -284,7 +289,6 @@ body {
   transition: transform 0.12s ease;
 }
 .slop-marker:hover { transform: scale(1.08); z-index: 1000; }
-.slop-marker img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .slop-marker-video {
   position: relative;
   display: flex;

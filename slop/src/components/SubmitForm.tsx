@@ -13,11 +13,41 @@ import {
 
 type SuccessState = { id: string; status: 'APPROVED' | 'PENDING' };
 
+// Pull the capture date ("date taken") out of an image's EXIF, as YYYY-MM-DD.
+// Reads raw values so the camera's local date isn't shifted across timezones.
+async function extractCaptureDate(file: File): Promise<string | null> {
+  try {
+    const exifr = (await import('exifr')).default;
+    const tags = await exifr.parse(file, {
+      pick: ['DateTimeOriginal', 'CreateDate', 'ModifyDate'],
+      reviveValues: false,
+    });
+    const raw = tags?.DateTimeOriginal ?? tags?.CreateDate ?? tags?.ModifyDate;
+    if (!raw) return null;
+    if (raw instanceof Date) {
+      if (Number.isNaN(raw.getTime())) return null;
+      const y = raw.getFullYear();
+      const m = String(raw.getMonth() + 1).padStart(2, '0');
+      const d = String(raw.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+    // EXIF datetimes look like "2026:03:15 14:30:22" — take the date part.
+    const match = /^(\d{4})[:-](\d{2})[:-](\d{2})/.exec(String(raw));
+    return match ? `${match[1]}-${match[2]}-${match[3]}` : null;
+  } catch {
+    return null;
+  }
+}
+
 export default function SubmitForm({ autoPublish }: { autoPublish: boolean }) {
+  const today = new Date().toISOString().slice(0, 10);
+
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [mediaKind, setMediaKind] = useState<'image' | 'video' | null>(null);
   const [exifNote, setExifNote] = useState('');
+  const [captureDate, setCaptureDate] = useState('');
+  const [captureSource, setCaptureSource] = useState<'exif' | 'manual' | null>(null);
 
   const [location, setLocation] = useState<LocationValue>({ lat: null, lng: null, name: '' });
   const [caption, setCaption] = useState('');
@@ -66,6 +96,16 @@ export default function SubmitForm({ autoPublish }: { autoPublish: boolean }) {
     setMediaKind(isImage ? 'image' : 'video');
     setPreview(URL.createObjectURL(f));
 
+    // Try to read the capture date from EXIF, unless the user typed one.
+    if (isImage && captureSource !== 'manual') {
+      const taken = await extractCaptureDate(f);
+      if (taken) {
+        setCaptureDate(taken);
+        setCaptureSource('exif');
+        setErrors((e) => ({ ...e, capturedAt: '' }));
+      }
+    }
+
     // Try to pull GPS from photo EXIF to pre-fill the location.
     if (isImage && location.lat == null) {
       try {
@@ -93,6 +133,8 @@ export default function SubmitForm({ autoPublish }: { autoPublish: boolean }) {
   function validateClient(): boolean {
     const next: Record<string, string> = {};
     if (!file) next.media = 'Attach a photo or video.';
+    if (!captureDate) next.capturedAt = 'Add the date this was taken.';
+    else if (captureDate > today) next.capturedAt = 'The date can’t be in the future.';
     if (location.lat == null || location.lng == null) next.location = 'Set a location on the map.';
     if (!location.name.trim()) next.locationName = 'Add a location label.';
     if (caption.trim().length < 3) next.caption = 'Add a short caption.';
@@ -116,6 +158,7 @@ export default function SubmitForm({ autoPublish }: { autoPublish: boolean }) {
     fd.set('latitude', String(location.lat));
     fd.set('longitude', String(location.lng));
     fd.set('sourceType', sourceType);
+    fd.set('capturedAt', captureDate);
     if (sourceType === 'LINK') fd.set('sourceUrl', sourceUrl);
     if (modelAttribution.trim()) fd.set('modelAttribution', modelAttribution.trim());
 
@@ -167,6 +210,8 @@ export default function SubmitForm({ autoPublish }: { autoPublish: boolean }) {
               setSuccess(null);
               setFile(null);
               setMediaKind(null);
+              setCaptureDate('');
+              setCaptureSource(null);
               setLocation({ lat: null, lng: null, name: '' });
               setCaption('');
               setReasoning('');
@@ -218,6 +263,35 @@ export default function SubmitForm({ autoPublish }: { autoPublish: boolean }) {
         />
         {errors.media && <p className="field-error">{errors.media}</p>}
         {exifNote && <p className="mt-2 font-ui text-xs text-primary-700">{exifNote}</p>}
+
+        <div className="mt-4">
+          <label className="label" htmlFor="capturedAt">
+            Date taken
+          </label>
+          <input
+            id="capturedAt"
+            type="date"
+            className="input"
+            max={today}
+            value={captureDate}
+            onChange={(e) => {
+              setCaptureDate(e.target.value);
+              setCaptureSource('manual');
+              setErrors((er) => ({ ...er, capturedAt: '' }));
+            }}
+          />
+          {captureSource === 'exif' ? (
+            <p className="mt-1 font-ui text-xs text-primary-700">
+              Read from the photo&apos;s metadata — change it if it&apos;s off.
+            </p>
+          ) : (
+            <p className="hint">
+              When the slop was photographed or recorded. We read it from the file when we can —
+              otherwise, please set it.
+            </p>
+          )}
+          {errors.capturedAt && <p className="field-error">{errors.capturedAt}</p>}
+        </div>
       </section>
 
       {/* Location */}

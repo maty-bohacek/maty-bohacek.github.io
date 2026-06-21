@@ -82,6 +82,7 @@ export default async function MyPage({
               key={s.id}
               submission={serializeSubmission(s, { includeReviewNote: true })}
               showStatus
+              editable
             />
           ))}
         </div>
