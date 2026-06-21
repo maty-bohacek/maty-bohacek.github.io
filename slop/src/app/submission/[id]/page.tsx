@@ -14,7 +14,7 @@ export const dynamic = 'force-dynamic';
 async function load(id: string) {
   return prisma.submission.findUnique({
     where: { id },
-    include: { author: { select: { displayName: true } } },
+    include: { author: { select: { displayName: true, publicProfile: true } } },
   });
 }
 
@@ -45,6 +45,14 @@ export default async function SubmissionPage({
 
   const viewer = await getCurrentUser();
   const canEdit = !!viewer && (viewer.id === s.authorId || canReview(viewer.role));
+
+  // Authors are anonymous publicly unless they opted into a public profile;
+  // the author themselves and reviewers always see the real name.
+  const authorLabel = !s.author
+    ? 'Unknown'
+    : s.author.publicProfile || canEdit
+      ? s.author.displayName
+      : 'Anonymous';
 
   // Non-approved items are visible only to their author and to reviewers+.
   if (s.status !== 'APPROVED' && !canEdit) {
@@ -93,7 +101,7 @@ export default async function SubmissionPage({
             )}
           </span>
         )}
-        <span>· posted by {s.author?.displayName ?? 'Unknown'}</span>
+        <span>· posted by {authorLabel}</span>
       </p>
 
       <dl className="mt-6 space-y-5">

@@ -53,7 +53,7 @@ export async function GET(request: Request) {
 
   const submissions = await prisma.submission.findMany({
     where: buildApprovedWhere(filters),
-    include: { author: { select: { displayName: true } } },
+    include: { author: { select: { displayName: true, publicProfile: true } } },
     orderBy: MAP_ORDER_BY,
     take: MAX_RESULTS,
   });

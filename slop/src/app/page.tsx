@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 export default async function HomePage() {
   const subs = await prisma.submission.findMany({
     where: { status: 'APPROVED' },
-    include: { author: { select: { displayName: true } } },
+    include: { author: { select: { displayName: true, publicProfile: true } } },
     orderBy: MAP_ORDER_BY,
     take: 2000,
   });

@@ -96,6 +96,11 @@ export const submissionMetaSchema = z
     path: ['sourceUrl'],
   });
 
+// Self-service account settings the signed-in user can change.
+export const meUpdateSchema = z.object({
+  publicProfile: z.boolean(),
+});
+
 export const reviewSchema = z.object({
   action: z.enum(['approve', 'reject']),
   note: z.string().trim().max(1000).optional().or(z.literal('')),

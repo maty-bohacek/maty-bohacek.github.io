@@ -52,6 +52,9 @@ model User {
   displayName  String
   role         UserRole @default(USER)
   banned       Boolean  @default(false)
+  // Authors are anonymous by default: their name shows as "Anonymous" on
+  // public posts until they opt in to a public profile from "My submissions".
+  publicProfile Boolean @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
