@@ -1,0 +1,107 @@
+// AI Slop in the Wild — data model
+// Postgres on Railway. Schema is synced with `prisma db push` on deploy.
+
+generator client {
+  provider = "prisma-client-js"
+  // "native" for local dev; the debian targets cover Railway's runtime
+  // (Nixpacks images may ship either OpenSSL 1.1 or 3.0).
+  binaryTargets = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Capability ladder. Each rung includes the powers of the ones below it.
+//   USER        — submit; submissions wait in review
+//   TRUSTED     — submit; submissions publish immediately
+//   REVIEWER    — TRUSTED + can approve/reject others' submissions
+//   SUPER_ADMIN — REVIEWER + user management (ban, set roles). Exactly one,
+//                 bootstrapped from SUPER_ADMIN_* env vars.
+enum UserRole {
+  USER
+  TRUSTED
+  REVIEWER
+  SUPER_ADMIN
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+}
+
+// Where the captured slop came from.
+//   LINK     — a link to a post/article (sourceUrl set)
+//   ORIGINAL — the submitter's own photo/recording ("original photo")
+enum SourceType {
+  LINK
+  ORIGINAL
+}
+
+enum SubmissionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  displayName  String
+  role         UserRole @default(USER)
+  banned       Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  submissions     Submission[] @relation("Author")
+  reviewedItems   Submission[] @relation("Reviewer")
+
+  @@index([role])
+  @@index([createdAt])
+}
+
+model Submission {
+  id        String   @id @default(cuid())
+
+  author    User   @relation("Author", fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+
+  // Media — stored on the volume, served via /api/media/<...>.
+  mediaType    MediaType
+  mediaPath    String  // relative path inside DATA_DIR/uploads
+  thumbPath    String? // generated thumbnail (images only)
+  mediaWidth   Int?
+  mediaHeight  Int?
+  mediaMime    String?
+
+  // Where it was spotted.
+  latitude     Float
+  longitude    Float
+  locationName String  // human-readable address / place label
+
+  // The story.
+  caption          String  // short comment / subtitle / title
+  reasoning        String  @db.Text // why they believe it's AI (may include a detector URL)
+  modelAttribution String? // optional claimed model (e.g. "Midjourney v6")
+
+  // Provenance.
+  sourceType SourceType
+  sourceUrl  String?
+
+  // Review workflow.
+  status       SubmissionStatus @default(PENDING)
+  reviewer     User?            @relation("Reviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedById String?
+  reviewNote   String?          // optional note, esp. on rejection
+  reviewedAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([authorId])
+  @@index([createdAt])
+  @@index([status, createdAt])
+}
