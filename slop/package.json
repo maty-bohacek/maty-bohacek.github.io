@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "AI Slop in the Wild — a community map of AI-generated imagery and video spotted in the real world.",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
