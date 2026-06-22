@@ -12,7 +12,13 @@ import {
 } from '@/lib/constants';
 import { rateLimit } from '@/lib/ratelimit';
 import { fail, ok } from '@/lib/http';
-import { buildApprovedWhere, serializeSubmission, type MapFilters } from '@/lib/submissions';
+import { captureDateToDate } from '@/lib/validation';
+import {
+  buildApprovedWhere,
+  serializeSubmission,
+  MAP_ORDER_BY,
+  type MapFilters,
+} from '@/lib/submissions';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -47,8 +53,8 @@ export async function GET(request: Request) {
 
   const submissions = await prisma.submission.findMany({
     where: buildApprovedWhere(filters),
-    include: { author: { select: { displayName: true } } },
-    orderBy: { createdAt: 'desc' },
+    include: { author: { select: { displayName: true, publicProfile: true } } },
+    orderBy: MAP_ORDER_BY,
     take: MAX_RESULTS,
   });
 
@@ -101,11 +107,13 @@ export async function POST(request: Request) {
     sourceType: form.get('sourceType'),
     sourceUrl: form.get('sourceUrl') ?? '',
     modelAttribution: form.get('modelAttribution') ?? '',
+    capturedAt: form.get('capturedAt') ?? '',
   });
   if (!meta.success) {
     return fail('Please fix the errors below.', 422, { fields: fieldErrors(meta.error) });
   }
   const data = meta.data;
+  const capturedAt = data.capturedAt ? captureDateToDate(data.capturedAt) : null;
 
   // Process + store media.
   let processed;
@@ -145,6 +153,7 @@ export async function POST(request: Request) {
       modelAttribution: data.modelAttribution ? data.modelAttribution : null,
       sourceType: data.sourceType,
       sourceUrl: data.sourceType === 'LINK' ? data.sourceUrl || null : null,
+      capturedAt,
       status: publishNow ? 'APPROVED' : 'PENDING',
       reviewedAt: publishNow ? new Date() : null,
     },

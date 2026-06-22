@@ -52,6 +52,9 @@ model User {
   displayName  String
   role         UserRole @default(USER)
   banned       Boolean  @default(false)
+  // Authors are anonymous by default: their name shows as "Anonymous" on
+  // public posts until they opt in to a public profile from "My submissions".
+  publicProfile Boolean @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
@@ -90,6 +93,11 @@ model Submission {
   sourceType SourceType
   sourceUrl  String?
 
+  // When the media was actually captured (date the photo/video was taken),
+  // inferred from EXIF on upload or supplied/edited by the author. Falls back
+  // to `createdAt` for display when null (e.g. legacy rows or missing metadata).
+  capturedAt DateTime?
+
   // Review workflow.
   status       SubmissionStatus @default(PENDING)
   reviewer     User?            @relation("Reviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
@@ -103,5 +111,6 @@ model Submission {
   @@index([status])
   @@index([authorId])
   @@index([createdAt])
+  @@index([capturedAt])
   @@index([status, createdAt])
 }

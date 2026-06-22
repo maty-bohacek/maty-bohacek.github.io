@@ -5,6 +5,7 @@ import { prisma } from '@/lib/db';
 import { requireUser } from '@/lib/session';
 import { serializeSubmission } from '@/lib/submissions';
 import SubmissionCard from '@/components/SubmissionCard';
+import ProfileVisibilityToggle from '@/components/ProfileVisibilityToggle';
 
 export const metadata: Metadata = { title: 'My submissions' };
 export const dynamic = 'force-dynamic';
@@ -28,7 +29,7 @@ export default async function MyPage({
   const [items, counts] = await Promise.all([
     prisma.submission.findMany({
       where: { authorId: user.id, ...(active.status ? { status: active.status } : {}) },
-      include: { author: { select: { displayName: true } } },
+      include: { author: { select: { displayName: true, publicProfile: true } } },
       orderBy: { createdAt: 'desc' },
     }),
     prisma.submission.groupBy({
@@ -55,6 +56,10 @@ export default async function MyPage({
         </Link>
       </header>
 
+      <div className="mb-6">
+        <ProfileVisibilityToggle initialPublic={user.publicProfile} />
+      </div>
+
       <div className="mb-6 flex flex-wrap gap-2">
         {TABS.map((t) => (
           <Link
@@ -80,8 +85,9 @@ export default async function MyPage({
           {items.map((s) => (
             <SubmissionCard
               key={s.id}
-              submission={serializeSubmission(s, { includeReviewNote: true })}
+              submission={serializeSubmission(s, { includeReviewNote: true, revealAuthor: true })}
               showStatus
+              editable
             />
           ))}
         </div>

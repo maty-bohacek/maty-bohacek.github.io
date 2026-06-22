@@ -20,7 +20,7 @@ export default async function ReviewPage() {
 
   const items = await prisma.submission.findMany({
     where,
-    include: { author: { select: { displayName: true } } },
+    include: { author: { select: { displayName: true, publicProfile: true } } },
     orderBy: { createdAt: 'asc' },
   });
 
@@ -40,7 +40,7 @@ export default async function ReviewPage() {
       ) : (
         <div className="space-y-6">
           {items.map((s) => (
-            <ReviewCard key={s.id} submission={serializeSubmission(s)} />
+            <ReviewCard key={s.id} submission={serializeSubmission(s, { revealAuthor: true })} />
           ))}
         </div>
       )}
