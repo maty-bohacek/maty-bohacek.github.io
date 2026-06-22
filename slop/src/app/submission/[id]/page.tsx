@@ -8,6 +8,9 @@ import { mediaUrl } from '@/lib/submissions';
 import { formatItemDate, itemDateIso } from '@/lib/dates';
 import StatusBadge from '@/components/StatusBadge';
 import DateEditor from '@/components/DateEditor';
+import ReasoningEditor from '@/components/ReasoningEditor';
+import SourceEditor from '@/components/SourceEditor';
+import SubmissionMap from '@/components/SubmissionMap';
 
 export const dynamic = 'force-dynamic';
 
@@ -59,9 +62,6 @@ export default async function SubmissionPage({
     notFound();
   }
 
-  const d = 0.01;
-  const bbox = [s.longitude - d, s.latitude - d, s.longitude + d, s.latitude + d].join('%2C');
-  const osmEmbed = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${s.latitude}%2C${s.longitude}`;
   const osmLink = `https://www.openstreetmap.org/?mlat=${s.latitude}&mlon=${s.longitude}#map=16/${s.latitude}/${s.longitude}`;
 
   return (
@@ -109,14 +109,24 @@ export default async function SubmissionPage({
           <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
             Why it&apos;s believed to be AI
           </dt>
-          <dd className="mt-1 whitespace-pre-wrap leading-relaxed text-neutral-700">{s.reasoning}</dd>
+          {canEdit ? (
+            <dd>
+              <ReasoningEditor id={s.id} reasoning={s.reasoning} />
+            </dd>
+          ) : (
+            <dd className="mt-1 whitespace-pre-wrap leading-relaxed text-neutral-700">{s.reasoning}</dd>
+          )}
         </div>
 
-        <div className="flex flex-wrap gap-8">
-          <div>
-            <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
-              Source
-            </dt>
+        <div>
+          <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
+            Source
+          </dt>
+          {canEdit ? (
+            <dd>
+              <SourceEditor id={s.id} sourceType={s.sourceType} sourceUrl={s.sourceUrl} />
+            </dd>
+          ) : (
             <dd className="mt-1 text-neutral-700">
               {s.sourceType === 'LINK' && s.sourceUrl ? (
                 <a
@@ -131,20 +141,20 @@ export default async function SubmissionPage({
                 'Original photo'
               )}
             </dd>
-          </div>
-
-          {s.modelAttribution && (
-            <div>
-              <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
-                Suspected model
-              </dt>
-              <dd className="mt-1 text-neutral-700">
-                {s.modelAttribution}{' '}
-                <span className="font-ui text-xs text-neutral-400">(claimed, not verified)</span>
-              </dd>
-            </div>
           )}
         </div>
+
+        {s.modelAttribution && (
+          <div>
+            <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
+              Suspected model
+            </dt>
+            <dd className="mt-1 text-neutral-700">
+              {s.modelAttribution}{' '}
+              <span className="font-ui text-xs text-neutral-400">(claimed, not verified)</span>
+            </dd>
+          </div>
+        )}
 
         <div>
           <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
@@ -157,12 +167,7 @@ export default async function SubmissionPage({
             </a>
           </dd>
           <div className="mt-3 overflow-hidden rounded-lg border border-neutral-200">
-            <iframe
-              title="Location map"
-              src={osmEmbed}
-              className="h-64 w-full"
-              loading="lazy"
-            />
+            <SubmissionMap lat={s.latitude} lng={s.longitude} />
           </div>
         </div>
       </dl>

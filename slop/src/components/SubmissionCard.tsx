@@ -26,8 +26,8 @@ export default function SubmissionCard({
   const href = `/submission/${s.id}`;
 
   return (
-    <article className="card flex flex-col animate-fade-in">
-      <Link href={href} className="group relative block aspect-[4/3] bg-neutral-100 overflow-hidden">
+    <article className="card group relative flex flex-col animate-fade-in">
+      <div className="relative block aspect-[4/3] bg-neutral-100 overflow-hidden">
         {s.mediaType === 'IMAGE' ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -62,11 +62,16 @@ export default function SubmissionCard({
             <StatusBadge status={s.status} />
           </span>
         )}
-      </Link>
+      </div>
 
       <div className="flex flex-1 flex-col gap-2 p-3">
         <h3 className="font-bold leading-snug text-neutral-900 line-clamp-2">
-          <Link href={href} className="transition-colors hover:text-primary-600">
+          {/* Stretched link: the ::before overlay makes the whole card clickable,
+              while interactive controls below opt out with `relative z-10`. */}
+          <Link
+            href={href}
+            className="transition-colors hover:text-primary-600 before:absolute before:inset-0 before:content-['']"
+          >
             {s.caption}
           </Link>
         </h3>
@@ -95,7 +100,7 @@ export default function SubmissionCard({
               id={s.id}
               capturedAt={s.capturedAt}
               createdAt={s.createdAt}
-              className="shrink-0"
+              className="relative z-10 shrink-0"
             />
           ) : (
             <span className="shrink-0">{formatItemDate(itemDateIso(s.capturedAt, s.createdAt))}</span>

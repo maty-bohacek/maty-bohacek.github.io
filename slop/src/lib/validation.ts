@@ -30,11 +30,40 @@ export function captureDateToDate(s: string): Date {
   return new Date(`${s}T12:00:00.000Z`);
 }
 
-// Fields an author may edit on an existing submission. Currently just the
-// capture date ("date taken"), editable retroactively from their submissions.
-export const submissionEditSchema = z.object({
-  capturedAt: captureDateSchema,
-});
+// Fields an author may edit on an existing submission: the capture date ("date
+// taken"), the reasoning ("why it's believed to be AI"), and the source. All
+// fields are optional so the client can PATCH just the one being edited; at
+// least one must be present.
+export const submissionEditSchema = z
+  .object({
+    capturedAt: captureDateSchema.optional(),
+    reasoning: z
+      .string()
+      .trim()
+      .min(10, 'Explain why you believe this is AI-generated.')
+      .max(MAX_REASONING_LENGTH, 'Reasoning is too long.')
+      .optional(),
+    sourceType: z.enum(['LINK', 'ORIGINAL']).optional(),
+    sourceUrl: z
+      .string()
+      .trim()
+      .url('Enter a valid URL.')
+      .max(2000)
+      .optional()
+      .or(z.literal('')),
+  })
+  .refine(
+    (d) =>
+      d.capturedAt !== undefined ||
+      d.reasoning !== undefined ||
+      d.sourceType !== undefined ||
+      d.sourceUrl !== undefined,
+    { message: 'Nothing to update.' },
+  )
+  .refine((d) => d.sourceType !== 'LINK' || (d.sourceUrl && d.sourceUrl.length > 0), {
+    message: 'A source link is required when the source is a link.',
+    path: ['sourceUrl'],
+  });
 
 export const registerSchema = z.object({
   email: z.string().trim().email('Enter a valid email address.').max(200),
