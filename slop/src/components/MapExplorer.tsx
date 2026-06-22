@@ -79,9 +79,8 @@ export default function MapExplorer({ initial }: { initial: SerializedSubmission
       <header className="mb-6">
         <h1 className="text-display-sm text-neutral-900">AI Slop in the Wild</h1>
         <p className="mt-2 max-w-2xl font-ui text-sm text-neutral-600">
-          A community map of AI-generated imagery and video spotted out in the real world — on
-          billboards, screens, flyers, and storefronts. Each pin is a sighting, with a reason it&apos;s
-          believed to be AI.
+          A community-sourced map of AI-generated imagery and video spotted out in the real
+          world—as billboards, screens, flyers, and other modalities.
         </p>
       </header>
 

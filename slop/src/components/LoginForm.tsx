@@ -75,7 +75,7 @@ export default function LoginForm({ next }: { next?: string }) {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary w-full" disabled={loading}>
+        <button type="submit" className="btn btn-primary btn-lg w-full" disabled={loading}>
           {loading ? 'Logging in…' : 'Log in'}
         </button>
       </form>
