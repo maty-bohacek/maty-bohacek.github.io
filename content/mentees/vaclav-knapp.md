@@ -1,7 +1,7 @@
 ---
 name: "Vaclav Knapp"
-website: ""
-photo: ""
+website: "https://vaclavknapp.github.io"
+photo: "/images/mentees/vaclav-knapp.jpg"
 status: "active"
 order: 3
 ---

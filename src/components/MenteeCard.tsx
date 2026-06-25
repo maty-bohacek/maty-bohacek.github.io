@@ -18,12 +18,12 @@ export default function MenteeCard({ mentee }: { mentee: Mentee }) {
     <Image
       src={photo}
       alt={name}
-      width={112}
-      height={112}
+      width={320}
+      height={320}
       className="w-full h-full object-cover"
     />
   ) : (
-    <div className="w-full h-full flex items-center justify-center bg-neutral-100 text-neutral-400 font-ui font-semibold text-xl">
+    <div className="w-full h-full flex items-center justify-center bg-neutral-100 text-neutral-400 font-ui font-semibold text-2xl">
       {initials(name)}
     </div>
   );
@@ -31,9 +31,9 @@ export default function MenteeCard({ mentee }: { mentee: Mentee }) {
   const isExternal = website?.startsWith('http');
 
   return (
-    <article className="flex flex-col items-center text-center">
-      {/* Avatar */}
-      <div className="w-28 h-28 rounded-full overflow-hidden bg-neutral-100 ring-1 ring-neutral-200">
+    <article className="flex flex-col">
+      {/* Avatar — square 1:1 */}
+      <div className="aspect-square w-full overflow-hidden bg-neutral-100 ring-1 ring-neutral-200">
         {website ? (
           <Link
             href={website}
@@ -49,7 +49,7 @@ export default function MenteeCard({ mentee }: { mentee: Mentee }) {
       </div>
 
       {/* Name */}
-      <h3 className="mt-4 font-bold text-neutral-900">
+      <h3 className="mt-3 font-bold text-neutral-900">
         {website ? (
           <Link
             href={website}
@@ -65,7 +65,7 @@ export default function MenteeCard({ mentee }: { mentee: Mentee }) {
       </h3>
 
       {/* Blurb with inline citations */}
-      <p className="mt-2 text-sm text-neutral-600 leading-relaxed text-left">
+      <p className="mt-2 text-sm text-neutral-600 leading-relaxed">
         {blurb.map((segment, index) =>
           segment.type === 'text' ? (
             <span key={index}>{segment.value}</span>

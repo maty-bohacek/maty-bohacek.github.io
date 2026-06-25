@@ -24,7 +24,7 @@ export default function MenteesPage() {
 
       {/* Active mentees */}
       {activeMentees.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10">
           {activeMentees.map((mentee) => (
             <MenteeCard key={mentee.id} mentee={mentee} />
           ))}
@@ -38,7 +38,7 @@ export default function MenteesPage() {
             <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide">Past Mentees</h2>
             <div className="flex-1 h-px bg-neutral-200" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10">
             {pastMentees.map((mentee) => (
               <MenteeCard key={mentee.id} mentee={mentee} />
             ))}
