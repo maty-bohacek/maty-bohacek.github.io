@@ -94,6 +94,10 @@
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
+  /* Always reserve the vertical scrollbar so page width stays consistent
+     between short pages (e.g. an empty Press list) and long ones. This also
+     covers browsers that don't support scrollbar-gutter. */
+  overflow-y: scroll;
 }
 
 body {
