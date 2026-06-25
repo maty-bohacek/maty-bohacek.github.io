@@ -1,0 +1,12 @@
+{
+  "_comment": "Ordered list of publication ids (matching ids in data/publications.csv) that make up the numbered 'Mentored Publications' list at the bottom of /mentees. The order here determines the [1], [2], [3]... reference numbers. Mentee blurbs cite these with [[publication-id]] markers, which render as the matching number. You can add publication ids here even if no mentee references them.",
+  "publications": [
+    "ai-on-the-internet",
+    "louvre-sae",
+    "synthetic-human-action",
+    "pose-transfer-realism",
+    "pose-aware-llm-asl",
+    "news-provenance-dataset",
+    "llm-provenance-metadata"
+  ]
+}
