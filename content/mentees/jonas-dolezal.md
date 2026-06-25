@@ -1,7 +1,7 @@
 ---
 name: "Jonas Dolezal"
-website: ""
-photo: ""
+website: "https://jonasdolezal.com"
+photo: "/images/mentees/jonas-dolezal.jpg"
 status: "active"
 order: 4
 ---
