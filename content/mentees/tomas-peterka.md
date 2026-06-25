@@ -1,7 +1,7 @@
 ---
 name: "Tomas Peterka"
 website: ""
-photo: ""
+photo: "/images/mentees/tomas-peterka.jpg"
 status: "past"
 order: 1
 ---

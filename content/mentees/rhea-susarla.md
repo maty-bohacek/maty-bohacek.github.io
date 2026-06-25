@@ -1,7 +1,7 @@
 ---
 name: "Rhea Susarla"
-website: ""
-photo: ""
+website: "http://rhealitycheck.squarespace.com/"
+photo: "/images/mentees/rhea-susarla.jpg"
 status: "active"
 order: 2
 ---
