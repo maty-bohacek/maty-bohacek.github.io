@@ -79,7 +79,7 @@ export default function MenteesPage() {
                       )}
                     </span>
                     <span className="text-neutral-500">
-                      {' '}— {authors}.{' '}
+                      {'. '}{authors}.{' '}
                       <span className="italic">{venue}</span>, {year}.
                     </span>
                   </div>
