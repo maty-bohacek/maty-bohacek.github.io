@@ -28,6 +28,7 @@ export function getLogEntries(): LogEntry[] {
           linkText: data.linkText || undefined,
           image: data.image || undefined,
           images: data.images || undefined,
+          logo: data.logo || undefined,
           tags: data.tags || [],
         } as LogEntry;
       })

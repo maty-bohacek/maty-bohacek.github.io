@@ -28,6 +28,7 @@ export interface LogEntry {
   linkText?: string;
   image?: string;
   images?: string[];
+  logo?: string;
   tags?: string[];
 }
 
