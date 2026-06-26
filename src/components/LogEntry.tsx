@@ -10,6 +10,7 @@ export interface LogEntryData {
   linkText?: string;
   image?: string;
   images?: string[];
+  logo?: string;
   tags?: string[];
 }
 
@@ -21,7 +22,7 @@ interface LogEntryProps {
 }
 
 export default function LogEntry({ entry, showDescription = true, showImages = true, compact = false }: LogEntryProps) {
-  const { date, title, description, link, linkText, image, images } = entry;
+  const { date, title, description, link, linkText, image, images, logo } = entry;
 
   // Parse date for display
   const dateObj = new Date(date);
@@ -30,8 +31,8 @@ export default function LogEntry({ entry, showDescription = true, showImages = t
     day: 'numeric',
   });
 
-  return (
-    <article className={`group ${compact ? 'py-3' : 'py-6'} first:pt-0 border-b border-neutral-200 last:border-0`}>
+  const content = (
+    <>
       {/* Date */}
       <time
         dateTime={date}
@@ -93,6 +94,28 @@ export default function LogEntry({ entry, showDescription = true, showImages = t
             </svg>
           </Link>
         </div>
+      )}
+    </>
+  );
+
+  return (
+    <article className={`group ${compact ? 'py-3' : 'py-6'} first:pt-0 border-b border-neutral-200 last:border-0`}>
+      {logo ? (
+        <div className="flex gap-3 sm:gap-4">
+          {/* Outlet logo */}
+          <span className="flex-shrink-0 mt-0.5 inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-md overflow-hidden bg-white ring-1 ring-neutral-200/80 shadow-sm">
+            <Image
+              src={logo}
+              alt=""
+              width={40}
+              height={40}
+              className="w-full h-full object-contain p-1"
+            />
+          </span>
+          <div className="min-w-0 flex-1">{content}</div>
+        </div>
+      ) : (
+        content
       )}
     </article>
   );
