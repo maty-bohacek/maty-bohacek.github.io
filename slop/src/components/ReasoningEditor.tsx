@@ -3,17 +3,21 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { MAX_REASONING_LENGTH } from '@/lib/constants';
+import EditButton from './EditButton';
 
 /**
  * Shows an item's "why it's believed to be AI" explanation and lets the author
- * (or a reviewer) edit it inline, mirroring how the date is edited.
+ * (or a reviewer) edit it inline. The edit affordance sits next to the field
+ * label (passed in), not next to the content.
  */
 export default function ReasoningEditor({
   id,
   reasoning,
+  label,
 }: {
   id: string;
   reasoning: string;
+  label: string;
 }) {
   const router = useRouter();
   const [value, setValue] = useState(reasoning);
@@ -61,57 +65,48 @@ export default function ReasoningEditor({
     }
   }
 
-  if (editing) {
-    return (
-      <div className="mt-1">
-        <textarea
-          className="textarea"
-          value={draft}
-          maxLength={MAX_REASONING_LENGTH}
-          disabled={saving}
-          onChange={(e) => setDraft(e.target.value)}
-        />
-        <div className="mt-2 flex flex-wrap items-center gap-3">
-          <button
-            type="button"
-            onClick={save}
-            disabled={saving}
-            className="btn btn-primary btn-sm"
-          >
-            {saving ? 'Saving…' : 'Save'}
-          </button>
-          <button
-            type="button"
-            onClick={cancel}
-            disabled={saving}
-            className="btn btn-ghost btn-sm"
-          >
-            Cancel
-          </button>
-          {error && <span className="font-ui text-xs text-red-600">{error}</span>}
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="mt-1">
-      <p className="whitespace-pre-wrap leading-relaxed text-neutral-700">{value}</p>
-      <button
-        type="button"
-        onClick={startEditing}
-        className="mt-1 inline-flex items-center gap-1 font-ui text-xs text-neutral-400 transition-colors hover:text-primary-600"
-      >
-        <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-          />
-        </svg>
-        Edit
-      </button>
-    </div>
+    <>
+      <div className="flex items-center gap-2">
+        <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
+          {label}
+        </dt>
+        {!editing && <EditButton label={label} onClick={startEditing} />}
+      </div>
+      <dd className="mt-1">
+        {editing ? (
+          <>
+            <textarea
+              className="textarea"
+              value={draft}
+              maxLength={MAX_REASONING_LENGTH}
+              disabled={saving}
+              onChange={(e) => setDraft(e.target.value)}
+            />
+            <div className="mt-2 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={save}
+                disabled={saving}
+                className="btn btn-primary btn-sm"
+              >
+                {saving ? 'Saving…' : 'Save'}
+              </button>
+              <button
+                type="button"
+                onClick={cancel}
+                disabled={saving}
+                className="btn btn-ghost btn-sm"
+              >
+                Cancel
+              </button>
+              {error && <span className="font-ui text-xs text-red-600">{error}</span>}
+            </div>
+          </>
+        ) : (
+          <p className="whitespace-pre-wrap leading-relaxed text-neutral-700">{value}</p>
+        )}
+      </dd>
+    </>
   );
 }

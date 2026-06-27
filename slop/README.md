@@ -94,9 +94,19 @@ works). Uploaded files go to `./data` (gitignored).
 ## Notes & limits
 
 - Uploaded **images** are re-encoded to WebP (strips EXIF/GPS for privacy, caps
-  dimensions) and get a thumbnail. **Videos** (mp4/webm/mov) are stored as-is and
-  streamed with HTTP range support; there's no server-side transcoding.
+  dimensions) and get a thumbnail. **Videos** (mp4/webm/mov) are transcoded with
+  `ffmpeg` to a compact H.264/AAC mp4 — this **strips all metadata** (incl.
+  GPS/device tags) for the same privacy reason and shrinks stored size. The
+  `ffmpeg` binary ships via the `ffmpeg-static` npm package (no system install
+  needed); if it's ever unavailable the original file is kept as a fallback.
 - Max upload: 12 MB images, 75 MB videos (tunable in `src/lib/constants.ts`).
+  Transcoded video size/quality is tunable there too (`VIDEO_MAX_DIM`, `VIDEO_CRF`).
+- A sighting's location can be flagged **approximate** (when the exact spot is
+  unknown); this is set on submit and editable retroactively, and shown as a hint
+  on the map, cards, and detail page.
+- The **super admin** can download a full database backup — a ZIP of every table
+  as `database.json` plus all uploaded media — from **Backups** in the nav (or
+  directly at `/api/admin/backup`).
 - Geocoding uses the public Nominatim service — fine for light traffic; respect
   its usage policy.
 - Rate limiting is best-effort and in-memory (per instance).
