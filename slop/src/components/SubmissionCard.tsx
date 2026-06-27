@@ -79,6 +79,11 @@ export default function SubmissionCard({
         <p className="flex items-center gap-1 font-ui text-xs text-neutral-500">
           <PinIcon />
           <span className="truncate">{s.locationName}</span>
+          {s.locationApproximate && (
+            <span className="shrink-0 text-neutral-400" title="Approximate location">
+              (approx.)
+            </span>
+          )}
         </p>
 
         {s.modelAttribution && (

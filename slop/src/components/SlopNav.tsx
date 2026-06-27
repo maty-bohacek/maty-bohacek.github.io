@@ -19,7 +19,10 @@ export default function SlopNav({ user }: { user: NavUser }) {
     links.push({ href: '/submit', label: 'Submit' });
     links.push({ href: '/my', label: 'My submissions' });
     if (canReview(user.role)) links.push({ href: '/review', label: 'Review' });
-    if (canManageUsers(user.role)) links.push({ href: '/admin/users', label: 'Users' });
+    if (canManageUsers(user.role)) {
+      links.push({ href: '/admin/users', label: 'Users' });
+      links.push({ href: '/admin/backups', label: 'Backups' });
+    }
   }
   links.push({ href: '/about', label: 'About' });
 

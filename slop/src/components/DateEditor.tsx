@@ -3,11 +3,16 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { formatItemDate, isoToDateInput, itemDateIso } from '@/lib/dates';
+import EditButton from './EditButton';
 
 /**
  * Shows an item's "date taken" and lets the author edit it inline. The displayed
  * value is the capture date when set, otherwise the upload date — editing always
  * writes a real capture date back to the submission.
+ *
+ * When `label` is given (e.g. "Taken"), it's rendered as the field label with the
+ * edit affordance right next to it; otherwise the pencil follows the value (used
+ * in compact card footers that have no label).
  */
 export default function DateEditor({
   id,
@@ -15,12 +20,14 @@ export default function DateEditor({
   createdAt,
   long = false,
   className = '',
+  label,
 }: {
   id: string;
   capturedAt: string | null;
   createdAt: string;
   long?: boolean;
   className?: string;
+  label?: string;
 }) {
   const router = useRouter();
   const [value, setValue] = useState<string | null>(capturedAt);
@@ -73,6 +80,7 @@ export default function DateEditor({
   if (editing) {
     return (
       <span className={`inline-flex flex-wrap items-center gap-1 ${className}`}>
+        {label && <span>{label}</span>}
         <input
           type="date"
           className="rounded border border-neutral-300 px-1.5 py-0.5 font-ui text-xs text-neutral-700"
@@ -102,25 +110,22 @@ export default function DateEditor({
     );
   }
 
+  // With a label, the pencil sits next to the label; without one (card footers),
+  // it follows the value.
+  if (label) {
+    return (
+      <span className={`inline-flex items-center gap-1 ${className}`}>
+        <span>{label}</span>
+        <EditButton label={label} onClick={startEditing} />
+        <span>{formatItemDate(itemDateIso(value, createdAt), { long })}</span>
+      </span>
+    );
+  }
+
   return (
     <span className={`inline-flex items-center gap-1 ${className}`}>
       <span>{formatItemDate(itemDateIso(value, createdAt), { long })}</span>
-      <button
-        type="button"
-        onClick={startEditing}
-        title="Edit date taken"
-        aria-label="Edit date taken"
-        className="text-neutral-400 transition-colors hover:text-primary-600"
-      >
-        <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-          />
-        </svg>
-      </button>
+      <EditButton label="date taken" onClick={startEditing} />
     </span>
   );
 }

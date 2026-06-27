@@ -2,21 +2,24 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import EditButton from './EditButton';
 
 type SourceType = 'LINK' | 'ORIGINAL';
 
 /**
  * Shows an item's source (a link or "Original photo") and lets the author (or a
- * reviewer) edit it inline, mirroring how the date is edited.
+ * reviewer) edit it inline. The edit affordance sits next to the field label.
  */
 export default function SourceEditor({
   id,
   sourceType,
   sourceUrl,
+  label,
 }: {
   id: string;
   sourceType: SourceType;
   sourceUrl: string | null;
+  label: string;
 }) {
   const router = useRouter();
   const [type, setType] = useState<SourceType>(sourceType);
@@ -71,94 +74,85 @@ export default function SourceEditor({
     }
   }
 
-  if (editing) {
-    return (
-      <div className="mt-1">
-        <div className="flex flex-wrap gap-4 font-ui text-sm text-neutral-700">
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name={`sourceType-${id}`}
-              checked={draftType === 'ORIGINAL'}
-              disabled={saving}
-              onChange={() => setDraftType('ORIGINAL')}
-            />
-            Original photo (mine)
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name={`sourceType-${id}`}
-              checked={draftType === 'LINK'}
-              disabled={saving}
-              onChange={() => setDraftType('LINK')}
-            />
-            Link to a post / article
-          </label>
-        </div>
-        {draftType === 'LINK' && (
-          <input
-            className="input mt-3"
-            placeholder="https://…"
-            value={draftUrl}
-            disabled={saving}
-            onChange={(e) => setDraftUrl(e.target.value)}
-          />
-        )}
-        <div className="mt-3 flex flex-wrap items-center gap-3">
-          <button
-            type="button"
-            onClick={save}
-            disabled={saving}
-            className="btn btn-primary btn-sm"
-          >
-            {saving ? 'Saving…' : 'Save'}
-          </button>
-          <button
-            type="button"
-            onClick={cancel}
-            disabled={saving}
-            className="btn btn-ghost btn-sm"
-          >
-            Cancel
-          </button>
-          {error && <span className="font-ui text-xs text-red-600">{error}</span>}
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="mt-1 flex flex-wrap items-center gap-2">
-      <span className="text-neutral-700">
-        {type === 'LINK' && url ? (
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary-600 underline break-all"
-          >
-            {url}
-          </a>
+    <>
+      <div className="flex items-center gap-2">
+        <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
+          {label}
+        </dt>
+        {!editing && <EditButton label={label} onClick={startEditing} />}
+      </div>
+      <dd className="mt-1">
+        {editing ? (
+          <div>
+            <div className="flex flex-wrap gap-4 font-ui text-sm text-neutral-700">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name={`sourceType-${id}`}
+                  checked={draftType === 'ORIGINAL'}
+                  disabled={saving}
+                  onChange={() => setDraftType('ORIGINAL')}
+                />
+                Original photo (mine)
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name={`sourceType-${id}`}
+                  checked={draftType === 'LINK'}
+                  disabled={saving}
+                  onChange={() => setDraftType('LINK')}
+                />
+                Link to a post / article
+              </label>
+            </div>
+            {draftType === 'LINK' && (
+              <input
+                className="input mt-3"
+                placeholder="https://…"
+                value={draftUrl}
+                disabled={saving}
+                onChange={(e) => setDraftUrl(e.target.value)}
+              />
+            )}
+            <div className="mt-3 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={save}
+                disabled={saving}
+                className="btn btn-primary btn-sm"
+              >
+                {saving ? 'Saving…' : 'Save'}
+              </button>
+              <button
+                type="button"
+                onClick={cancel}
+                disabled={saving}
+                className="btn btn-ghost btn-sm"
+              >
+                Cancel
+              </button>
+              {error && <span className="font-ui text-xs text-red-600">{error}</span>}
+            </div>
+          </div>
         ) : (
-          'Original photo'
+          <span className="text-neutral-700">
+            {type === 'LINK' && url ? (
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-600 underline break-all"
+              >
+                {url}
+              </a>
+            ) : (
+              'Original photo'
+            )}
+          </span>
         )}
-      </span>
-      <button
-        type="button"
-        onClick={startEditing}
-        className="inline-flex items-center gap-1 font-ui text-xs text-neutral-400 transition-colors hover:text-primary-600"
-      >
-        <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-          />
-        </svg>
-        Edit
-      </button>
-    </div>
+      </dd>
+    </>
   );
 }

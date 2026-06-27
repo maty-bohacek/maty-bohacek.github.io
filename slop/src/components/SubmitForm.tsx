@@ -49,7 +49,12 @@ export default function SubmitForm({ autoPublish }: { autoPublish: boolean }) {
   const [captureDate, setCaptureDate] = useState('');
   const [captureSource, setCaptureSource] = useState<'exif' | 'manual' | null>(null);
 
-  const [location, setLocation] = useState<LocationValue>({ lat: null, lng: null, name: '' });
+  const [location, setLocation] = useState<LocationValue>({
+    lat: null,
+    lng: null,
+    name: '',
+    approximate: false,
+  });
   const [caption, setCaption] = useState('');
   const [reasoning, setReasoning] = useState('');
   const [sourceType, setSourceType] = useState<'ORIGINAL' | 'LINK'>('ORIGINAL');
@@ -157,6 +162,7 @@ export default function SubmitForm({ autoPublish }: { autoPublish: boolean }) {
     fd.set('locationName', location.name);
     fd.set('latitude', String(location.lat));
     fd.set('longitude', String(location.lng));
+    fd.set('locationApproximate', String(location.approximate));
     fd.set('sourceType', sourceType);
     fd.set('capturedAt', captureDate);
     if (sourceType === 'LINK') fd.set('sourceUrl', sourceUrl);
@@ -212,7 +218,7 @@ export default function SubmitForm({ autoPublish }: { autoPublish: boolean }) {
               setMediaKind(null);
               setCaptureDate('');
               setCaptureSource(null);
-              setLocation({ lat: null, lng: null, name: '' });
+              setLocation({ lat: null, lng: null, name: '', approximate: false });
               setCaption('');
               setReasoning('');
               setSourceType('ORIGINAL');

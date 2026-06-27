@@ -8,7 +8,12 @@ const LocationMap = dynamic(() => import('./LocationMap'), {
   loading: () => <div className="h-64 w-full rounded-lg border border-neutral-200 bg-neutral-50" />,
 });
 
-export type LocationValue = { lat: number | null; lng: number | null; name: string };
+export type LocationValue = {
+  lat: number | null;
+  lng: number | null;
+  name: string;
+  approximate: boolean;
+};
 
 type GeoResult = { displayName: string; latitude: number; longitude: number };
 
@@ -40,7 +45,7 @@ export default function LocationPicker({
   }
 
   function choose(r: GeoResult) {
-    onChange({ lat: r.latitude, lng: r.longitude, name: r.displayName });
+    onChange({ ...value, lat: r.latitude, lng: r.longitude, name: r.displayName });
     setResults([]);
     setQuery('');
   }
@@ -52,7 +57,7 @@ export default function LocationPicker({
       try {
         const res = await fetch(`/api/geocode?lat=${lat}&lon=${lng}`);
         const data = await res.json();
-        if (data.displayName) onChange({ lat, lng, name: data.displayName });
+        if (data.displayName) onChange({ ...value, lat, lng, name: data.displayName });
       } catch {
         /* ignore */
       }
@@ -120,6 +125,22 @@ export default function LocationPicker({
             {value.lat.toFixed(5)}, {value.lng.toFixed(5)}
           </p>
         )}
+
+        <label className="mt-3 flex items-start gap-2 font-ui text-sm text-neutral-700">
+          <input
+            type="checkbox"
+            className="mt-0.5"
+            checked={value.approximate}
+            onChange={(e) => onChange({ ...value, approximate: e.target.checked })}
+          />
+          <span>
+            Approximate location
+            <span className="block text-xs text-neutral-400">
+              Check this if you don&apos;t know the exact spot — the pin is a best guess (e.g. a
+              nearby landmark or the city).
+            </span>
+          </span>
+        </label>
       </div>
     </div>
   );

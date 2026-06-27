@@ -31,9 +31,10 @@ export function captureDateToDate(s: string): Date {
 }
 
 // Fields an author may edit on an existing submission: the capture date ("date
-// taken"), the reasoning ("why it's believed to be AI"), and the source. All
-// fields are optional so the client can PATCH just the one being edited; at
-// least one must be present.
+// taken"), the reasoning ("why it's believed to be AI"), the source, and the
+// location (label, coordinates, and the "approximate" flag). All fields are
+// optional so the client can PATCH just the one being edited; at least one must
+// be present.
 export const submissionEditSchema = z
   .object({
     capturedAt: captureDateSchema.optional(),
@@ -51,18 +52,36 @@ export const submissionEditSchema = z
       .max(2000)
       .optional()
       .or(z.literal('')),
+    locationName: z
+      .string()
+      .trim()
+      .min(2, 'Add a location label.')
+      .max(MAX_LOCATION_LENGTH, 'Location is too long.')
+      .optional(),
+    latitude: z.coerce.number().min(-90).max(90).optional(),
+    longitude: z.coerce.number().min(-180).max(180).optional(),
+    locationApproximate: z.boolean().optional(),
   })
   .refine(
     (d) =>
       d.capturedAt !== undefined ||
       d.reasoning !== undefined ||
       d.sourceType !== undefined ||
-      d.sourceUrl !== undefined,
+      d.sourceUrl !== undefined ||
+      d.locationName !== undefined ||
+      d.latitude !== undefined ||
+      d.longitude !== undefined ||
+      d.locationApproximate !== undefined,
     { message: 'Nothing to update.' },
   )
   .refine((d) => d.sourceType !== 'LINK' || (d.sourceUrl && d.sourceUrl.length > 0), {
     message: 'A source link is required when the source is a link.',
     path: ['sourceUrl'],
+  })
+  // Latitude and longitude must be edited together to stay consistent.
+  .refine((d) => (d.latitude === undefined) === (d.longitude === undefined), {
+    message: 'Set both coordinates.',
+    path: ['latitude'],
   });
 
 export const registerSchema = z.object({
@@ -102,6 +121,8 @@ export const submissionMetaSchema = z
       .max(MAX_LOCATION_LENGTH, 'Location is too long.'),
     latitude: z.coerce.number().min(-90).max(90),
     longitude: z.coerce.number().min(-180).max(180),
+    // True when the submitter wasn't sure of the exact spot.
+    locationApproximate: z.boolean().optional(),
     sourceType: z.enum(['LINK', 'ORIGINAL']),
     sourceUrl: z
       .string()

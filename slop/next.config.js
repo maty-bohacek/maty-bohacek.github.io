@@ -6,7 +6,9 @@ const nextConfig = {
   // parent (GitHub Pages) repo as the workspace root.
   turbopack: { root: __dirname },
   // Keep native/heavy modules out of the server bundle so they load at runtime.
-  serverExternalPackages: ['sharp', 'exifr', 'bcryptjs'],
+  // ffmpeg-static must stay external so it can resolve its bundled binary via
+  // __dirname; archiver is heavy and has no need to be bundled.
+  serverExternalPackages: ['sharp', 'exifr', 'bcryptjs', 'ffmpeg-static', 'archiver'],
   eslint: {
     // Linting is run separately; don't fail production builds on lint.
     ignoreDuringBuilds: true,

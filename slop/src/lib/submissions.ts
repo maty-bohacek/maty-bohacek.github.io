@@ -14,6 +14,7 @@ export type SerializedSubmission = {
   latitude: number;
   longitude: number;
   locationName: string;
+  locationApproximate: boolean;
   caption: string;
   reasoning: string;
   modelAttribution: string | null;
@@ -46,6 +47,7 @@ export function serializeSubmission(
     latitude: s.latitude,
     longitude: s.longitude,
     locationName: s.locationName,
+    locationApproximate: s.locationApproximate,
     caption: s.caption,
     reasoning: s.reasoning,
     modelAttribution: s.modelAttribution,

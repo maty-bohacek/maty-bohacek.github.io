@@ -56,11 +56,30 @@ export async function PATCH(
     // Keep the URL consistent with the type: drop it for original photos.
     data.sourceUrl = parsed.data.sourceType === 'LINK' ? parsed.data.sourceUrl || null : null;
   }
+  if (parsed.data.locationName !== undefined) {
+    data.locationName = parsed.data.locationName;
+  }
+  if (parsed.data.latitude !== undefined && parsed.data.longitude !== undefined) {
+    data.latitude = parsed.data.latitude;
+    data.longitude = parsed.data.longitude;
+  }
+  if (parsed.data.locationApproximate !== undefined) {
+    data.locationApproximate = parsed.data.locationApproximate;
+  }
 
   const updated = await prisma.submission.update({
     where: { id },
     data,
-    select: { capturedAt: true, reasoning: true, sourceType: true, sourceUrl: true },
+    select: {
+      capturedAt: true,
+      reasoning: true,
+      sourceType: true,
+      sourceUrl: true,
+      locationName: true,
+      latitude: true,
+      longitude: true,
+      locationApproximate: true,
+    },
   });
 
   return ok({
@@ -69,5 +88,9 @@ export async function PATCH(
     reasoning: updated.reasoning,
     sourceType: updated.sourceType,
     sourceUrl: updated.sourceUrl,
+    locationName: updated.locationName,
+    latitude: updated.latitude,
+    longitude: updated.longitude,
+    locationApproximate: updated.locationApproximate,
   });
 }

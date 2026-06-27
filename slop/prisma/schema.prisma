@@ -83,6 +83,10 @@ model Submission {
   latitude     Float
   longitude    Float
   locationName String  // human-readable address / place label
+  // True when the exact spot wasn't known/found and the coordinates above are
+  // only approximate (e.g. a nearby landmark or city center). Shown as a hint
+  // on the public views; editable retroactively like the other fields.
+  locationApproximate Boolean @default(false)
 
   // The story.
   caption          String  // short comment / subtitle / title

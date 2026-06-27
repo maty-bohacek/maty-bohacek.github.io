@@ -39,7 +39,11 @@ function popupHtml(s: SerializedSubmission): string {
       ${media}
       <div style="padding:10px 12px 12px">
         <div style="font-family:Charter,Georgia,serif;font-weight:700;font-size:15px;line-height:1.3;color:#1a1a1a">${escapeHtml(s.caption)}</div>
-        <div style="font-size:12px;color:#737373;margin-top:3px">${escapeHtml(s.locationName)}</div>
+        <div style="font-size:12px;color:#737373;margin-top:3px">${escapeHtml(s.locationName)}${
+          s.locationApproximate
+            ? ' <span style="color:#a3a3a3">(approx.)</span>'
+            : ''
+        }</div>
         ${model}
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:12px">
           ${source}

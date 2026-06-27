@@ -10,6 +10,7 @@ import StatusBadge from '@/components/StatusBadge';
 import DateEditor from '@/components/DateEditor';
 import ReasoningEditor from '@/components/ReasoningEditor';
 import SourceEditor from '@/components/SourceEditor';
+import LocationEditor from '@/components/LocationEditor';
 import SubmissionMap from '@/components/SubmissionMap';
 
 export const dynamic = 'force-dynamic';
@@ -85,16 +86,17 @@ export default async function SubmissionPage({
       </div>
 
       <p className="mt-1 flex flex-wrap items-center gap-x-1 font-ui text-sm text-neutral-500">
-        <span>Taken</span>
         {canEdit ? (
           <DateEditor
             id={s.id}
             capturedAt={s.capturedAt ? s.capturedAt.toISOString() : null}
             createdAt={s.createdAt.toISOString()}
             long
+            label="Taken"
           />
         ) : (
           <span>
+            Taken{' '}
             {formatItemDate(
               itemDateIso(s.capturedAt ? s.capturedAt.toISOString() : null, s.createdAt.toISOString()),
               { long: true },
@@ -106,41 +108,43 @@ export default async function SubmissionPage({
 
       <dl className="mt-6 space-y-5">
         <div>
-          <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
-            Why it&apos;s believed to be AI
-          </dt>
           {canEdit ? (
-            <dd>
-              <ReasoningEditor id={s.id} reasoning={s.reasoning} />
-            </dd>
+            <ReasoningEditor id={s.id} reasoning={s.reasoning} label="Why it's believed to be AI" />
           ) : (
-            <dd className="mt-1 whitespace-pre-wrap leading-relaxed text-neutral-700">{s.reasoning}</dd>
+            <>
+              <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
+                Why it&apos;s believed to be AI
+              </dt>
+              <dd className="mt-1 whitespace-pre-wrap leading-relaxed text-neutral-700">
+                {s.reasoning}
+              </dd>
+            </>
           )}
         </div>
 
         <div>
-          <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
-            Source
-          </dt>
           {canEdit ? (
-            <dd>
-              <SourceEditor id={s.id} sourceType={s.sourceType} sourceUrl={s.sourceUrl} />
-            </dd>
+            <SourceEditor id={s.id} sourceType={s.sourceType} sourceUrl={s.sourceUrl} label="Source" />
           ) : (
-            <dd className="mt-1 text-neutral-700">
-              {s.sourceType === 'LINK' && s.sourceUrl ? (
-                <a
-                  href={s.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary-600 underline break-all"
-                >
-                  {s.sourceUrl}
-                </a>
-              ) : (
-                'Original photo'
-              )}
-            </dd>
+            <>
+              <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
+                Source
+              </dt>
+              <dd className="mt-1 text-neutral-700">
+                {s.sourceType === 'LINK' && s.sourceUrl ? (
+                  <a
+                    href={s.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-600 underline break-all"
+                  >
+                    {s.sourceUrl}
+                  </a>
+                ) : (
+                  'Original photo'
+                )}
+              </dd>
+            </>
           )}
         </div>
 
@@ -157,18 +161,34 @@ export default async function SubmissionPage({
         )}
 
         <div>
-          <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
-            Location
-          </dt>
-          <dd className="mt-1 text-neutral-700">
-            {s.locationName}{' '}
-            <a href={osmLink} target="_blank" rel="noopener noreferrer" className="font-ui text-xs text-primary-600 underline">
-              open in maps
-            </a>
-          </dd>
-          <div className="mt-3 overflow-hidden rounded-lg border border-neutral-200">
-            <SubmissionMap lat={s.latitude} lng={s.longitude} />
-          </div>
+          {canEdit ? (
+            <LocationEditor
+              id={s.id}
+              label="Location"
+              locationName={s.locationName}
+              latitude={s.latitude}
+              longitude={s.longitude}
+              approximate={s.locationApproximate}
+            />
+          ) : (
+            <>
+              <dt className="font-ui text-xs font-semibold uppercase tracking-wide text-neutral-400">
+                Location
+              </dt>
+              <dd className="mt-1 text-neutral-700">
+                {s.locationName}{' '}
+                {s.locationApproximate && (
+                  <span className="badge badge-neutral normal-case align-middle">Approximate</span>
+                )}{' '}
+                <a href={osmLink} target="_blank" rel="noopener noreferrer" className="font-ui text-xs text-primary-600 underline">
+                  open in maps
+                </a>
+              </dd>
+              <div className="mt-3 overflow-hidden rounded-lg border border-neutral-200">
+                <SubmissionMap lat={s.latitude} lng={s.longitude} />
+              </div>
+            </>
+          )}
         </div>
       </dl>
     </div>

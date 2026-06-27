@@ -13,6 +13,13 @@ export const ALLOWED_IMAGE_MIMES = [
 
 export const ALLOWED_VIDEO_MIMES = ['video/mp4', 'video/webm', 'video/quicktime'] as const;
 
+// Server-side video transcoding (ffmpeg). Uploaded videos are re-encoded to
+// H.264/AAC mp4 to (a) strip ALL embedded metadata for privacy and (b) shrink
+// stored size. The long edge is capped and quality is governed by the CRF.
+export const VIDEO_MAX_DIM = 1280; // cap the long edge of transcoded video
+export const VIDEO_CRF = 28; // x264 quality: higher = smaller file, lower quality
+export const VIDEO_AUDIO_BITRATE = '128k';
+
 export const ALLOWED_MIMES = [...ALLOWED_IMAGE_MIMES, ...ALLOWED_VIDEO_MIMES];
 
 // Suggestions for the optional "which model" attribution field. Free text is
