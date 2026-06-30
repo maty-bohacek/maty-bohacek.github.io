@@ -68,7 +68,7 @@ export default function PublicationCard({ publication, compact = false }: Public
           </h3>
 
           {/* Authors */}
-          <p className={`text-neutral-600 ${compact ? 'text-xs line-clamp-1' : 'text-sm mb-3'}`}>
+          <p className={`text-neutral-600 ${compact ? 'text-xs line-clamp-1' : 'text-sm mb-3 line-clamp-2'}`}>
             {authors}
           </p>
 
