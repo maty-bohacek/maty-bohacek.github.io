@@ -7,8 +7,10 @@ import { useState } from 'react';
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/research', label: 'Research' },
+  { href: '/mentees', label: 'Mentees' },
   { href: '/journal', label: 'Journal' },
   { href: '/blog', label: 'Blog' },
+  { href: '/press', label: 'Press' },
 ];
 
 export default function Navigation() {
