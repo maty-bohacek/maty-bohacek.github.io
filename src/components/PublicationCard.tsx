@@ -25,9 +25,10 @@ export interface Publication {
 interface PublicationCardProps {
   publication: Publication;
   compact?: boolean;
+  showAbstract?: boolean;
 }
 
-export default function PublicationCard({ publication, compact = false }: PublicationCardProps) {
+export default function PublicationCard({ publication, compact = false, showAbstract = true }: PublicationCardProps) {
   const { title, authors, venue, year, thumbnail, links, abstract } = publication;
 
   return (
@@ -73,7 +74,7 @@ export default function PublicationCard({ publication, compact = false }: Public
           </p>
 
           {/* Abstract (only for non-compact) */}
-          {!compact && abstract && (
+          {!compact && showAbstract && abstract && (
             <p className="text-sm text-neutral-500 mb-4 line-clamp-3">
               {abstract}
             </p>
