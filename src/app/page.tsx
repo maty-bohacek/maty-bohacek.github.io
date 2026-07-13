@@ -107,7 +107,7 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {featuredPublications.length > 0 ? (
             featuredPublications.map((pub) => (
-              <PublicationCard key={pub.id} publication={pub} />
+              <PublicationCard key={pub.id} publication={pub} showAbstract={false} />
             ))
           ) : (
             <p className="col-span-full text-neutral-500 text-sm">No featured publications yet.</p>
