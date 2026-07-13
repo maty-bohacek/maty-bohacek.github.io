@@ -1,0 +1,24 @@
+{
+  "name": "slop-reddit-bot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Reddit → AI Slop in the Wild ingestion bot (images-only MVP). Scrapes flaired r/aislop posts, enriches them with a Claude vision pass, and submits them to the slop app as a normal USER so everything lands in the review queue.",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "backfill": "tsx src/backfill.ts",
+    "weekly": "tsx src/weekly.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.111.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.3"
+  }
+}

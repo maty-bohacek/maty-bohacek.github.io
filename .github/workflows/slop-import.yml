@@ -1,0 +1,75 @@
+name: Slop Reddit import
+
+# Runs the Reddit → slop ingestion bot. Weekly incremental by default; the
+# historical backfill is a manual trigger. Independent of the GitHub Pages
+# deploy (that workflow only builds the repo root).
+on:
+  schedule:
+    # Mondays 08:00 UTC — the weekly incremental pull.
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Which run to perform"
+        type: choice
+        options: [weekly, backfill]
+        default: weekly
+      dry_run:
+        description: "Dry run (enrich but don't submit)"
+        type: boolean
+        default: false
+
+# Needed to commit the updated dedup state (state/seen.json) back to the repo.
+permissions:
+  contents: write
+
+concurrency:
+  group: "slop-import"
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: slop/bot
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run import
+        env:
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
+          SLOP_API_URL: ${{ secrets.SLOP_API_URL }}
+          SLOP_BOT_EMAIL: ${{ secrets.SLOP_BOT_EMAIL }}
+          SLOP_BOT_PASSWORD: ${{ secrets.SLOP_BOT_PASSWORD }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOMINATIM_CONTACT: ${{ secrets.NOMINATIM_CONTACT }}
+          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+        run: npm run ${{ inputs.mode || 'weekly' }}
+
+      - name: Commit dedup state
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "slop-import-bot"
+          git config user.email "actions@github.com"
+          if [ -n "$(git status --porcelain slop/bot/state/seen.json)" ]; then
+            git add slop/bot/state/seen.json
+            git commit -m "chore(slop-bot): update Reddit import dedup state"
+            git push
+          else
+            echo "No state changes to commit."
+          fi
+        working-directory: ${{ github.workspace }}
