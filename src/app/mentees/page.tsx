@@ -22,6 +22,32 @@ export default function MenteesPage() {
         </p>
       </div>
 
+      {/* Mentorship openings banner */}
+      <div className="mb-12 rounded-lg border border-primary-200 bg-primary-50 px-5 py-4">
+        <p className="text-sm text-neutral-800 leading-relaxed">
+          <span className="font-bold text-primary-800">Now accepting applications:</span>{' '}
+          I will be mentoring a project through{' '}
+          <Link
+            href="https://sparai.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-primary-700 underline underline-offset-2 hover:text-primary-600 transition-colors"
+          >
+            SPAR
+          </Link>{' '}
+          and the{' '}
+          <Link
+            href="https://www.baseresearch.org/base-fellowship-f26"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-primary-700 underline underline-offset-2 hover:text-primary-600 transition-colors"
+          >
+            BASE Fellowship
+          </Link>
+          . If you are interested in working together, I encourage you to apply!
+        </p>
+      </div>
+
       {/* Active mentees */}
       {activeMentees.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10">
