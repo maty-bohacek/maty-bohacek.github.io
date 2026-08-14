@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Env / secrets — NEVER commit these
+.env
+.env.local
+
+# Local scratch (downloaded media during a run)
+tmp/
+*.log
+
+# Misc
+.DS_Store
+*.tsbuildinfo
