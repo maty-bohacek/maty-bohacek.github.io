@@ -31,6 +31,11 @@ interface PublicationCardProps {
 export default function PublicationCard({ publication, compact = false, showAbstract = true }: PublicationCardProps) {
   const { title, authors, venue, year, thumbnail, links, abstract } = publication;
 
+  // The title points at the project page when there is one — it's the richer
+  // landing page — and falls back to the paper otherwise. The "Paper" button
+  // below always links straight to the paper.
+  const primaryLink = links.project || links.paper;
+
   return (
     <article className={`group bg-white border border-neutral-200 hover:border-primary-300 transition-all duration-200 ${compact ? '' : 'hover:shadow-md'}`}>
       <div className={`flex ${compact ? 'flex-row gap-4 p-4' : 'flex-col'}`}>
@@ -59,8 +64,8 @@ export default function PublicationCard({ publication, compact = false, showAbst
 
           {/* Title */}
           <h3 className={`font-bold text-neutral-900 group-hover:text-primary-600 transition-colors ${compact ? 'text-sm line-clamp-2' : 'text-base mb-2'}`}>
-            {links.paper ? (
-              <Link href={links.paper} target="_blank" rel="noopener noreferrer">
+            {primaryLink ? (
+              <Link href={primaryLink} target="_blank" rel="noopener noreferrer">
                 {title}
               </Link>
             ) : (
