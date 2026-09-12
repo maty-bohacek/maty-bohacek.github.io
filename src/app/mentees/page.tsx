@@ -91,9 +91,9 @@ export default function MenteesPage() {
                   <span className="font-ui text-xs text-neutral-400 pt-0.5 select-none">[{number}]</span>
                   <div className="text-sm">
                     <span className="font-medium text-neutral-900">
-                      {links.paper || links.project ? (
+                      {links.project || links.paper ? (
                         <Link
-                          href={(links.paper || links.project)!}
+                          href={(links.project || links.paper)!}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="hover:text-primary-600 transition-colors"
