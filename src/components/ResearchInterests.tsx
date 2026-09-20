@@ -33,7 +33,7 @@ export default function ResearchInterests({ interests }: ResearchInterestsProps)
                 {interest.summary}
               </p>
               <div
-                className="mt-2 text-sm text-neutral-500 leading-relaxed [&_p]:m-0 [&_a]:text-primary-600 [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-primary-700"
+                className="mt-2 text-[15px] text-neutral-500 leading-relaxed [&_p]:m-0 [&_a]:text-primary-600 [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-primary-700"
                 dangerouslySetInnerHTML={{ __html: interest.bodyHtml }}
               />
             </div>
