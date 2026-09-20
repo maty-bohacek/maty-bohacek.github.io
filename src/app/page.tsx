@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getSiteConfig, getUpcomingEvents } from '@/lib/data';
+import { getSiteConfig, getResearchInterests, getUpcomingEvents } from '@/lib/data';
 import { getFeaturedPublications } from '@/lib/publications';
 import { getRecentLogEntries } from '@/lib/log';
 import { getAffiliationContents } from '@/lib/affiliations';
@@ -10,6 +10,7 @@ import PublicationCard from '@/components/PublicationCard';
 import LogEntry from '@/components/LogEntry';
 import UpcomingItem from '@/components/UpcomingItem';
 import HeadshotImage from '@/components/HeadshotImage';
+import ResearchInterests from '@/components/ResearchInterests';
 
 async function markdownToHtml(markdown: string): Promise<string> {
   const result = await remark().use(html, { sanitize: false }).process(markdown);
@@ -29,6 +30,7 @@ export default async function HomePage() {
       contentHtml: await markdownToHtml(a.content),
     }))
   );
+  const researchInterests = getResearchInterests();
   const featuredPublications = getFeaturedPublications();
   const recentNews = getRecentLogEntries(4);
   const upcomingEvents = getUpcomingEvents();
@@ -93,6 +95,16 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Research Interests */}
+      {researchInterests.length > 0 && (
+        <section className="mb-16">
+          <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide mb-6">
+            Research Interests
+          </h2>
+          <ResearchInterests interests={researchInterests} />
+        </section>
+      )}
 
       {/* Selected Publications */}
       <section className="mb-16">

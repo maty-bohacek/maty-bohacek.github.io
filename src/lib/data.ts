@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { Affiliation, UpcomingEvent, SiteConfig } from '@/types';
+import { Affiliation, ResearchInterest, UpcomingEvent, SiteConfig } from '@/types';
 
 const dataDirectory = path.join(process.cwd(), 'data');
 
@@ -42,6 +42,21 @@ export function getAffiliations(): Affiliation[] {
     }
   } catch (error) {
     console.error('Error loading affiliations:', error);
+  }
+
+  return [];
+}
+
+export function getResearchInterests(): ResearchInterest[] {
+  try {
+    const interestsPath = path.join(dataDirectory, 'research-interests.json');
+    if (fs.existsSync(interestsPath)) {
+      const content = fs.readFileSync(interestsPath, 'utf-8');
+      const interests: ResearchInterest[] = JSON.parse(content);
+      return interests.sort((a, b) => a.order - b.order);
+    }
+  } catch (error) {
+    console.error('Error loading research interests:', error);
   }
 
   return [];

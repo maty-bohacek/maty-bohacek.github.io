@@ -64,6 +64,16 @@ export interface Affiliation {
   order: number;
 }
 
+export interface ResearchInterest {
+  id: string;
+  title: string;
+  summary: string;
+  body: string;
+  icon?: string;
+  color?: string; // Hex color code
+  order: number;
+}
+
 export interface SiteConfig {
   name: string;
   title: string;
