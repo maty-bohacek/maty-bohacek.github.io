@@ -236,16 +236,10 @@ body {
   overflow: hidden;
 }
 
-.research-interest-accent {
-  width: 100%;
-  height: 3px;
-  background: var(--accent, var(--color-primary-500));
-}
-
 .research-interest-title {
   font-family: var(--font-helvetica);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 1.3;
   letter-spacing: -0.01em;
   color: var(--color-neutral-900);

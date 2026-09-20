@@ -9,14 +9,7 @@ export default function ResearchInterests({ interests }: ResearchInterestsProps)
   return (
     <div className="flex flex-col gap-3">
       {interests.map((interest) => (
-        <article
-          key={interest.id}
-          className="research-interest"
-          style={{ '--accent': interest.color ?? '#22c55e' } as React.CSSProperties}
-        >
-          {/* Accent bar — marks the interest, not a hover affordance */}
-          <div className="research-interest-accent" />
-
+        <article key={interest.id} className="research-interest">
           <div className="flex items-start gap-4 p-6">
             {interest.icon && (
               <div className="flex-shrink-0 relative w-12 h-12 sm:w-14 sm:h-14">

@@ -70,7 +70,6 @@ export interface ResearchInterest {
   summary: string;
   body: string;
   icon?: string;
-  color?: string; // Hex color code
   order: number;
 }
 
