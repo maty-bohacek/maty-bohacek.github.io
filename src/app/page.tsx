@@ -1,12 +1,8 @@
 import Link from 'next/link';
 import { getSiteConfig, getResearchInterests, getUpcomingEvents } from '@/lib/data';
-import { getFeaturedPublications } from '@/lib/publications';
 import { getRecentLogEntries } from '@/lib/log';
-import { getAffiliationContents } from '@/lib/affiliations';
 import { remark } from 'remark';
 import html from 'remark-html';
-import AffiliationsGrid from '@/components/AffiliationsGrid';
-import PublicationCard from '@/components/PublicationCard';
 import LogEntry from '@/components/LogEntry';
 import UpcomingItem from '@/components/UpcomingItem';
 import HeadshotImage from '@/components/HeadshotImage';
@@ -27,24 +23,12 @@ function openExternalLinksInNewTab(markup: string): string {
 
 export default async function HomePage() {
   const config = getSiteConfig();
-  const affiliationContents = getAffiliationContents();
-  const affiliationsWithHtml = await Promise.all(
-    affiliationContents.map(async (a) => ({
-      id: a.id,
-      title: a.title,
-      subtitle: a.subtitle,
-      icon: a.icon,
-      color: a.color,
-      contentHtml: await markdownToHtml(a.content),
-    }))
-  );
   const researchInterests = await Promise.all(
     getResearchInterests().map(async ({ body, ...interest }) => ({
       ...interest,
       bodyHtml: openExternalLinksInNewTab(await markdownToHtml(body)),
     }))
   );
-  const featuredPublications = getFeaturedPublications();
   const recentNews = getRecentLogEntries(4);
   const upcomingEvents = getUpcomingEvents();
 
@@ -119,27 +103,6 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Selected Publications */}
-      <section className="mb-16">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-base font-bold text-neutral-900 uppercase tracking-wide text-sm font-ui">
-            Selected Publications
-          </h2>
-          <Link href="/research" className="text-sm font-ui text-neutral-500 hover:text-neutral-900 transition-colors">
-            All publications →
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {featuredPublications.length > 0 ? (
-            featuredPublications.map((pub) => (
-              <PublicationCard key={pub.id} publication={pub} showAbstract={false} />
-            ))
-          ) : (
-            <p className="col-span-full text-neutral-500 text-sm">No featured publications yet.</p>
-          )}
-        </div>
-      </section>
-
       {/* News & Upcoming */}
       <section className="mb-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
@@ -181,16 +144,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Affiliations */}
-      {affiliationsWithHtml.length > 0 && (
-        <section className="mb-16">
-          <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide mb-6 font-ui">
-            Snippets of My Work
-          </h2>
-          <AffiliationsGrid affiliations={affiliationsWithHtml} />
-        </section>
-      )}
 
       {/* Contact */}
       <section className="border-t border-neutral-200 pt-10">
