@@ -19,9 +19,6 @@ export default function PressPage() {
     <div className="site-container py-12 md:py-16">
       <div className="mb-10">
         <h1 className="text-2xl font-bold text-neutral-900 mb-2">Press Highlights</h1>
-        <p className="text-base text-neutral-600 leading-relaxed">
-          Selected media coverage, articles, podcasts, and mentions.
-        </p>
         {totalEntries > 0 && (
           <p className="mt-2 text-sm font-ui text-neutral-400">
             {totalEntries} highlight{totalEntries !== 1 ? 's' : ''} across {years.length} year{years.length !== 1 ? 's' : ''}

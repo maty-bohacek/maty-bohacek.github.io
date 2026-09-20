@@ -71,9 +71,6 @@ export default function ResearchPageClient({ publicationsByYear, allKeywords }: 
       {/* Header */}
       <div className="mb-10">
         <h1 className="text-2xl font-bold text-neutral-900 mb-2">Research</h1>
-        <p className="text-base text-neutral-600 leading-relaxed">
-          A complete list of my research publications, primarily in the areas of AI, computer vision, and media integrity.
-        </p>
         {totalPublications > 0 && (
           <p className="mt-2 text-sm font-ui text-neutral-400">
             {totalPublications} publication{totalPublications !== 1 ? 's' : ''}

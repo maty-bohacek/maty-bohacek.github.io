@@ -17,9 +17,6 @@ export default function MenteesPage() {
     <div className="site-container py-12 md:py-16">
       <div className="mb-12">
         <h1 className="text-2xl font-bold text-neutral-900 mb-2">Mentees</h1>
-        <p className="text-base text-neutral-600 leading-relaxed">
-          Students and researchers I have had the privilege of mentoring.
-        </p>
       </div>
 
       {/* Mentorship openings banner */}
