@@ -54,7 +54,7 @@ export default async function HomePage() {
             </p>
 
             {/* Social Links */}
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm font-ui">
               {config.social.scholar && (
                 <a href={config.social.scholar} target="_blank" rel="noopener noreferrer"
                   className="text-neutral-500 hover:text-neutral-900 transition-colors">
@@ -99,7 +99,7 @@ export default async function HomePage() {
       {/* Research Interests */}
       {researchInterests.length > 0 && (
         <section className="mb-16">
-          <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide mb-6">
+          <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide mb-6 font-ui">
             Research Interests
           </h2>
           <ResearchInterests interests={researchInterests} />
@@ -109,10 +109,10 @@ export default async function HomePage() {
       {/* Selected Publications */}
       <section className="mb-16">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-base font-bold text-neutral-900 uppercase tracking-wide text-sm">
+          <h2 className="text-base font-bold text-neutral-900 uppercase tracking-wide text-sm font-ui">
             Selected Publications
           </h2>
-          <Link href="/research" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+          <Link href="/research" className="text-sm font-ui text-neutral-500 hover:text-neutral-900 transition-colors">
             All publications →
           </Link>
         </div>
@@ -133,10 +133,10 @@ export default async function HomePage() {
           {/* Recent News */}
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide">
+              <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide font-ui">
                 Recent News
               </h2>
-              <Link href="/journal" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">
+              <Link href="/journal" className="text-sm font-ui text-neutral-500 hover:text-neutral-900 transition-colors">
                 All News →
               </Link>
             </div>
@@ -153,7 +153,7 @@ export default async function HomePage() {
 
           {/* Upcoming */}
           <div>
-            <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide mb-6">
+            <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide mb-6 font-ui">
               Upcoming
             </h2>
             <div>
@@ -172,7 +172,7 @@ export default async function HomePage() {
       {/* Affiliations */}
       {affiliationsWithHtml.length > 0 && (
         <section className="mb-16">
-          <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide mb-6">
+          <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide mb-6 font-ui">
             Snippets of My Work
           </h2>
           <AffiliationsGrid affiliations={affiliationsWithHtml} />

@@ -68,12 +68,11 @@
   --color-neutral-900: #1a1a1a;
   --color-neutral-950: #0a0a0a;
 
-  /* Typography - Charter serif for body, Fira Code for monospace, Inter for UI */
+  /* Typography - Charter serif for body, Fira Code for monospace, Helvetica Neue for UI labels */
   --font-sans: 'Charter', 'Georgia', 'Times New Roman', serif;
   --font-display: 'Charter', 'Georgia', 'Times New Roman', serif;
   --font-mono: 'Fira Code', 'Consolas', monospace;
-  --font-ui: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-  --font-helvetica: 'Helvetica Neue', 'Helvetica', 'Inter', 'Arial', sans-serif;
+  --font-ui: 'Helvetica Neue', 'Helvetica', 'Inter', 'Arial', sans-serif;
 
   /* Spacing */
   --spacing-18: 4.5rem;
@@ -143,7 +142,7 @@ body {
   font-weight: 800;
 }
 
-/* UI font for tags, badges, buttons, and small labels */
+/* UI font for section headers, tags, badges, buttons, and small labels */
 .font-ui {
   font-family: var(--font-ui);
 }
@@ -237,7 +236,7 @@ body {
 }
 
 .research-interest-title {
-  font-family: var(--font-helvetica);
+  font-family: var(--font-ui);
   font-weight: 700;
   font-size: 1.25rem;
   line-height: 1.3;
