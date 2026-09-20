@@ -1,18 +1,31 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import BlogCard from '@/components/BlogCard';
+import InterestFilter, { InterestOption } from '@/components/InterestFilter';
 import { BlogPost } from '@/types';
 
 interface BlogPageClientProps {
   posts: BlogPost[];
-  allTags: string[];
+  interestOptions: InterestOption[];
 }
 
-export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) {
+export default function BlogPageClient({ posts, interestOptions }: BlogPageClientProps) {
+  const searchParams = useSearchParams();
+  const interestParam = searchParams.get('interest');
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>(
+    () => (interestParam ? interestParam.split(',').filter(Boolean) : [])
+  );
+
+  // Keep the chips in step with links that arrive pre-filtered, e.g. from the
+  // research interest blocks on the landing page.
+  useEffect(() => {
+    setSelectedInterests(interestParam ? interestParam.split(',').filter(Boolean) : []);
+  }, [interestParam]);
 
   const categories = ['Research', 'AI & Democracy', 'Books', 'Movies', 'Miscellaneous'];
 
@@ -25,28 +38,29 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
 
       const matchesCategory = !selectedCategory || post.category === selectedCategory;
 
-      const matchesTags = selectedTags.length === 0 ||
-        selectedTags.every(tag => post.tags.includes(tag));
+      // Any of the selected interests, matching the research page
+      const matchesInterests = selectedInterests.length === 0 ||
+        selectedInterests.some(id => post.interests?.includes(id));
 
-      return matchesSearch && matchesCategory && matchesTags;
+      return matchesSearch && matchesCategory && matchesInterests;
     });
-  }, [posts, searchQuery, selectedCategory, selectedTags]);
+  }, [posts, searchQuery, selectedCategory, selectedInterests]);
 
-  const toggleTag = (tag: string) => {
-    setSelectedTags(prev =>
-      prev.includes(tag)
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
+  const toggleInterest = (id: string) => {
+    setSelectedInterests(prev =>
+      prev.includes(id)
+        ? prev.filter(i => i !== id)
+        : [...prev, id]
     );
   };
 
   const clearFilters = () => {
     setSearchQuery('');
     setSelectedCategory(null);
-    setSelectedTags([]);
+    setSelectedInterests([]);
   };
 
-  const hasActiveFilters = searchQuery || selectedCategory || selectedTags.length > 0;
+  const hasActiveFilters = searchQuery || selectedCategory || selectedInterests.length > 0;
 
   const postsByYear = useMemo(() => {
     const grouped: Record<number, BlogPost[]> = {};
@@ -68,9 +82,6 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
       {/* Header */}
       <div className="mb-10">
         <h1 className="text-2xl font-bold text-neutral-900 mb-2">Blog</h1>
-        <p className="text-base text-neutral-600 leading-relaxed">
-          My thoughts on research, AI&apos;s impact on our democracy, and anything else that interests me. Updated irregularly.
-        </p>
       </div>
 
       {/* Filters */}
@@ -109,23 +120,11 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
           ))}
         </div>
 
-        {allTags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {allTags.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => toggleTag(tag)}
-                className={`px-3 py-1 text-xs font-ui transition-colors ${
-                  selectedTags.includes(tag)
-                    ? 'bg-neutral-900 text-white'
-                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
-        )}
+        <InterestFilter
+          options={interestOptions}
+          selected={selectedInterests}
+          onToggle={toggleInterest}
+        />
 
         {hasActiveFilters && (
           <button

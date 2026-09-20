@@ -1,17 +1,30 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import PublicationCard from '@/components/PublicationCard';
+import InterestFilter, { InterestOption } from '@/components/InterestFilter';
 import { Publication } from '@/types';
 
 interface ResearchPageClientProps {
   publicationsByYear: Record<number, Publication[]>;
-  allKeywords: string[];
+  interestOptions: InterestOption[];
 }
 
-export default function ResearchPageClient({ publicationsByYear, allKeywords }: ResearchPageClientProps) {
+export default function ResearchPageClient({ publicationsByYear, interestOptions }: ResearchPageClientProps) {
+  const searchParams = useSearchParams();
+  const interestParam = searchParams.get('interest');
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>(
+    () => (interestParam ? interestParam.split(',').filter(Boolean) : [])
+  );
+
+  // Keep the chips in step with links that arrive pre-filtered, e.g. from the
+  // research interest blocks on the landing page.
+  useEffect(() => {
+    setSelectedInterests(interestParam ? interestParam.split(',').filter(Boolean) : []);
+  }, [interestParam]);
 
   const allPublications = useMemo(() => {
     return Object.values(publicationsByYear).flat();
@@ -28,12 +41,14 @@ export default function ResearchPageClient({ publicationsByYear, allKeywords }: 
         (pub.tags?.some(tag => tag.toLowerCase().includes(query)) ?? false) ||
         (pub.keywords?.some(kw => kw.toLowerCase().includes(query)) ?? false);
 
-      const matchesKeywords = selectedKeywords.length === 0 ||
-        selectedKeywords.every(kw => pub.keywords?.includes(kw));
+      // Any of the selected interests, so picking two widens rather than
+      // narrowing to the handful of papers that carry both.
+      const matchesInterests = selectedInterests.length === 0 ||
+        selectedInterests.some(id => pub.keywords?.includes(id));
 
-      return matchesSearch && matchesKeywords;
+      return matchesSearch && matchesInterests;
     });
-  }, [allPublications, searchQuery, selectedKeywords]);
+  }, [allPublications, searchQuery, selectedInterests]);
 
   const filteredByYear = useMemo(() => {
     const byYear: Record<number, Publication[]> = {};
@@ -50,20 +65,20 @@ export default function ResearchPageClient({ publicationsByYear, allKeywords }: 
     .map(Number)
     .sort((a, b) => b - a);
 
-  const toggleKeyword = (keyword: string) => {
-    setSelectedKeywords(prev =>
-      prev.includes(keyword)
-        ? prev.filter(k => k !== keyword)
-        : [...prev, keyword]
+  const toggleInterest = (id: string) => {
+    setSelectedInterests(prev =>
+      prev.includes(id)
+        ? prev.filter(i => i !== id)
+        : [...prev, id]
     );
   };
 
   const clearFilters = () => {
     setSearchQuery('');
-    setSelectedKeywords([]);
+    setSelectedInterests([]);
   };
 
-  const hasActiveFilters = searchQuery || selectedKeywords.length > 0;
+  const hasActiveFilters = searchQuery || selectedInterests.length > 0;
   const totalPublications = allPublications.length;
 
   return (
@@ -71,9 +86,6 @@ export default function ResearchPageClient({ publicationsByYear, allKeywords }: 
       {/* Header */}
       <div className="mb-10">
         <h1 className="text-2xl font-bold text-neutral-900 mb-2">Research</h1>
-        <p className="text-base text-neutral-600 leading-relaxed">
-          A complete list of my research publications, primarily in the areas of AI, computer vision, and media integrity.
-        </p>
         {totalPublications > 0 && (
           <p className="mt-2 text-sm font-ui text-neutral-400">
             {totalPublications} publication{totalPublications !== 1 ? 's' : ''}
@@ -101,23 +113,11 @@ export default function ResearchPageClient({ publicationsByYear, allKeywords }: 
           />
         </div>
 
-        {allKeywords.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {allKeywords.map((keyword) => (
-              <button
-                key={keyword}
-                onClick={() => toggleKeyword(keyword)}
-                className={`px-3 py-1 text-xs font-ui transition-colors ${
-                  selectedKeywords.includes(keyword)
-                    ? 'bg-neutral-900 text-white'
-                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
-                }`}
-              >
-                {keyword}
-              </button>
-            ))}
-          </div>
-        )}
+        <InterestFilter
+          options={interestOptions}
+          selected={selectedInterests}
+          onToggle={toggleInterest}
+        />
 
         {hasActiveFilters && (
           <button

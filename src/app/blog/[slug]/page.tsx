@@ -64,23 +64,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <article className="min-h-screen">
       {/* Header */}
       <header className="site-container pt-12 pb-8">
-        <Link
-          href="/blog"
-          className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-8 inline-block"
-        >
-          ← Back to Blog
-        </Link>
-
-        <div className="flex flex-wrap items-center gap-3 mb-4 text-sm text-neutral-500">
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-2 mb-6 text-sm font-ui text-neutral-500">
+          <Link href="/blog" className="hover:text-neutral-900 transition-colors">
+            ← Back to Blog
+          </Link>
           <span>{post.category}</span>
-          <span>·</span>
           <time dateTime={post.date}>{formattedDate}</time>
-          {post.readingTime && (
-            <>
-              <span>·</span>
-              <span>{post.readingTime}</span>
-            </>
-          )}
         </div>
 
         <h1 className="text-2xl font-bold text-neutral-900 mb-4 leading-snug">

@@ -16,7 +16,7 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function BlogCard({ post, featured = false }: BlogCardProps) {
-  const { slug, title, excerpt, date, category, tags, coverImage, readingTime } = post;
+  const { slug, title, excerpt, date, category, coverImage } = post;
 
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     month: 'long',
@@ -46,9 +46,6 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
             <time dateTime={date} className="text-sm text-neutral-500">
               {formattedDate}
             </time>
-            {readingTime && (
-              <span className="text-sm text-neutral-400">{readingTime}</span>
-            )}
           </div>
           <h2 className="text-2xl font-bold text-neutral-900 group-hover:text-primary-600 transition-colors mb-3">
             {title}
@@ -80,19 +77,16 @@ export default function BlogCard({ post, featured = false }: BlogCardProps) {
             <span className={`text-xs font-semibold font-ui px-2 py-0.5 ${categoryColors[category] || categoryColors.Miscellaneous}`}>
               {category}
             </span>
-            {readingTime && (
-              <span className="text-xs text-neutral-400">{readingTime}</span>
-            )}
+            <time dateTime={date} className="text-xs font-ui text-neutral-400">
+              {formattedDate}
+            </time>
           </div>
           <h3 className="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors mb-2 line-clamp-2">
             {title}
           </h3>
-          <p className="text-sm text-neutral-600 line-clamp-2 mb-3">
+          <p className="text-sm text-neutral-600 line-clamp-2">
             {excerpt}
           </p>
-          <time dateTime={date} className="text-xs text-neutral-400">
-            {formattedDate}
-          </time>
         </div>
       </Link>
     </article>

@@ -62,6 +62,16 @@ export function getResearchInterests(): ResearchInterest[] {
   return [];
 }
 
+// Filter chips on the research and blog pages; the stored title carries a
+// newline before the ampersand, which has to collapse on a single-line chip.
+export function getResearchInterestOptions() {
+  return getResearchInterests().map((interest) => ({
+    id: interest.id,
+    label: interest.title.replace(/\s*\n\s*/g, ' '),
+    icon: interest.icon,
+  }));
+}
+
 export function getUpcomingEvents(): UpcomingEvent[] {
   try {
     const eventsPath = path.join(dataDirectory, 'upcoming.json');
