@@ -105,7 +105,7 @@ export default async function HomePage() {
 
       {/* News & Upcoming */}
       <section className="mb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-start gap-x-10 gap-y-8">
           {/* Recent News */}
           <div>
             <div className="flex items-center justify-between mb-6">
@@ -116,7 +116,7 @@ export default async function HomePage() {
                 All News →
               </Link>
             </div>
-            <div className="divide-y divide-neutral-200">
+            <div className="panel p-6 divide-y divide-neutral-200">
               {recentNews.length > 0 ? (
                 recentNews.map((entry) => (
                   <LogEntry key={entry.id} entry={entry} showDescription={false} showImages={false} compact />
@@ -132,7 +132,7 @@ export default async function HomePage() {
             <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide mb-6 font-ui">
               Upcoming
             </h2>
-            <div>
+            <div className="panel p-6">
               {upcomingEvents.length > 0 ? (
                 upcomingEvents.map((event) => (
                   <UpcomingItem key={event.id} event={event} />
