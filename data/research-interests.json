@@ -2,6 +2,7 @@
   {
     "id": "mediation-communication-integrity",
     "title": "AI Mediation\n& Communication Integrity",
+    "shortTitle": "AI Mediation & Comm Integrity",
     "summary": "More of our transactions are produced or mediated by AI every day: personal conversations, news, payments, even creative work. I aim to develop methods to understand these phenomena and help individuals retain their own agency.",
     "body": "We demonstrated the power of deepfakes by running a fake Anderson Cooper on primetime television ([PNAS’23](https://www.pnas.org/doi/10.1073/pnas.2315678121)) and built detectors to protect world leaders against such threats ([PNAS’22](https://www.pnas.org/doi/10.1073/pnas.2216035119)). We created the DeepSpeak dataset ([CVPR’26](https://arxiv.org/abs/2408.05366)), now licensed to 100+ academic institutions, and measured the prevalence and impact of AI on the web ([preprint](https://ai-on-the-internet.github.io)).",
     "icon": "/icons/med.png",
@@ -10,6 +11,7 @@
   {
     "id": "alignment-governance",
     "title": "AI Alignment\n& Governance",
+    "shortTitle": "AI Alignment & Gov",
     "summary": "Priorities and accountability for AI systems are set opaquely, by a select few; I seek ways of making those methods transparent and fundamentally democratic.",
     "body": "We maintain an Encyclopedia of existing alignment and governance methods, including an open-source package with their implementations. We outlined our vision for positive alignment, which goes beyond safety alignment ([preprint](https://arxiv.org/abs/2605.10310)), and showed that cascading features are better than classic contrastive pairs for steering and detection ([preprint](https://cascading-feats.github.io)). I delivered a keynote at the AI Standards Summit in Seoul, co-organized by ISO, IEC, and ITU / UN.",
     "icon": "/icons/gov.png",
@@ -18,6 +20,7 @@
   {
     "id": "evaluation-narratives",
     "title": "AI Evaluation\n& Narratives",
+    "shortTitle": "AI Evaluation & Narratives",
     "summary": "The state of AI evaluation feels more cluttered than ever, yet these evaluations keep being used to make sweeping claims that prop up grandiose narratives about AI systems. I seek evaluation methods grounded in interpretability, and a more accurate account of AI progress.",
     "body": "We built a method to uncover gaps in existing benchmarks and provide more granular insight thanks to interpretability ([ICML’26](https://competency-gaps.github.io)), and showed that there are concepts AI models see at training but cannot generate ([ICLR’26](https://conceptual-blindspots.github.io/)). We evaluated patterns in AI evaluation and the narratives built around them ([FAccT’26](https://bench-cultures.net/about)). With Evan Ratliff, I co-created the Shell Game podcast, where we put some of those narratives about AI agents to test.",
     "icon": "/icons/nar.png",

@@ -68,6 +68,7 @@ export interface Affiliation {
 export interface ResearchInterest {
   id: string;
   title: string;
+  shortTitle?: string;
   summary: string;
   body: string;
   icon?: string;
