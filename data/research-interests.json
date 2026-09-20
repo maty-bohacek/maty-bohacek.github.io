@@ -1,26 +1,26 @@
 [
   {
-    "id": "alignment-governance",
-    "title": "AI Alignment & Governance",
-    "summary": "Getting AI systems to reliably do what people actually want, and building the standards and institutions that can check whether they do.",
-    "body": "At Google DeepMind, I worked on detecting and controlling sycophancy in language models through cascading linear features, and contributed to Positive Alignment, a framework for AI that supports human flourishing. I am a student fellow at the Hoover Institution, studying AI's effect on the information commons, and I keynoted the International AI Standards Summit in Seoul, co-organized by ISO, IEC, ITU, and the UN.",
-    "icon": "/icons/gov.png",
-    "order": 1
-  },
-  {
-    "id": "evaluation-narratives",
-    "title": "AI Evaluation & Narratives",
-    "summary": "How we measure what models can and cannot do, and how those measurements turn into the stories we tell about progress.",
-    "body": "I built a method for uncovering competency gaps in language models and in the benchmarks meant to catch them, and studied how model builders themselves construct and report their metrics. Related work uses sparse autoencoders to find conceptual blindspots in image models: concepts they were trained on but still cannot generate.",
-    "icon": "/icons/nar.png",
-    "order": 2
-  },
-  {
     "id": "mediation-communication-integrity",
-    "title": "AI Mediation & Comm Integrity",
+    "title": "AI Mediation\n& Comm Integrity",
     "summary": "As more of what we read, watch, and hear is produced or relayed by AI, keeping that channel faithful to what was actually said.",
     "body": "With Hany Farid, I built deepfake detection methods used to protect world leaders, including President Zelenskyy, and co-created DeepSpeak, an open benchmark now licensed to over 100 academic institutions. I also work on provenance, tracing where a piece of media came from and whether it belongs in the story carrying it, and co-created Shell Game, a podcast about AI agents.",
     "icon": "/icons/med.png",
+    "order": 1
+  },
+  {
+    "id": "alignment-governance",
+    "title": "AI Alignment\n& Governance",
+    "summary": "Getting AI systems to reliably do what people actually want, and building the standards and institutions that can check whether they do.",
+    "body": "At Google DeepMind, I worked on detecting and controlling sycophancy in language models through cascading linear features, and contributed to Positive Alignment, a framework for AI that supports human flourishing. I am a student fellow at the Hoover Institution, studying AI's effect on the information commons, and I keynoted the International AI Standards Summit in Seoul, co-organized by ISO, IEC, ITU, and the UN.",
+    "icon": "/icons/gov.png",
+    "order": 2
+  },
+  {
+    "id": "evaluation-narratives",
+    "title": "AI Evaluation\n& Narratives",
+    "summary": "How we measure what models can and cannot do, and how those measurements turn into the stories we tell about progress.",
+    "body": "I built a method for uncovering competency gaps in language models and in the benchmarks meant to catch them, and studied how model builders themselves construct and report their metrics. Related work uses sparse autoencoders to find conceptual blindspots in image models: concepts they were trained on but still cannot generate.",
+    "icon": "/icons/nar.png",
     "order": 3
   }
 ]
