@@ -1,8 +1,12 @@
 import Image from 'next/image';
 import { ResearchInterest } from '@/types';
 
+interface ResearchInterestItem extends Omit<ResearchInterest, 'body'> {
+  bodyHtml: string;
+}
+
 interface ResearchInterestsProps {
-  interests: ResearchInterest[];
+  interests: ResearchInterestItem[];
 }
 
 export default function ResearchInterests({ interests }: ResearchInterestsProps) {
@@ -28,9 +32,10 @@ export default function ResearchInterests({ interests }: ResearchInterestsProps)
               <p className="mt-2 text-[15px] text-neutral-700 leading-relaxed">
                 {interest.summary}
               </p>
-              <p className="mt-2 text-sm text-neutral-500 leading-relaxed">
-                {interest.body}
-              </p>
+              <div
+                className="mt-2 text-sm text-neutral-500 leading-relaxed [&_p]:m-0 [&_a]:text-primary-600 [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-primary-700"
+                dangerouslySetInnerHTML={{ __html: interest.bodyHtml }}
+              />
             </div>
           </div>
         </article>

@@ -17,6 +17,14 @@ async function markdownToHtml(markdown: string): Promise<string> {
   return result.toString();
 }
 
+// Citations in the research interests point at papers and project pages.
+function openExternalLinksInNewTab(markup: string): string {
+  return markup.replace(
+    /<a href="(https?:\/\/[^"]*)"/g,
+    '<a href="$1" target="_blank" rel="noopener noreferrer"'
+  );
+}
+
 export default async function HomePage() {
   const config = getSiteConfig();
   const affiliationContents = getAffiliationContents();
@@ -30,7 +38,12 @@ export default async function HomePage() {
       contentHtml: await markdownToHtml(a.content),
     }))
   );
-  const researchInterests = getResearchInterests();
+  const researchInterests = await Promise.all(
+    getResearchInterests().map(async ({ body, ...interest }) => ({
+      ...interest,
+      bodyHtml: openExternalLinksInNewTab(await markdownToHtml(body)),
+    }))
+  );
   const featuredPublications = getFeaturedPublications();
   const recentNews = getRecentLogEntries(4);
   const upcomingEvents = getUpcomingEvents();
