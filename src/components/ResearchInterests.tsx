@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { ResearchInterest } from '@/types';
 
 interface ResearchInterestItem extends Omit<ResearchInterest, 'body'> {
@@ -36,6 +37,22 @@ export default function ResearchInterests({ interests }: ResearchInterestsProps)
                 className="mt-2 text-[15px] text-neutral-500 leading-relaxed [&_p]:m-0 [&_a]:text-primary-600 [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-primary-700"
                 dangerouslySetInnerHTML={{ __html: interest.bodyHtml }}
               />
+
+              {/* Both land on a list already filtered to this interest */}
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Link
+                  href={`/research/?interest=${interest.id}`}
+                  className="inline-flex items-center text-xs font-medium font-ui text-neutral-600 hover:text-primary-600 bg-neutral-100 hover:bg-primary-50 px-2.5 py-1.5 transition-colors"
+                >
+                  See papers
+                </Link>
+                <Link
+                  href={`/blog/?interest=${interest.id}`}
+                  className="inline-flex items-center text-xs font-medium font-ui text-neutral-600 hover:text-primary-600 bg-neutral-100 hover:bg-primary-50 px-2.5 py-1.5 transition-colors"
+                >
+                  See blog posts
+                </Link>
+              </div>
             </div>
           </div>
         </article>

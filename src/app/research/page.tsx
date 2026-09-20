@@ -1,4 +1,6 @@
-import { getPublicationsByYear, getAllKeywords } from '@/lib/publications';
+import { Suspense } from 'react';
+import { getPublicationsByYear } from '@/lib/publications';
+import { getResearchInterestOptions } from '@/lib/data';
 import ResearchPageClient from '@/components/ResearchPageClient';
 import { Metadata } from 'next';
 
@@ -9,11 +11,17 @@ export const metadata: Metadata = {
 
 export default function ResearchPage() {
   const publicationsByYear = getPublicationsByYear();
-  const allKeywords = getAllKeywords();
+  const interestOptions = getResearchInterestOptions();
 
   return (
     <div>
-      <ResearchPageClient publicationsByYear={publicationsByYear} allKeywords={allKeywords} />
+      {/* The client reads ?interest= from the URL, so it needs a boundary */}
+      <Suspense fallback={null}>
+        <ResearchPageClient
+          publicationsByYear={publicationsByYear}
+          interestOptions={interestOptions}
+        />
+      </Suspense>
     </div>
   );
 }
