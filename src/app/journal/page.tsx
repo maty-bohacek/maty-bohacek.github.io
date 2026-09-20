@@ -23,7 +23,7 @@ export default function JournalPage() {
           A chronological record of what I&apos;m up to.
         </p>
         {totalEntries > 0 && (
-          <p className="mt-2 text-sm text-neutral-400">
+          <p className="mt-2 text-sm font-ui text-neutral-400">
             {totalEntries} entries across {years.length} year{years.length !== 1 ? 's' : ''}
           </p>
         )}
@@ -33,7 +33,7 @@ export default function JournalPage() {
         years.map((year) => (
           <div key={year} className="mb-12 last:mb-0">
             <div className="flex items-center gap-3 mb-4">
-              <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide">{year}</h2>
+              <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide font-ui">{year}</h2>
               <div className="flex-1 h-px bg-neutral-200" />
             </div>
             <div>

@@ -89,7 +89,7 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
             placeholder="Search posts..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 text-sm border border-neutral-200 focus:border-neutral-400 outline-none transition-colors"
+            className="w-full pl-9 pr-4 py-2 text-sm font-ui border border-neutral-200 focus:border-neutral-400 outline-none transition-colors"
           />
         </div>
 
@@ -130,14 +130,14 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
         {hasActiveFilters && (
           <button
             onClick={clearFilters}
-            className="text-xs text-neutral-500 hover:text-neutral-900 underline underline-offset-2"
+            className="text-xs font-ui text-neutral-500 hover:text-neutral-900 underline underline-offset-2"
           >
             Clear filters
           </button>
         )}
       </div>
 
-      <p className="text-xs text-neutral-400 mb-8">
+      <p className="text-xs font-ui text-neutral-400 mb-8">
         {filteredPosts.length} post{filteredPosts.length !== 1 ? 's' : ''} found
       </p>
 
@@ -146,7 +146,7 @@ export default function BlogPageClient({ posts, allTags }: BlogPageClientProps) 
         years.map((year) => (
           <div key={year} className="mb-12 last:mb-0">
             <div className="flex items-center gap-3 mb-4">
-              <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide">{year}</h2>
+              <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide font-ui">{year}</h2>
               <div className="flex-1 h-px bg-neutral-200" />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

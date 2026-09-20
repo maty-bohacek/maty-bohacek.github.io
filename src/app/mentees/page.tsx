@@ -61,7 +61,7 @@ export default function MenteesPage() {
       {pastMentees.length > 0 && (
         <div className="mt-16">
           <div className="flex items-center gap-3 mb-8">
-            <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide">Past Mentees</h2>
+            <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide font-ui">Past Mentees</h2>
             <div className="flex-1 h-px bg-neutral-200" />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10">
@@ -76,7 +76,7 @@ export default function MenteesPage() {
       {mentoredPublications.length > 0 && (
         <div className="mt-16">
           <div className="flex items-center gap-3 mb-6">
-            <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide">Mentored Publications</h2>
+            <h2 className="text-sm font-bold text-neutral-500 uppercase tracking-wide font-ui">Mentored Publications</h2>
             <div className="flex-1 h-px bg-neutral-200" />
           </div>
           <ol className="space-y-4">
