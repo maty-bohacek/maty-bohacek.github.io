@@ -62,12 +62,13 @@ export function getResearchInterests(): ResearchInterest[] {
   return [];
 }
 
-// Filter chips on the research and blog pages; the stored title carries a
-// newline before the ampersand, which has to collapse on a single-line chip.
+// Filter chips on the research and blog pages. They use the short label where
+// one is set; the full title carries a newline before the ampersand, which has
+// to collapse on a single-line chip.
 export function getResearchInterestOptions() {
   return getResearchInterests().map((interest) => ({
     id: interest.id,
-    label: interest.title.replace(/\s*\n\s*/g, ' '),
+    label: interest.shortTitle || interest.title.replace(/\s*\n\s*/g, ' '),
     icon: interest.icon,
   }));
 }

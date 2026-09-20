@@ -79,18 +79,12 @@ export default function ResearchPageClient({ publicationsByYear, interestOptions
   };
 
   const hasActiveFilters = searchQuery || selectedInterests.length > 0;
-  const totalPublications = allPublications.length;
 
   return (
     <div className="site-container py-12 md:py-16">
       {/* Header */}
       <div className="mb-10">
-        <h1 className="text-2xl font-bold text-neutral-900 mb-2">Research</h1>
-        {totalPublications > 0 && (
-          <p className="mt-2 text-sm font-ui text-neutral-400">
-            {totalPublications} publication{totalPublications !== 1 ? 's' : ''}
-          </p>
-        )}
+        <h1 className="text-2xl font-bold font-ui text-neutral-900 mb-2">Research</h1>
       </div>
 
       {/* Search and Filters */}
@@ -128,10 +122,6 @@ export default function ResearchPageClient({ publicationsByYear, interestOptions
           </button>
         )}
       </div>
-
-      <p className="text-xs font-ui text-neutral-400 mb-8">
-        {filteredPublications.length} publication{filteredPublications.length !== 1 ? 's' : ''} found
-      </p>
 
       {/* Publications by Year */}
       {years.length > 0 ? (

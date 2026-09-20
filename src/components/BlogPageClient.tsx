@@ -81,7 +81,7 @@ export default function BlogPageClient({ posts, interestOptions }: BlogPageClien
     <div className="site-container py-12 md:py-16">
       {/* Header */}
       <div className="mb-10">
-        <h1 className="text-2xl font-bold text-neutral-900 mb-2">Blog</h1>
+        <h1 className="text-2xl font-bold font-ui text-neutral-900 mb-2">Blog</h1>
       </div>
 
       {/* Filters */}
@@ -135,10 +135,6 @@ export default function BlogPageClient({ posts, interestOptions }: BlogPageClien
           </button>
         )}
       </div>
-
-      <p className="text-xs font-ui text-neutral-400 mb-8">
-        {filteredPosts.length} post{filteredPosts.length !== 1 ? 's' : ''} found
-      </p>
 
       {/* Posts */}
       {years.length > 0 ? (

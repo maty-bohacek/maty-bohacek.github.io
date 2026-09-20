@@ -13,17 +13,11 @@ export default function JournalPage() {
     .map(Number)
     .sort((a, b) => b - a);
 
-  const totalEntries = Object.values(entriesByYear).flat().length;
 
   return (
     <div className="site-container py-12 md:py-16">
       <div className="mb-10">
-        <h1 className="text-2xl font-bold text-neutral-900 mb-2">Journal</h1>
-        {totalEntries > 0 && (
-          <p className="mt-2 text-sm font-ui text-neutral-400">
-            {totalEntries} entries across {years.length} year{years.length !== 1 ? 's' : ''}
-          </p>
-        )}
+        <h1 className="text-2xl font-bold font-ui text-neutral-900 mb-2">Journal</h1>
       </div>
 
       {years.length > 0 ? (
