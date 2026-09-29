@@ -29,6 +29,7 @@ export interface LogEntry {
   image?: string;
   images?: string[];
   logo?: string;
+  source?: string;
   tags?: string[];
 }
 

@@ -30,6 +30,8 @@ logo: "/images/press/logos/example.png"
 tags: ["article"]
 ---
 
-A one- or two-sentence description of the press mention goes here. This body text
-is shown beneath the title, exactly like the Journal entries. The convention used
-across entries is "Outlet · Type", e.g. "WIRED · Article" or "Radiožurnál · Radio".
+Example Magazine · Article
+
+The body is the outlet and type in the form "Outlet · Type", e.g. "WIRED · Article" or
+"Radiožurnál · Radio". It is shown in front of the date as "Outlet (Type), Mar 10".
+Any other body text is shown beneath the title as a description instead.

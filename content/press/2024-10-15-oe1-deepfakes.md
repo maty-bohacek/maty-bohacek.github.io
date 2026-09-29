@@ -7,4 +7,4 @@ logo: "/images/press/logos/oe1.png"
 tags: ["radio", "deepfakes"]
 ---
 
-Ö1 (ORF) · Radio
+ORF Ö1 · Radio
