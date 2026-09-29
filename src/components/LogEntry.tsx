@@ -11,6 +11,7 @@ export interface LogEntryData {
   image?: string;
   images?: string[];
   logo?: string;
+  source?: string;
   tags?: string[];
 }
 
@@ -22,7 +23,7 @@ interface LogEntryProps {
 }
 
 export default function LogEntry({ entry, showDescription = true, showImages = true, compact = false }: LogEntryProps) {
-  const { date, title, description, link, linkText, image, images, logo } = entry;
+  const { date, title, description, link, linkText, image, images, logo, source } = entry;
 
   // Parse date for display
   const dateObj = new Date(date);
@@ -33,13 +34,11 @@ export default function LogEntry({ entry, showDescription = true, showImages = t
 
   const content = (
     <>
-      {/* Date */}
-      <time
-        dateTime={date}
-        className="text-sm font-medium text-neutral-500"
-      >
-        {formattedDate}
-      </time>
+      {/* Date, prefixed with the source (e.g. "Marketplace (Radio), May 19") when present */}
+      <p className="text-sm font-medium text-neutral-500">
+        {source && `${source}, `}
+        <time dateTime={date}>{formattedDate}</time>
+      </p>
 
       {/* Title */}
       <h3 className={`${compact ? 'font-medium' : 'font-bold'} text-neutral-900 mt-1`}>

@@ -22,17 +22,22 @@ export function getPressEntries(): LogEntry[] {
         const fullPath = path.join(pressDirectory, fileName);
         const fileContents = fs.readFileSync(fullPath, 'utf8');
         const { data, content } = matter(fileContents);
+        const body = content.trim();
+        // A body of the form "Outlet · Type" is shown as "Outlet (Type)" in
+        // front of the date rather than as a description line.
+        const sourceMatch = body.match(/^([^\n]+?)\s+·\s+([^\n]+)$/);
 
         return {
           id: fileName.replace(/\.md$/, ''),
           date: data.date || new Date().toISOString(),
           title: data.title || '',
-          description: content.trim() || data.description || '',
+          description: sourceMatch ? '' : body || data.description || '',
           link: data.link || undefined,
           linkText: data.linkText || undefined,
           image: data.image || undefined,
           images: data.images || undefined,
           logo: data.logo || undefined,
+          source: sourceMatch ? `${sourceMatch[1]} (${sourceMatch[2]})` : undefined,
           tags: data.tags || [],
         } as LogEntry;
       })
