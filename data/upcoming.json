@@ -40,6 +40,24 @@
     "link": null
   },
   {
+    "id": "empirical-methods-ai-2026",
+    "date": "2026-10-02",
+    "title": "Empirical Methods in the Age of AI Conference",
+    "subtitle": "The Impact of AI on Social Media-based Research",
+    "type": "talk",
+    "location": "Stanford, CA",
+    "link": null
+  },
+  {
+    "id": "tada-2026",
+    "date": "2026-10-05",
+    "title": "Text as Data (TADA) Conference",
+    "subtitle": "The Impact of AI on Social Media-based Research",
+    "type": "talk",
+    "location": "Berkeley, CA",
+    "link": null
+  },
+  {
     "id": "tmforum-innovate-americas-2026",
     "date": "2026-10-06",
     "title": "Innovate Americas TM Forum",
@@ -73,6 +91,15 @@
     "subtitle": "When AI starts writing the internet",
     "type": "talk",
     "location": "San Francisco, CA",
+    "link": null
+  },
+  {
+    "id": "uc-berkeley-social-science-2026",
+    "date": "2026-11-05",
+    "title": "UC Berkeley Social Science",
+    "subtitle": "Matrix on Point: Propaganda Machines",
+    "type": "talk",
+    "location": "Berkeley, CA",
     "link": null
   },
   {
