@@ -4,7 +4,6 @@ export interface UpcomingEvent {
   id: string;
   date: string;
   title: string;
-  subtitle?: string;
   type: 'talk' | 'conference' | 'workshop' | 'event' | 'panel';
   location?: string;
   link?: string;
@@ -23,7 +22,7 @@ const typeStyles = {
 };
 
 export default function UpcomingItem({ event }: UpcomingItemProps) {
-  const { date, title, subtitle, type, location, link } = event;
+  const { date, title, type, location, link } = event;
   const style = typeStyles[type];
 
   const dateObj = new Date(date);
@@ -38,19 +37,16 @@ export default function UpcomingItem({ event }: UpcomingItemProps) {
       {/* Date & Location */}
       <div className="text-sm text-neutral-500">
         <time dateTime={date}>{formattedDate}</time>
-        {location && <span> · {location}</span>}
+        {location && <span>; {location}</span>}
       </div>
 
-      {/* Label & Title */}
-      <div className="flex items-center gap-2 mt-1">
-        <span className={`text-xs font-semibold font-ui px-2 py-0.5 ${style.bg} ${style.text}`}>
+      {/* Title & Label */}
+      <h4 className={`mt-1 font-medium text-neutral-900 ${link ? 'group-hover:text-primary-600 transition-colors' : ''}`}>
+        {title}{' '}
+        <span className={`ml-1 whitespace-nowrap text-xs font-semibold font-ui px-1.5 py-0.5 ${style.bg} ${style.text}`}>
           {style.label}
         </span>
-        <h4 className={`font-medium text-neutral-900 ${link ? 'group-hover:text-primary-600 transition-colors' : ''}`}>
-          {title}
-        </h4>
-      </div>
-      {subtitle && <p className="text-sm text-neutral-600 mt-1">{subtitle}</p>}
+      </h4>
     </div>
   );
 
