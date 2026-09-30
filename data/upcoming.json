@@ -1,5 +1,5 @@
 [
-{
+  {
     "id": "stanford-seminar",
     "date": "2026-02-15",
     "title": "Stanford AI Lab Seminar: Data Provenance in ML",
@@ -7,7 +7,7 @@
     "location": "Stanford, CA",
     "link": null
   },
-{
+  {
     "id": "workshop-responsible-ai",
     "date": "2026-03-25",
     "title": "Workshop on Responsible AI Development",
@@ -37,6 +37,87 @@
     "title": "CVPR 2026",
     "type": "conference",
     "location": "Denver, CO",
+    "link": null
+  },
+  {
+    "id": "empirical-methods-ai-2026",
+    "date": "2026-10-02",
+    "title": "Empirical Methods in the Age of AI Conference",
+    "subtitle": "The Impact of AI on Social Media-based Research",
+    "type": "talk",
+    "location": "Stanford, CA",
+    "link": null
+  },
+  {
+    "id": "tada-2026",
+    "date": "2026-10-05",
+    "title": "Text as Data (TADA) Conference",
+    "subtitle": "The Impact of AI on Social Media-based Research",
+    "type": "talk",
+    "location": "Berkeley, CA",
+    "link": null
+  },
+  {
+    "id": "tmforum-innovate-americas-2026",
+    "date": "2026-10-06",
+    "title": "Innovate Americas TM Forum",
+    "subtitle": "Securing the agentic telco",
+    "type": "talk",
+    "location": "Dallas, TX",
+    "link": null
+  },
+  {
+    "id": "harari-conference-2026",
+    "date": "2026-10-12",
+    "title": "Harari Conference",
+    "subtitle": "Being Human in the Age of AI",
+    "type": "talk",
+    "location": "Prague, Czech Republic",
+    "link": null
+  },
+  {
+    "id": "ai-engineer-nyc-2026",
+    "date": "2026-10-14",
+    "title": "AI Engineer",
+    "subtitle": "Two Ways to Rob an AI-Native Bank",
+    "type": "talk",
+    "location": "New York, NY",
+    "link": null
+  },
+  {
+    "id": "inma-media-tech-ai-2026",
+    "date": "2026-10-22",
+    "title": "INMA’s Media, Tech & AI Conference",
+    "subtitle": "When AI starts writing the internet",
+    "type": "talk",
+    "location": "San Francisco, CA",
+    "link": null
+  },
+  {
+    "id": "uc-berkeley-social-science-2026",
+    "date": "2026-11-05",
+    "title": "UC Berkeley Social Science",
+    "subtitle": "Matrix on Point: Propaganda Machines",
+    "type": "talk",
+    "location": "Berkeley, CA",
+    "link": null
+  },
+  {
+    "id": "websummit-2026",
+    "date": "2026-11-12",
+    "title": "Web Summit",
+    "subtitle": "Frontline Europe: AI, Sovereignty and Truth",
+    "type": "panel",
+    "location": "Lisbon, Portugal",
+    "link": null
+  },
+  {
+    "id": "geo-conference-2026",
+    "date": "2026-12-09",
+    "title": "GEO Conference",
+    "subtitle": "The Impact of AI-Generated Text on the Web",
+    "type": "talk",
+    "location": "San Francisco, CA",
     "link": null
   }
 ]
