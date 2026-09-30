@@ -40,15 +40,13 @@ export default function UpcomingItem({ event }: UpcomingItemProps) {
         {location && <span> · {location}</span>}
       </div>
 
-      {/* Label & Title */}
-      <div className="flex items-center gap-2 mt-1">
-        <span className={`text-xs font-semibold font-ui px-2 py-0.5 ${style.bg} ${style.text}`}>
+      {/* Title & Label */}
+      <h4 className={`mt-1 font-medium text-neutral-900 ${link ? 'group-hover:text-primary-600 transition-colors' : ''}`}>
+        {title}{' '}
+        <span className={`ml-1 whitespace-nowrap text-xs font-semibold font-ui px-1.5 py-0.5 ${style.bg} ${style.text}`}>
           {style.label}
         </span>
-        <h4 className={`font-medium text-neutral-900 ${link ? 'group-hover:text-primary-600 transition-colors' : ''}`}>
-          {title}
-        </h4>
-      </div>
+      </h4>
     </div>
   );
 
