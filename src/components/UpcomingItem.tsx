@@ -37,7 +37,7 @@ export default function UpcomingItem({ event }: UpcomingItemProps) {
       {/* Date & Location */}
       <div className="text-sm text-neutral-500">
         <time dateTime={date}>{formattedDate}</time>
-        {location && <span> · {location}</span>}
+        {location && <span>; {location}</span>}
       </div>
 
       {/* Title & Label */}
