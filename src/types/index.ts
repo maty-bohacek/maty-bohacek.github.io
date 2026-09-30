@@ -51,7 +51,6 @@ export interface UpcomingEvent {
   id: string;
   date: string;
   title: string;
-  subtitle?: string;
   type: 'talk' | 'conference' | 'workshop' | 'event' | 'panel';
   location?: string;
   link?: string;

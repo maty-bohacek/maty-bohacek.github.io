@@ -4,7 +4,6 @@ export interface UpcomingEvent {
   id: string;
   date: string;
   title: string;
-  subtitle?: string;
   type: 'talk' | 'conference' | 'workshop' | 'event' | 'panel';
   location?: string;
   link?: string;
@@ -23,7 +22,7 @@ const typeStyles = {
 };
 
 export default function UpcomingItem({ event }: UpcomingItemProps) {
-  const { date, title, subtitle, type, location, link } = event;
+  const { date, title, type, location, link } = event;
   const style = typeStyles[type];
 
   const dateObj = new Date(date);
@@ -50,7 +49,6 @@ export default function UpcomingItem({ event }: UpcomingItemProps) {
           {title}
         </h4>
       </div>
-      {subtitle && <p className="text-sm text-neutral-600 mt-1">{subtitle}</p>}
     </div>
   );
 
