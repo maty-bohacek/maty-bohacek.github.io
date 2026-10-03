@@ -4,7 +4,7 @@ export interface UpcomingEvent {
   id: string;
   date: string;
   title: string;
-  type: 'talk' | 'conference' | 'workshop' | 'event' | 'panel';
+  type: 'talk' | 'conference' | 'workshop' | 'event' | 'panel' | 'poster';
   location?: string;
   link?: string;
 }
@@ -19,6 +19,7 @@ const typeStyles = {
   workshop: { bg: 'bg-swiss-orange/10', text: 'text-swiss-orange', label: 'Workshop' },
   event: { bg: 'bg-swiss-pink/10', text: 'text-swiss-pink', label: 'Event' },
   panel: { bg: 'bg-swiss-pink/10', text: 'text-swiss-pink', label: 'Panel' },
+  poster: { bg: 'bg-swiss-teal/10', text: 'text-swiss-teal', label: 'Poster' },
 };
 
 export default function UpcomingItem({ event }: UpcomingItemProps) {
