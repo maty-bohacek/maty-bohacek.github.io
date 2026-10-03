@@ -51,7 +51,7 @@
     "id": "tada-2026",
     "date": "2026-10-05",
     "title": "Text as Data (TADA) Conference",
-    "type": "talk",
+    "type": "poster",
     "location": "Berkeley, CA",
     "link": null
   },
@@ -67,7 +67,7 @@
     "id": "harari-conference-2026",
     "date": "2026-10-12",
     "title": "Harari Conference",
-    "type": "talk",
+    "type": "panel",
     "location": "Prague, Czech Republic",
     "link": null
   },
