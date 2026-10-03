@@ -1,0 +1,2 @@
+# The dedup / tracking store (seen.json) is written here at runtime and
+# committed back by the weekly GitHub Action so state persists across runs.
