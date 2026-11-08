@@ -4,4 +4,4 @@ title: "Talk at Princeton"
 tags: ["talk"]
 ---
 
-Delivered a talk at the Princeton Language and Intelligence (PLI) Seminar at Princeton University.
+Delivered a talk titled The Case for Interpretability-Driven Evaluation at the Princeton Language and Intelligence (PLI) Seminar at Princeton University.

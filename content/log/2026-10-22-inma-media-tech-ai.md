@@ -6,4 +6,4 @@ images:
   - "/images/log/inma-media-tech-ai.webp"
 ---
 
-Delivered a talk at INMA's Media, Tech & AI Conference in San Francisco, CA.
+Delivered a talk titled When AI Starts Writing the Internet at INMA's Media, Tech & AI Conference in San Francisco, CA.
