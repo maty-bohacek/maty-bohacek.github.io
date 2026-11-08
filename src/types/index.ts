@@ -31,6 +31,7 @@ export interface LogEntry {
   logo?: string;
   source?: string;
   tags?: string[];
+  categories?: string[];
 }
 
 export interface BlogPost {

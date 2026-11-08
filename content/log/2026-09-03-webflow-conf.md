@@ -1,7 +1,7 @@
 ---
 date: "2026-09-03"
 title: "Talk at Webflow Conf"
-tags: ["talk"]
+categories: ["industry"]
 images:
   - "/images/log/webflow-conf.webp"
 ---

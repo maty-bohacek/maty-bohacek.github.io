@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import BlogContent from '@/components/BlogContent';
+import { ChevronLeftIcon } from '@/components/Icons';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -65,8 +66,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Header */}
       <header className="site-container pt-12 pb-8">
         <div className="flex flex-wrap items-center gap-x-8 gap-y-2 mb-6 text-sm font-ui text-neutral-500">
-          <Link href="/blog" className="hover:text-neutral-900 transition-colors">
-            ← Back to Blog
+          <Link href="/blog" className="inline-flex items-center gap-1 hover:text-neutral-900 transition-colors">
+            <ChevronLeftIcon />
+            Back to Blog
           </Link>
           <span>{post.category}</span>
           <time dateTime={post.date}>{formattedDate}</time>
@@ -127,9 +129,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="flex justify-between items-center text-sm">
           <Link
             href="/blog"
-            className="text-neutral-500 hover:text-neutral-900 transition-colors"
+            className="inline-flex items-center gap-1 text-neutral-500 hover:text-neutral-900 transition-colors"
           >
-            ← Back to Blog
+            <ChevronLeftIcon />
+            Back to Blog
           </Link>
 
           <div className="flex items-center gap-4 text-neutral-400">

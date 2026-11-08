@@ -1,7 +1,7 @@
 ---
 date: "2026-10-12"
 title: "Panel at the Harari Conference"
-tags: ["talk"]
+categories: ["industry"]
 images:
   - "/images/log/harari-conference.webp"
 ---
