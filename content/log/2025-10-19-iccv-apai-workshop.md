@@ -1,6 +1,7 @@
 ---
 date: "2025-10-19"
 title: "Co-organized an ICCV workshop"
+categories: ["academic"]
 link: "https://sites.google.com/berkeley.edu/apai-iccv2025/"
 linkText: "See workshop website"
 images:

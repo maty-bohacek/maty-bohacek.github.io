@@ -1,7 +1,7 @@
 ---
 date: "2024-11-18"
 title: "Volunteered for SIGGRAPH Asia"
-tags: ["conference"]
+categories: ["academic"]
 ---
 
 Volunteered for SIGGRAPH Asia in Tokyo, Japan.

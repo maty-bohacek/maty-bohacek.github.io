@@ -1,9 +1,9 @@
 ---
 date: "2024-11-10"
 title: "Talk at FPY Conference"
+categories: ["industry"]
 link: "https://futureportyouth.com/"
 linkText: "Learn more"
-tags: ["talk"]
 images:
   - "/images/log/fpy-1.webp"
   - "/images/log/fpy-2.webp"

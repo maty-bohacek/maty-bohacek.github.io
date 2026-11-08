@@ -1,7 +1,7 @@
 ---
 date: "2026-10-22"
 title: "Talk at INMA's Media, Tech & AI Conference"
-tags: ["talk"]
+categories: ["industry"]
 images:
   - "/images/log/inma-media-tech-ai.webp"
 ---

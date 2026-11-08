@@ -7,6 +7,7 @@ import LogEntry from '@/components/LogEntry';
 import UpcomingItem from '@/components/UpcomingItem';
 import HeadshotImage from '@/components/HeadshotImage';
 import ResearchInterests from '@/components/ResearchInterests';
+import { ArrowUpRightIcon } from '@/components/Icons';
 
 async function markdownToHtml(markdown: string): Promise<string> {
   const result = await remark().use(html, { sanitize: false }).process(markdown);
@@ -112,8 +113,9 @@ export default async function HomePage() {
               <h2 className="text-sm font-bold text-neutral-900 uppercase tracking-wide font-ui">
                 Recent News
               </h2>
-              <Link href="/journal" className="text-sm font-ui text-neutral-500 hover:text-neutral-900 transition-colors">
-                All News →
+              <Link href="/journal" className="inline-flex items-center gap-1 text-sm font-ui text-neutral-500 hover:text-neutral-900 transition-colors">
+                All News
+                <ArrowUpRightIcon />
               </Link>
             </div>
             <div className="panel p-6 divide-y divide-neutral-200">

@@ -1,7 +1,7 @@
 ---
 date: "2025-09-01"
 title: "Received the Czech Senate Medal"
-tags: ["award"]
+categories: ["awards"]
 images:
   - "/images/log/czech-senate-medal-1.webp"
   - "/images/log/czech-senate-medal-2.webp"

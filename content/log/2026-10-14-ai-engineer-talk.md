@@ -1,7 +1,7 @@
 ---
 date: "2026-10-14"
 title: "Talk at AI Engineer"
-tags: ["talk"]
+categories: ["industry"]
 images:
   - "/images/log/ai-engineer-nyc.webp"
 ---

@@ -1,6 +1,7 @@
 ---
 date: "2026-01-21"
 title: "Final episode of Shell Game, Season 2"
+categories: ["milestones"]
 link: "https://podcasts.apple.com/us/podcast/shell-game/id1753117762?i=1000746031135"
 linkText: "Listen to the episode"
 ---

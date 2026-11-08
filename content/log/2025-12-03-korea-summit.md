@@ -1,6 +1,7 @@
 ---
 date: "2025-12-03"
 title: "Keynote at the International AI Standards Summit"
+categories: ["industry"]
 images:
   - "/images/log/korea-summit.webp"
 ---

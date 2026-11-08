@@ -1,6 +1,7 @@
 ---
 date: "2025-10-16"
 title: "Keynote at the Inspire & Impact Network Conference"
+categories: ["industry"]
 images:
   - "/images/log/iin.webp"
 ---

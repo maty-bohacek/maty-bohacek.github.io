@@ -1,9 +1,9 @@
 ---
 date: "2026-10-18"
 title: "Interview with Vaclav Moravec"
+categories: ["media"]
 link: "https://moravec.cz/videos/ajo3U3IomRgvVQvJMZYr"
 linkText: "Watch"
-tags: ["media"]
 images:
   - "/images/log/moravec-interview.webp"
 ---
