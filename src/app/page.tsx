@@ -39,7 +39,7 @@ export default async function HomePage() {
       <section className="mb-16">
         <div className="flex flex-col md:flex-row gap-8 items-start">
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-neutral-900 mb-1">
+            <h1 className="text-2xl font-bold font-ui tracking-tight text-neutral-900 mb-1">
               {config.name}
             </h1>
             {config.title && (
@@ -52,33 +52,33 @@ export default async function HomePage() {
             </p>
 
             {/* Social Links */}
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm font-ui">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm font-ui font-medium">
               {config.social.scholar && (
                 <a href={config.social.scholar} target="_blank" rel="noopener noreferrer"
-                  className="text-neutral-500 hover:text-neutral-900 transition-colors">
+                  className="text-neutral-800 hover:text-neutral-950 hover:underline underline-offset-4 transition-colors">
                   Scholar
                 </a>
               )}
               {config.social.github && (
                 <a href={config.social.github} target="_blank" rel="noopener noreferrer"
-                  className="text-neutral-500 hover:text-neutral-900 transition-colors">
+                  className="text-neutral-800 hover:text-neutral-950 hover:underline underline-offset-4 transition-colors">
                   GitHub
                 </a>
               )}
               {config.social.twitter && (
                 <a href={config.social.twitter} target="_blank" rel="noopener noreferrer"
-                  className="text-neutral-500 hover:text-neutral-900 transition-colors">
+                  className="text-neutral-800 hover:text-neutral-950 hover:underline underline-offset-4 transition-colors">
                   Twitter
                 </a>
               )}
               {config.social.linkedin && (
                 <a href={config.social.linkedin} target="_blank" rel="noopener noreferrer"
-                  className="text-neutral-500 hover:text-neutral-900 transition-colors">
+                  className="text-neutral-800 hover:text-neutral-950 hover:underline underline-offset-4 transition-colors">
                   LinkedIn
                 </a>
               )}
               <a href={`mailto:${config.email}`}
-                className="text-neutral-500 hover:text-neutral-900 transition-colors">
+                className="text-neutral-800 hover:text-neutral-950 hover:underline underline-offset-4 transition-colors">
                 Email
               </a>
             </div>
