@@ -4,6 +4,11 @@ title: "Panel at the Harari Conference"
 categories: ["industry"]
 images:
   - "/images/log/harari-conference.webp"
+speaking:
+  event: "Harari Conference"
+  talk: "Being Human in the Age of AI"
+  format: "Panel"
+  location: "Prague, Czechia"
 ---
 
 Took part in a panel titled Being Human in the Age of AI at the Harari Conference in Prague, Czech Republic.

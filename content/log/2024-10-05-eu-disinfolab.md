@@ -7,6 +7,11 @@ linkText: "Learn more"
 images:
   - "/images/log/eu-disinfolab-1.webp"
   - "/images/log/eu-disinfolab-2.webp"
+speaking:
+  event: "EU DisinfoLab Annual Conference"
+  format: "Talk & panel"
+  location: "Riga, Latvia"
+  topic: "public-truth"
 ---
 
 Delivered a talk and joined a panel on the role of AI in disinformation at the EU DisinfoLab conference in Riga, Latvia.

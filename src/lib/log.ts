@@ -42,6 +42,7 @@ export function getLogEntries(): LogEntry[] {
           images: data.images || undefined,
           logo: data.logo || undefined,
           categories,
+          speaking: data.speaking || undefined,
         } as LogEntry;
       })
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

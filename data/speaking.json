@@ -1,0 +1,68 @@
+{
+  "intro": "I speak about how AI is changing the way we communicate: what we read online, whether we can trust what we see, and how we measure what AI systems can actually do. I give keynotes, talks, and panels for industry and public audiences, and invited talks and seminars for universities and research labs.",
+  "audiences": [
+    {
+      "id": "industry",
+      "label": "Industry & public",
+      "summary": "For conferences, media organizations, and policy forums: what AI is doing to the web, to trust online, and to the people who build and make things.",
+      "formats": "Keynotes, talks, panels, fireside chats, and session chairing",
+      "highlights": ["SXSW", "AI Engineer", "Webflow Conf", "INMA", "TM Forum", "International AI Standards Summit", "Aspen Institute", "EU DisinfoLab"]
+    },
+    {
+      "id": "academic",
+      "label": "Academia",
+      "summary": "For universities, labs, and research workshops: interpretability-driven evaluation, measuring AI content on the web, and deepfake detection and provenance.",
+      "formats": "Invited talks, lab seminars, workshop keynotes, guest lectures, and panels",
+      "highlights": ["MIT", "Princeton", "Oxford", "Imperial College London", "Northeastern", "UC Berkeley", "NYU", "Hoover Institution", "CVPR", "ICML", "ICLR", "FAccT"]
+    }
+  ],
+  "topics": [
+    {
+      "id": "ai-internet",
+      "title": "When AI Starts Writing the Internet",
+      "summary": "Roughly one in three newly published web pages is now AI-generated or AI-assisted. Drawing on our measurements of AI content across the web, this talk looks at how that shift is changing what we read and how it sounds, and what it means for publishers, platforms, and anyone who treats the web as a record of what people think.",
+      "audiences": ["industry", "academic"]
+    },
+    {
+      "id": "verification-bottleneck",
+      "title": "The Human Verification Bottleneck",
+      "subtitle": "What Agents Do When a Human Is the Only Thing in the Way",
+      "summary": "AI agents can increasingly carry a task from start to finish, until they reach a step only a person is supposed to clear. This talk looks at what agents do at that boundary and what it means for the products, security, and trust built around them, drawing on Shell Game, the podcast I co-created with Evan Ratliff about a company whose employees and executives are AI agents.",
+      "audiences": ["industry"]
+    },
+    {
+      "id": "public-truth",
+      "title": "Deepfakes, Provenance, and Public Truth",
+      "summary": "From a deepfake of Anderson Cooper we made with CNN to detectors built to protect world leaders and the DeepSpeak dataset, now licensed to 100+ institutions: how synthetic media is made, how it is caught, and what it takes for a society to keep a shared sense of what is real.",
+      "audiences": ["industry", "academic"]
+    },
+    {
+      "id": "interpretability-evaluation",
+      "title": "The Case for Interpretability-Driven Evaluation",
+      "summary": "Benchmark scores are used to make sweeping claims about AI progress, yet a single number says little about what a model can and cannot do. This talk argues for evaluation grounded in interpretability, using a model's own representations to surface competency gaps in models and their benchmarks (ICML'26) and concepts image models see in training but cannot generate (ICLR'26).",
+      "audiences": ["academic"]
+    },
+    {
+      "id": "governance",
+      "title": "AI Standards, Governance, and Positive Alignment",
+      "summary": "Priorities and accountability for AI systems are set opaquely, by a select few. This talk surveys the methods available for aligning and governing AI, from technical standards to steering, and makes the case for positive alignment: asking not only what AI systems should avoid, but what they should be for.",
+      "audiences": ["industry", "academic"]
+    },
+    {
+      "id": "creative-work",
+      "title": "Generative AI and Creative Work",
+      "summary": "What generative AI changes for cartoonists, animators, and other artists: what the tools can and cannot do, how working artists are actually using them, and how creators can better understand and shape the systems trained on their work.",
+      "audiences": ["industry", "academic"]
+    }
+  ],
+  "gallery": [
+    "2025-12-03-korea-summit",
+    "2026-10-22-inma-media-tech-ai",
+    "2026-11-05-berkeley-matrix-on-point",
+    "2026-10-14-ai-engineer-talk",
+    "2026-10-12-harari-conference-panel",
+    "2026-09-03-webflow-conf"
+  ],
+  "media": ["CNN", "BBC Radio 4", "WIRED", "Marketplace", "Fast Company", "404 Media", "New Scientist", "Nieman Lab", "KQED"],
+  "bio": "Maty Bohacek is a researcher at Stanford University working with Prof. Maneesh Agrawala at the intersection of AI and media integrity. Maty's work on deepfakes, AI-generated content on the web, and AI evaluation has been published at CVPR, ICML, ICLR, and FAccT and in PNAS, and has been featured by CNN, BBC Radio 4, WIRED, and Fast Company. Maty has been a student researcher at Google DeepMind and Google, co-created the Shell Game podcast with Evan Ratliff, and has been recognized with the Czech Senate Medal and a place on Forbes 30 Under 30 (Czechia)."
+}
