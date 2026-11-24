@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   description: 'Students and researchers mentored by Maty Bohacek',
 };
 
+const introLink =
+  'text-neutral-900 underline underline-offset-2 decoration-neutral-300 hover:decoration-neutral-600 transition-colors';
+
 export default function MenteesPage() {
   const activeMentees = getActiveMentees();
   const pastMentees = getPastMentees();
@@ -16,7 +19,31 @@ export default function MenteesPage() {
   return (
     <div className="site-container py-12 md:py-16">
       <div className="mb-12">
-        <h1 className="text-2xl font-bold font-ui text-neutral-900 mb-2">Mentees</h1>
+        <h1 className="text-2xl font-bold font-ui text-neutral-900 mb-4">Mentees</h1>
+        <p className="text-base text-neutral-700 leading-relaxed">
+          I mentor high school and college students as they enter AI research, both through
+          research fellowships (
+          <Link href="https://sparai.org/" target="_blank" rel="noopener noreferrer" className={introLink}>
+            SPAR
+          </Link>{' '}
+          and{' '}
+          <Link href="https://www.baseresearch.org/" target="_blank" rel="noopener noreferrer" className={introLink}>
+            BASE
+          </Link>
+          ) and with students who reach out to me directly. I guide them through every stage of a
+          project, from the first idea to publication. The resulting papers were their first research
+          publications, with me as the last author. At Stanford, I have also mentored two graduate
+          students early in their programs on two papers, projects I led with my PI, Prof.{' '}
+          <Link
+            href="https://graphics.stanford.edu/~maneesh/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={introLink}
+          >
+            Maneesh Agrawala
+          </Link>
+          .
+        </p>
       </div>
 
       {/* Active mentees */}
