@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { getSiteConfig, getSpeakingPageData, getUpcomingEvents } from '@/lib/data';
+import { getSiteConfig, getSpeakingPageData } from '@/lib/data';
 import CopyButton from '@/components/CopyButton';
-import UpcomingItem from '@/components/UpcomingItem';
 import { SpeakingLogo } from '@/types';
 
 export const metadata: Metadata = {
@@ -48,7 +47,6 @@ const textLink =
 export default function SpeakingPage() {
   const config = getSiteConfig();
   const page = getSpeakingPageData();
-  const upcoming = getUpcomingEvents();
   const inviteHref = `mailto:${config.email}?subject=${encodeURIComponent('Speaking invitation')}`;
 
   return (
@@ -87,18 +85,6 @@ export default function SpeakingPage() {
         <section className="mb-16">
           <SectionHeading>In the media</SectionHeading>
           <LogoWall logos={page.media} />
-        </section>
-      )}
-
-      {/* Upcoming */}
-      {upcoming.length > 0 && (
-        <section className="mb-16">
-          <SectionHeading>Upcoming</SectionHeading>
-          <div className="panel p-6">
-            {upcoming.map((event) => (
-              <UpcomingItem key={event.id} event={event} />
-            ))}
-          </div>
         </section>
       )}
 
