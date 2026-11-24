@@ -2,7 +2,7 @@
 name: "Raina Panda"
 website: ""
 photo: ""
-status: "active"
+status: "past"
 order: 1
 ---
 
