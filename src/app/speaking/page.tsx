@@ -34,7 +34,7 @@ function LogoWall({ logos }: { logos: SpeakingLogo[] }) {
             alt={name}
             title={name}
             style={{ height }}
-            className={`w-auto max-w-[9rem] object-contain ${dark ? 'brightness-0 opacity-60' : 'grayscale opacity-80'}`}
+            className={`w-auto max-w-[11rem] object-contain ${dark ? 'brightness-0 opacity-60' : 'grayscale opacity-80'}`}
           />
         </li>
       ))}
