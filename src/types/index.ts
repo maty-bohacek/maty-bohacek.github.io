@@ -32,52 +32,28 @@ export interface LogEntry {
   source?: string;
   tags?: string[];
   categories?: string[];
-  speaking?: SpeakingDetails;
 }
 
-// Set on journal entries that were talks, panels, keynotes, and the like.
-// These entries make up the past engagements on the (unlinked) /speaking page.
-export interface SpeakingDetails {
-  event: string;      // Shown in bold, e.g. "MIT" or "SXSW"
-  detail?: string;    // Lab, seminar series, or workshop, e.g. "Antonio Torralba's lab"
-  talk?: string;      // Talk or panel title
-  format: string;     // e.g. "Keynote", "Talk", "Panel", "Paper"
-  location?: string;  // "City, ST" in the US, "City, Country" elsewhere, or "Virtual"
-  topic?: string;     // id of a talk in data/speaking.json
+// Content of the unlinked /speaking page (data/speaking.json).
+export interface SpeakingPhoto {
+  image: string;
+  event: string;
+  location: string;
 }
 
-export type SpeakingAudience = 'industry' | 'academic';
-
-export interface SpeakingEngagement extends SpeakingDetails {
-  id: string;
-  date: string;
-  link?: string;
-  image?: string;
-  audiences: SpeakingAudience[];
-}
-
-export interface SpeakingTopic {
-  id: string;
-  title: string;
-  subtitle?: string;
-  summary: string;
-  audiences: SpeakingAudience[];
-}
-
-export interface SpeakingAudienceBlurb {
-  id: SpeakingAudience;
-  label: string;
-  summary: string;
-  formats: string;
-  highlights: string[];
+// A logo in the "In the media" or "Past engagements" strips.
+export interface SpeakingLogo {
+  name: string;
+  logo: string;
+  height?: number;  // px; evens out logos of different shapes (default 22)
+  dark?: boolean;   // render as a solid dark shape, for pale logos that wash out in grayscale
 }
 
 export interface SpeakingPageData {
   intro: string;
-  audiences: SpeakingAudienceBlurb[];
-  topics: SpeakingTopic[];
-  gallery: string[];  // journal entry ids; the first photo of each is shown
-  media: string[];
+  photos: SpeakingPhoto[];
+  media: SpeakingLogo[];
+  engagements: SpeakingLogo[];
   bio: string;
 }
 

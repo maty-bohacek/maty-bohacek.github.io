@@ -1,68 +1,54 @@
 {
   "intro": "I speak about how AI is changing the way we communicate: what we read online, whether we can trust what we see, and how we measure what AI systems can actually do. I give keynotes, talks, and panels for industry and public audiences, and invited talks and seminars for universities and research labs.",
-  "audiences": [
-    {
-      "id": "industry",
-      "label": "Industry & public",
-      "summary": "For conferences, media organizations, and policy forums: what AI is doing to the web, to trust online, and to the people who build and make things.",
-      "formats": "Keynotes, talks, panels, fireside chats, and session chairing",
-      "highlights": ["SXSW", "AI Engineer", "Webflow Conf", "INMA", "TM Forum", "International AI Standards Summit", "Aspen Institute", "EU DisinfoLab"]
-    },
-    {
-      "id": "academic",
-      "label": "Academia",
-      "summary": "For universities, labs, and research workshops: interpretability-driven evaluation, measuring AI content on the web, and deepfake detection and provenance.",
-      "formats": "Invited talks, lab seminars, workshop keynotes, guest lectures, and panels",
-      "highlights": ["MIT", "Princeton", "Oxford", "Imperial College London", "Northeastern", "UC Berkeley", "NYU", "Hoover Institution", "CVPR", "ICML", "ICLR", "FAccT"]
-    }
+  "photos": [
+    { "image": "/images/log/korea-summit.webp", "event": "International AI Standards Summit", "location": "Seoul, Korea" },
+    { "image": "/images/log/inma-media-tech-ai.webp", "event": "INMA Media, Tech & AI", "location": "San Francisco, CA" },
+    { "image": "/images/log/berkeley-matrix-on-point.webp", "event": "UC Berkeley Social Science Matrix", "location": "Berkeley, CA" },
+    { "image": "/images/log/ai-engineer-nyc.webp", "event": "AI Engineer", "location": "New York City, NY" },
+    { "image": "/images/log/harari-conference.webp", "event": "Harari Conference", "location": "Prague, Czechia" },
+    { "image": "/images/log/webflow-conf.webp", "event": "Webflow Conf", "location": "Boston, MA" }
   ],
-  "topics": [
-    {
-      "id": "ai-internet",
-      "title": "When AI Starts Writing the Internet",
-      "summary": "Roughly one in three newly published web pages is now AI-generated or AI-assisted. Drawing on our measurements of AI content across the web, this talk looks at how that shift is changing what we read and how it sounds, and what it means for publishers, platforms, and anyone who treats the web as a record of what people think.",
-      "audiences": ["industry", "academic"]
-    },
-    {
-      "id": "verification-bottleneck",
-      "title": "The Human Verification Bottleneck",
-      "subtitle": "What Agents Do When a Human Is the Only Thing in the Way",
-      "summary": "AI agents can increasingly carry a task from start to finish, until they reach a step only a person is supposed to clear. This talk looks at what agents do at that boundary and what it means for the products, security, and trust built around them, drawing on Shell Game, the podcast I co-created with Evan Ratliff about a company whose employees and executives are AI agents.",
-      "audiences": ["industry"]
-    },
-    {
-      "id": "public-truth",
-      "title": "Deepfakes, Provenance, and Public Truth",
-      "summary": "From a deepfake of Anderson Cooper we made with CNN to detectors built to protect world leaders and the DeepSpeak dataset, now licensed to 100+ institutions: how synthetic media is made, how it is caught, and what it takes for a society to keep a shared sense of what is real.",
-      "audiences": ["industry", "academic"]
-    },
-    {
-      "id": "interpretability-evaluation",
-      "title": "The Case for Interpretability-Driven Evaluation",
-      "summary": "Benchmark scores are used to make sweeping claims about AI progress, yet a single number says little about what a model can and cannot do. This talk argues for evaluation grounded in interpretability, using a model's own representations to surface competency gaps in models and their benchmarks (ICML'26) and concepts image models see in training but cannot generate (ICLR'26).",
-      "audiences": ["academic"]
-    },
-    {
-      "id": "governance",
-      "title": "AI Standards, Governance, and Positive Alignment",
-      "summary": "Priorities and accountability for AI systems are set opaquely, by a select few. This talk surveys the methods available for aligning and governing AI, from technical standards to steering, and makes the case for positive alignment: asking not only what AI systems should avoid, but what they should be for.",
-      "audiences": ["industry", "academic"]
-    },
-    {
-      "id": "creative-work",
-      "title": "Generative AI and Creative Work",
-      "summary": "What generative AI changes for cartoonists, animators, and other artists: what the tools can and cannot do, how working artists are actually using them, and how creators can better understand and shape the systems trained on their work.",
-      "audiences": ["industry", "academic"]
-    }
+  "media": [
+    { "name": "CNN", "logo": "/images/speaking/media/cnn.svg" },
+    { "name": "BBC", "logo": "/images/speaking/media/bbc.svg" },
+    { "name": "WIRED", "logo": "/images/speaking/media/wired.svg" },
+    { "name": "Forbes", "logo": "/images/speaking/media/forbes.svg" },
+    { "name": "NPR", "logo": "/images/speaking/media/npr.svg" },
+    { "name": "New Scientist", "logo": "/images/speaking/media/new-scientist.png", "height": 30 },
+    { "name": "Fast Company", "logo": "/images/speaking/media/fast-company.svg" },
+    { "name": "iHeartRadio", "logo": "/images/speaking/media/iheartradio.svg" },
+    { "name": "KQED", "logo": "/images/speaking/media/kqed.svg" },
+    { "name": "404 Media", "logo": "/images/speaking/media/404-media.svg" },
+    { "name": "Nieman Lab", "logo": "/images/speaking/media/nieman-lab.png" },
+    { "name": "CBC/Radio-Canada", "logo": "/images/speaking/media/cbc.svg" },
+    { "name": "ORF", "logo": "/images/speaking/media/orf.svg" }
   ],
-  "gallery": [
-    "2025-12-03-korea-summit",
-    "2026-10-22-inma-media-tech-ai",
-    "2026-11-05-berkeley-matrix-on-point",
-    "2026-10-14-ai-engineer-talk",
-    "2026-10-12-harari-conference-panel",
-    "2026-09-03-webflow-conf"
+  "engagements": [
+    { "name": "United Nations", "logo": "/images/speaking/engagements/un.svg", "height": 36, "dark": true },
+    { "name": "UNICEF", "logo": "/images/speaking/engagements/unicef.svg", "height": 26 },
+    { "name": "ISO", "logo": "/images/speaking/engagements/iso.svg", "height": 30 },
+    { "name": "ITU", "logo": "/images/speaking/engagements/itu.svg", "height": 34, "dark": true },
+    { "name": "IEC", "logo": "/images/speaking/engagements/iec.svg", "height": 30 },
+    { "name": "MIT", "logo": "/images/speaking/engagements/mit.svg", "height": 24 },
+    { "name": "Stanford University", "logo": "/images/speaking/engagements/stanford.svg", "height": 24 },
+    { "name": "Princeton University", "logo": "/images/speaking/engagements/princeton.png", "height": 18 },
+    { "name": "University of Oxford", "logo": "/images/speaking/engagements/oxford.png", "height": 40 },
+    { "name": "UC Berkeley", "logo": "/images/speaking/engagements/berkeley.svg", "height": 22 },
+    { "name": "Imperial College London", "logo": "/images/speaking/engagements/imperial.svg", "height": 16 },
+    { "name": "NYU", "logo": "/images/speaking/engagements/nyu.svg", "height": 34 },
+    { "name": "Northeastern University", "logo": "/images/speaking/engagements/northeastern.svg", "height": 32 },
+    { "name": "Hoover Institution", "logo": "/images/speaking/engagements/hoover.svg", "height": 30 },
+    { "name": "SXSW", "logo": "/images/speaking/engagements/sxsw.svg", "height": 22 },
+    { "name": "Web Summit", "logo": "/images/speaking/engagements/web-summit.png", "height": 24 },
+    { "name": "Aspen Institute", "logo": "/images/speaking/engagements/aspen-institute.png", "height": 44 },
+    { "name": "AI Engineer", "logo": "/images/speaking/engagements/ai-engineer.svg", "height": 24 },
+    { "name": "Webflow", "logo": "/images/speaking/engagements/webflow.svg", "height": 20 },
+    { "name": "EU DisinfoLab", "logo": "/images/speaking/engagements/eu-disinfolab.png", "height": 30 },
+    { "name": "Moonshot Summit", "logo": "/images/speaking/engagements/moonshot.svg", "height": 36 },
+    { "name": "CVPR", "logo": "/images/speaking/engagements/cvpr.svg", "height": 24 },
+    { "name": "ICML", "logo": "/images/speaking/engagements/icml.svg", "height": 28 },
+    { "name": "ICLR", "logo": "/images/speaking/engagements/iclr.svg", "height": 22 },
+    { "name": "ACM", "logo": "/images/speaking/engagements/acm.svg", "height": 32 }
   ],
-  "media": ["CNN", "BBC Radio 4", "WIRED", "Marketplace", "Fast Company", "404 Media", "New Scientist", "Nieman Lab", "KQED"],
-  "bio": "Maty Bohacek is a researcher at Stanford University working with Prof. Maneesh Agrawala at the intersection of AI and media integrity. Maty's work on deepfakes, AI-generated content on the web, and AI evaluation has been published at CVPR, ICML, ICLR, and FAccT and in PNAS, and has been featured by CNN, BBC Radio 4, WIRED, and Fast Company. Maty has been a student researcher at Google DeepMind and Google, co-created the Shell Game podcast with Evan Ratliff, and has been recognized with the Czech Senate Medal and a place on Forbes 30 Under 30 (Czechia)."
+  "bio": "Maty Bohacek is a researcher at Stanford University, previously Google DeepMind, working at the intersection of AI and media integrity. Maty's work—spanning deepfakes, AI-generated content on the web, AI evaluation, and AI governance—has been published at NeurIPS, ICML, and ICLR, and has been featured by CNN, BBC Radio 4, WIRED, and others. Maty co-created the award-winning Shell Game podcast with Evan Ratliff, and has been recognized with the Czech Senate Medal and a place on Forbes 30 Under 30."
 }
