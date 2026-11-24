@@ -34,6 +34,29 @@ export interface LogEntry {
   categories?: string[];
 }
 
+// Content of the unlinked /speaking page (data/speaking.json).
+export interface SpeakingPhoto {
+  image: string;
+  event: string;
+  location: string;
+}
+
+// A logo in the "In the media" or "Past engagements" strips.
+export interface SpeakingLogo {
+  name: string;
+  logo: string;
+  height?: number;  // px; evens out logos of different shapes (default 22)
+  dark?: boolean;   // render as a solid dark shape, for pale logos that wash out in grayscale
+}
+
+export interface SpeakingPageData {
+  intro: string;
+  photos: SpeakingPhoto[];
+  media: SpeakingLogo[];
+  engagements: SpeakingLogo[];
+  bio: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;

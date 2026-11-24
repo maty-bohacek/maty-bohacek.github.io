@@ -1,0 +1,49 @@
+{
+  "intro": "I speak about how AI is changing discourse and our communication habits, but also about how to understand, measure, and govern AI. I give keynotes, talks, and panels for industry and public audiences, and invited talks and seminars for universities and research labs.",
+  "photos": [
+    { "image": "/images/log/korea-summit.webp", "event": "International AI Standards Summit", "location": "Seoul, Korea" },
+    { "image": "/images/log/inma-media-tech-ai.webp", "event": "INMA Media, Tech & AI", "location": "San Francisco, CA" },
+    { "image": "/images/log/berkeley-matrix-on-point.webp", "event": "UC Berkeley Social Science Matrix", "location": "Berkeley, CA" },
+    { "image": "/images/log/ai-engineer-nyc.webp", "event": "AI Engineer", "location": "New York City, NY" },
+    { "image": "/images/log/harari-conference.webp", "event": "Harari Conference", "location": "Prague, Czechia" },
+    { "image": "/images/log/webflow-conf.webp", "event": "Webflow Conf", "location": "Boston, MA" }
+  ],
+  "media": [
+    { "name": "CNN", "logo": "/images/speaking/media/cnn.svg" },
+    { "name": "BBC", "logo": "/images/speaking/media/bbc.svg" },
+    { "name": "WIRED", "logo": "/images/speaking/media/wired.svg" },
+    { "name": "Forbes", "logo": "/images/speaking/media/forbes.svg" },
+    { "name": "NPR", "logo": "/images/speaking/media/npr.svg" },
+    { "name": "New Scientist", "logo": "/images/speaking/media/new-scientist.png", "height": 30 },
+    { "name": "Fast Company", "logo": "/images/speaking/media/fast-company.svg", "height": 18 },
+    { "name": "iHeartRadio", "logo": "/images/speaking/media/iheartradio.svg" },
+    { "name": "KQED", "logo": "/images/speaking/media/kqed.svg" },
+    { "name": "404 Media", "logo": "/images/speaking/media/404-media.svg" },
+    { "name": "Nieman Lab", "logo": "/images/speaking/media/nieman-lab.png" },
+    { "name": "CBC/Radio-Canada", "logo": "/images/speaking/media/cbc.svg", "height": 26 },
+    { "name": "ORF", "logo": "/images/speaking/media/orf.svg" }
+  ],
+  "engagements": [
+    { "name": "Stanford University", "logo": "/images/speaking/engagements/stanford.svg", "height": 22 },
+    { "name": "United Nations", "logo": "/images/speaking/engagements/un.svg", "height": 38, "dark": true },
+    { "name": "SXSW", "logo": "/images/speaking/engagements/sxsw.svg", "height": 18 },
+    { "name": "MIT", "logo": "/images/speaking/engagements/mit.svg", "height": 24 },
+    { "name": "Web Summit", "logo": "/images/speaking/engagements/web-summit.png", "height": 22 },
+    { "name": "Princeton University", "logo": "/images/speaking/engagements/princeton.svg", "height": 32 },
+    { "name": "ISO", "logo": "/images/speaking/engagements/iso.svg", "height": 34 },
+    { "name": "University of Oxford", "logo": "/images/speaking/engagements/oxford.png", "height": 40 },
+    { "name": "Hoover Institution", "logo": "/images/speaking/engagements/hoover.svg", "height": 30 },
+    { "name": "UNICEF", "logo": "/images/speaking/engagements/unicef.svg", "height": 24, "dark": true },
+    { "name": "AI Engineer", "logo": "/images/speaking/engagements/ai-engineer.svg", "height": 22 },
+    { "name": "UC Berkeley", "logo": "/images/speaking/engagements/berkeley.svg", "height": 20 },
+    { "name": "ITU", "logo": "/images/speaking/engagements/itu.svg", "height": 36, "dark": true },
+    { "name": "Imperial College London", "logo": "/images/speaking/engagements/imperial.svg", "height": 13 },
+    { "name": "Aspen Institute", "logo": "/images/speaking/engagements/aspen-institute.png", "height": 48 },
+    { "name": "NYU", "logo": "/images/speaking/engagements/nyu.svg", "height": 36 },
+    { "name": "Webflow", "logo": "/images/speaking/engagements/webflow.svg", "height": 16 },
+    { "name": "Northeastern University", "logo": "/images/speaking/engagements/northeastern.svg", "height": 38 },
+    { "name": "EU DisinfoLab", "logo": "/images/speaking/engagements/eu-disinfolab.png", "height": 30 },
+    { "name": "Moonshot Summit", "logo": "/images/speaking/engagements/moonshot.svg", "height": 34 }
+  ],
+  "bio": "Maty Bohacek is a researcher at Stanford University, previously Google DeepMind, working at the intersection of AI and media integrity. Maty's work—spanning deepfakes, AI-generated content on the web, AI evaluation, and AI governance—has been published at NeurIPS, ICML, and ICLR, and has been featured by CNN, BBC Radio 4, WIRED, and others. Maty co-created the award-winning Shell Game podcast with Evan Ratliff, and has been recognized with the Czech Senate Medal and a place on Forbes 30 Under 30."
+}

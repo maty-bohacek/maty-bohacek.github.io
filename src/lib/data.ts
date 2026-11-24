@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { Affiliation, ResearchInterest, UpcomingEvent, SiteConfig } from '@/types';
+import { Affiliation, ResearchInterest, UpcomingEvent, SiteConfig, SpeakingPageData } from '@/types';
 
 const dataDirectory = path.join(process.cwd(), 'data');
 
@@ -90,4 +90,11 @@ export function getUpcomingEvents(): UpcomingEvent[] {
   }
 
   return [];
+}
+
+// The /speaking page is left out of the navigation on purpose: it is a page to
+// send to event organizers, not one visitors browse to.
+export function getSpeakingPageData(): SpeakingPageData {
+  const content = fs.readFileSync(path.join(dataDirectory, 'speaking.json'), 'utf-8');
+  return JSON.parse(content);
 }
