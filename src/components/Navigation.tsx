@@ -39,10 +39,11 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`text-sm font-ui transition-colors ${
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`text-sm font-ui font-medium underline-offset-4 transition-colors ${
                     isActive
-                      ? 'text-neutral-900'
-                      : 'text-neutral-500 hover:text-neutral-900'
+                      ? 'text-neutral-950 underline'
+                      : 'text-neutral-800 hover:text-neutral-950 hover:underline'
                   }`}
                 >
                   {item.label}
@@ -94,10 +95,11 @@ export default function Navigation() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block py-2 text-sm font-ui ${
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`block py-2 text-sm font-ui font-medium underline-offset-4 ${
                     isActive
-                      ? 'text-neutral-900'
-                      : 'text-neutral-500'
+                      ? 'text-neutral-950 underline'
+                      : 'text-neutral-800'
                   }`}
                 >
                   {item.label}

@@ -231,7 +231,7 @@ body {
 .panel {
   position: relative;
   width: 100%;
-  background: var(--color-neutral-50);
+  background: var(--color-neutral-100);
   overflow: hidden;
 }
 
