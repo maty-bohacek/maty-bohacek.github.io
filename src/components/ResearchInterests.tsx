@@ -1,10 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ResearchInterest } from '@/types';
+import { ArrowUpRightIcon } from '@/components/Icons';
 
 interface ResearchInterestItem extends Omit<ResearchInterest, 'body'> {
   bodyHtml: string;
 }
+
+// Same look as the links in the hero (Scholar, GitHub, ...).
+const linkClass =
+  'inline-flex items-center gap-1 text-sm font-ui font-medium text-neutral-800 hover:text-neutral-950 hover:underline underline-offset-4 transition-colors';
 
 interface ResearchInterestsProps {
   interests: ResearchInterestItem[];
@@ -39,18 +44,14 @@ export default function ResearchInterests({ interests }: ResearchInterestsProps)
               />
 
               {/* Both land on a list already filtered to this interest */}
-              <div className="mt-4 flex flex-wrap gap-2">
-                <Link
-                  href={`/research/?interest=${interest.id}`}
-                  className="inline-flex items-center text-xs font-medium font-ui text-neutral-600 hover:text-primary-600 bg-neutral-200 hover:bg-primary-50 px-2.5 py-1.5 transition-colors"
-                >
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1">
+                <Link href={`/research/?interest=${interest.id}`} className={linkClass}>
                   See papers
+                  <ArrowUpRightIcon className="w-3 h-3" />
                 </Link>
-                <Link
-                  href={`/blog/?interest=${interest.id}`}
-                  className="inline-flex items-center text-xs font-medium font-ui text-neutral-600 hover:text-primary-600 bg-neutral-200 hover:bg-primary-50 px-2.5 py-1.5 transition-colors"
-                >
+                <Link href={`/blog/?interest=${interest.id}`} className={linkClass}>
                   See blog posts
+                  <ArrowUpRightIcon className="w-3 h-3" />
                 </Link>
               </div>
             </div>
