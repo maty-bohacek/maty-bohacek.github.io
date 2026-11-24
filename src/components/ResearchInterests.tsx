@@ -42,13 +42,13 @@ export default function ResearchInterests({ interests }: ResearchInterestsProps)
               <div className="mt-4 flex flex-wrap gap-2">
                 <Link
                   href={`/research/?interest=${interest.id}`}
-                  className="inline-flex items-center text-xs font-medium font-ui text-neutral-600 hover:text-primary-600 bg-neutral-100 hover:bg-primary-50 px-2.5 py-1.5 transition-colors"
+                  className="inline-flex items-center text-xs font-medium font-ui text-neutral-600 hover:text-primary-600 bg-neutral-200 hover:bg-primary-50 px-2.5 py-1.5 transition-colors"
                 >
                   See papers
                 </Link>
                 <Link
                   href={`/blog/?interest=${interest.id}`}
-                  className="inline-flex items-center text-xs font-medium font-ui text-neutral-600 hover:text-primary-600 bg-neutral-100 hover:bg-primary-50 px-2.5 py-1.5 transition-colors"
+                  className="inline-flex items-center text-xs font-medium font-ui text-neutral-600 hover:text-primary-600 bg-neutral-200 hover:bg-primary-50 px-2.5 py-1.5 transition-colors"
                 >
                   See blog posts
                 </Link>
