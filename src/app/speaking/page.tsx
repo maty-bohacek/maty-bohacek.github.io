@@ -5,7 +5,7 @@ import CopyButton from '@/components/CopyButton';
 import { SpeakingLogo } from '@/types';
 
 export const metadata: Metadata = {
-  title: 'Speaking',
+  title: 'Public Speaking',
   description:
     'Talks, keynotes, and panels by Maty Bohacek on AI, media integrity, and trust online, for industry and academic audiences.',
   // Shared by link only: this page is not in the navigation and is kept out of search results.
@@ -53,7 +53,7 @@ export default function SpeakingPage() {
     <div className="site-container py-12 md:py-16">
       {/* Header */}
       <section className="mb-12">
-        <h1 className="text-2xl font-bold font-ui tracking-tight text-neutral-900 mb-4">Speaking</h1>
+        <h1 className="text-2xl font-bold font-ui tracking-tight text-neutral-900 mb-4">Public Speaking</h1>
         <p className="text-base text-neutral-700 leading-relaxed">{page.intro}</p>
       </section>
 
