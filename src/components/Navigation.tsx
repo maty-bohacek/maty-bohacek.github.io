@@ -1,8 +1,13 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+// Height of the sticky nav bar (h-14), so the headshot counts as gone once it
+// slides under the bar rather than off the top of the window.
+const NAV_HEIGHT_PX = 56;
 
 const navItems = [
   { href: '/', label: 'Home' },
@@ -16,6 +21,27 @@ const navItems = [
 export default function Navigation() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isHome = pathname === '/';
+  const [headshotInView, setHeadshotInView] = useState(true);
+
+  // On the home page the hero headshot already shows the face, so the nav only
+  // gets one once that photo has scrolled away. Every other page always has it.
+  useEffect(() => {
+    if (!isHome) return;
+    const headshot = document.getElementById('hero-headshot');
+    if (!headshot) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeadshotInView(entry.isIntersecting),
+      { rootMargin: `-${NAV_HEIGHT_PX}px 0px 0px 0px` }
+    );
+    observer.observe(headshot);
+    return () => {
+      observer.disconnect();
+      setHeadshotInView(true);
+    };
+  }, [isHome]);
+
+  const showFace = !isHome || !headshotInView;
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-neutral-200">
@@ -24,8 +50,14 @@ export default function Navigation() {
           {/* Logo / Name */}
           <Link
             href="/"
-            className="text-base font-bold font-ui hover:text-primary-600 transition-colors"
+            className="flex items-center text-base font-bold font-ui hover:text-primary-600 transition-colors"
           >
+            <span
+              aria-hidden="true"
+              className={`nav-face${showFace ? ' is-visible' : ''}`}
+            >
+              <Image src="/favicon.png" alt="" width={28} height={28} loading="eager" />
+            </span>
             Maty Bohacek
           </Link>
 
