@@ -101,14 +101,15 @@ export default function LogEntry({ entry, showDescription = true, showImages = t
     <article className={`group ${compact ? 'py-3' : 'py-6'} first:pt-0 border-b border-neutral-200 last:border-0`}>
       {logo ? (
         <div className="flex gap-3 sm:gap-4">
-          {/* Outlet logo */}
+          {/* Outlet logo, drawn edge to edge so solid-color logos fill the
+              tile. Logos without a background carry their margin in the file. */}
           <span className="flex-shrink-0 mt-0.5 inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-md overflow-hidden bg-white ring-1 ring-neutral-200/80 shadow-sm">
             <Image
               src={logo}
               alt=""
               width={40}
               height={40}
-              className="w-full h-full object-contain p-1"
+              className="w-full h-full object-contain"
             />
           </span>
           <div className="min-w-0 flex-1">{content}</div>

@@ -17,6 +17,10 @@
 #   logo      (optional) Small square logo of the outlet, shown to the left of the
 #             entry, e.g. "/images/press/logos/wired.png". Logos live in
 #             public/images/press/logos/ (one PNG per outlet, reused across entries).
+#             The image fills its tile edge to edge, so a logo with a solid
+#             background should run to the edges of the file. A logo on a
+#             transparent background needs its own margin (about 10% per side,
+#             e.g. 160px art centered on a 200px canvas) so it doesn't touch the tile edge.
 #   tags      (optional) List of tags, e.g. ["article", "podcast", "tv"].
 #
 # Title convention: titles are shown in English. For a non-English source, use the
