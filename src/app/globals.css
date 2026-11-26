@@ -351,6 +351,49 @@ code {
   animation: fadeIn 0.5s ease forwards;
 }
 
+/* Face sticker beside the name in the nav. The slot opens first to push the
+   name right, then the face spins in tilted with a little overshoot. Each
+   state carries the transition used when entering it, so hiding runs in
+   reverse: the face shrinks away, then the slot closes. */
+.nav-face {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0;
+  margin-right: 0;
+  transition: width 240ms ease-in-out 120ms, margin-right 240ms ease-in-out 120ms;
+}
+
+.nav-face img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  max-width: none;
+  opacity: 0;
+  transform: scale(0) rotate(-45deg);
+  transition: transform 200ms ease-in, opacity 150ms ease-in 50ms;
+}
+
+.nav-face.is-visible {
+  width: 28px;
+  margin-right: 0.5rem;
+  transition: width 240ms ease-out, margin-right 240ms ease-out;
+}
+
+.nav-face.is-visible img {
+  opacity: 1;
+  transform: scale(1) rotate(-10deg);
+  transition: transform 520ms cubic-bezier(0.34, 1.56, 0.64, 1) 90ms, opacity 160ms ease-out 90ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-face,
+  .nav-face img,
+  .nav-face.is-visible,
+  .nav-face.is-visible img {
+    transition: none;
+  }
+}
+
 /* Highlight.js theme overrides for code */
 .hljs {
   background: var(--color-neutral-900) !important;
